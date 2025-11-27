@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Data Science & AI Portfolio - Backup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Backup of nested index.html (no changes) -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">DS<span>·</span>AI</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Highlights</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+      <span class="icon">🌗</span>
+      <span class="label">Light</span>
+    </button>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Data science · AI · Insight storytelling</p>
+        <h1>Hello, I'm <span class="accent">You</span></h1>
+        <p class="lede">
+          A data scientist and AI enthusiast who loves turning complex problems into elegant, ethical, and
+          human-centered solutions. I translate messy data into products, insights, and stories that spark action.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#blog">Read the blog</a>
+          <a class="btn ghost" href="#projects">View highlights</a>
+        </div>
+        <div class="meta">
+          <span>• End-to-end machine learning</span>
+          <span>• Generative AI experiments</span>
+          <span>• Data visualization craft</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="glass-card">
+          <img src="assets/profile.svg" alt="A stylized portrait of me" class="profile" />
+          <div class="status-pill">Available for collaborations</div>
+          <div class="badge">AI & Data Science</div>
+        </div>
+        <div class="float-card">
+          <p class="float-label">Latest experiment</p>
+          <p class="float-title">Retrieval-augmented insights bot</p>
+          <p class="float-desc">Grounds generative answers with citations so stakeholders can trust the numbers.</p>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">About me</p>
+        <h2>Builder, mentor, curious human</h2>
+        <p class="lede">
+          I thrive at the intersection of research and product, shipping thoughtful AI features while staying rooted in ethics,
+          reproducibility, and crisp storytelling. Outside of work, I mentor newcomers, write about AI safety, and sketch data visuals.
+        </p>
+      </div>
+      <div class="about-grid">
+        <article class="card">
+          <h3>What I do</h3>
+          <ul>
+            <li>Translate business questions into experiment-ready hypotheses.</li>
+            <li>Prototype and productionize ML systems with strong observability.</li>
+            <li>Design delightful dashboards that invite exploration.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Tools I trust</h3>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">PyTorch</span>
+            <span class="pill">scikit-learn</span>
+            <span class="pill">LangChain</span>
+            <span class="pill">SQL</span>
+            <span class="pill">dbt</span>
+            <span class="pill">Observable</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Values I keep</h3>
+          <p>Transparent methods, reproducible pipelines, and human-first outcomes. I care about inclusive teams and setting up guardrails for responsible AI.</p>
+        </article>
+      </div>
+    </section>
+    <section id="projects" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Highlights</p>
+        <h2>Selected work</h2>
+        <p class="lede">Recent projects that blend experimentation, engineering rigor, and design.</p>
+      </div>
+      <div class="cards-grid">
+        <article class="card hover-card">
+          <p class="tag">GenAI</p>
+          <h3>Insight Copilot</h3>
+          <p>Built a retrieval-augmented assistant that pairs LLMs with curated metrics, delivering cited answers to leadership.</p>
+          <div class="meta">Quality checks · Embedding search · Guardrails</div>
+        </article>
+        <article class="card hover-card">
+          <p class="tag">MLOps</p>
+          <h3>Demand Forecasting</h3>
+          <p>Trained a probabilistic model for seasonal demand, cutting stockouts by 18% with automated drift alerts.</p>
+          <div class="meta">Time-series · Monitoring · CI/CD</div>
+        </article>
+        <article class="card hover-card">
+          <p class="tag">Data Viz</p>
+          <h3>Trustworthy Dashboards</h3>
+          <p>Designed a decision dashboard with narrative annotations and confidence indicators that boosted adoption.</p>
+          <div class="meta">Storytelling · UI polish · Accessibility</div>
+        </article>
+      </div>
+    </section>
+    <section id="blog" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Blog</p>
+        <h2>Notes from the lab</h2>
+        <p class="lede">I write about machine learning, data craft, and the human side of AI.</p>
+      </div>
+      <div class="blog-controls">
+        <div class="pill-row" id="tagFilters" aria-label="Filter posts by tag"></div>
+        <label class="search">
+          <span class="sr-only">Search posts</span>
+          <input type="search" id="searchInput" placeholder="Search posts" />
+          <span class="icon">🔍</span>
+        </label>
+      </div>
+      <div id="blogList" class="blog-grid" role="list"></div>
+    </section>
+  </main>
+  <footer id="contact" class="site-footer">
+    <div>
+      <p class="eyebrow">Stay in touch</p>
+      <h3>Let's build something thoughtful together.</h3>
+      <p>Reach out for collaborations, speaking, or mentoring.</p>
+    </div>
+    <div class="footer-actions">
+      <a class="btn primary" href="mailto:hello@example.com">Email me</a>
+      <a class="btn ghost" href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </footer>
+  <template id="blog-card-template">
+    <article class="card blog-card" role="listitem">
+      <p class="tag"></p>
+      <h3></h3>
+      <p class="blog-date"></p>
+      <p class="blog-summary"></p>
+      <div class="blog-footer">
+        <div class="pill-row tags"></div>
+        <button class="link">Read more</button>
+      </div>
+      <div class="blog-details" hidden></div>
+    </article>
+  </template>
+  <script src="script.js"></script>
+</body>
+</html>
+<!-- backup of nested index.html -->
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backup: nested index</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Original nested index preserved here for backup -->
+</body>
+</html>

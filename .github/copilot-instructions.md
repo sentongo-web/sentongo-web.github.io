@@ -10,10 +10,10 @@ Big picture
 Key files and locations
 - `docs/_config.yml` — Jekyll settings (theme, plugins, and `baseurl` comment). Update `baseurl` if the repo is not `username.github.io`.
 - `docs/Readme.md` — Local run instructions and deployment tips.
-- `docs/docs/assets/docs/index.html` — Main page HTML (note unusual nesting). When running a server, you may need to open `/docs/docs/assets/docs/` path or move `index.html` to `docs/` root.
-- `docs/docs/assets/docs/script.js` — Main interactive JS. Contains the `posts` array that powers the blog list, the theme toggle logic, and search/tag filtering.
-- `docs/docs/assets/docs/styles.css` — Styling and design tokens (CSS variables) for light/dark themes.
-- `docs/docs/assets/profile.svg` — Profile image used in the hero card.
+- `docs/index.html` — Main page HTML. The site expects `index.html` to live at `docs/` so GitHub Pages can find it.
+- `docs/script.js` — Main interactive JS. Contains the `posts` array that powers the blog list, the theme toggle logic, and search/tag filtering.
+- `docs/styles.css` — Styling and design tokens (CSS variables) for light/dark themes.
+- `docs/assets/profile.svg` — Profile image used in the hero card.
 
 Important patterns & conventions (do not change without review)
 - Static posts live inside `script.js` as a JS array. Each post uses the fields: `title`, `date`, `tags` (array), `summary`, `body`. Example object:
@@ -34,7 +34,7 @@ Local dev & debugging
 - Quick run (no dependencies):
   - Python built-in server from the repo root:
     python -m http.server 8000 --directory docs
-    Then open `http://localhost:8000/docs/docs/assets/docs/index.html` (because of the nested structure) — or open the nested path in your browser.
+    Then open `http://localhost:8000/` (server root) — the site now serves correctly from `docs/index.html`.
 - Jekyll (if you want layout, SEO tags, or plugin behavior):
   - Install dependencies: `bundle install` in repo root (if a `Gemfile` is added)
   - Serve locally: `bundle exec jekyll serve --source docs --livereload`
@@ -42,9 +42,9 @@ Local dev & debugging
 - Deployment: GitHub Pages — configure in Settings → Pages: set branch to `main` (or `work`) and source to `/docs`.
 
 When to create or update files
-- Adding blog posts: Edit `script.js` -- do not forget to keep tag arrays simple and update templates if you need to support richer content.
-- Styling changes: `styles.css` is the single source of truth for tokens; prefer editing variables at the top for site-wide changes.
-- Assets: Replace `profile.svg` in `docs/docs/assets/docs/assets/` and keep filename to avoid index changes.
+ - Adding blog posts: Edit `docs/script.js` -- do not forget to keep tag arrays simple and update templates if you need to support richer content.
+ - Styling changes: `docs/styles.css` is the single source of truth for tokens; prefer editing variables at the top for site-wide changes.
+ - Assets: Replace `profile.svg` in `docs/assets/` and keep the filename to avoid index changes.
 
 Testing & validation
 - Visual checks are the main validation method. Use the local server workflow above.
@@ -61,8 +61,8 @@ Editing rules for AI agents (be conservative)
 - Do not add third-party analytics or external script imports without explicit permission.
 
 Examples (in-repo) to reference
-- Posts array: `docs/docs/assets/docs/script.js` (see `posts` variable near top)
-- Theme CSS variables: `docs/docs/assets/docs/styles.css` (:root and [data-theme="dark"]).
-- Main page skeleton: `docs/docs/assets/docs/index.html` (hero, blog grid, templates)
+- Posts array: `docs/script.js` (see `posts` variable near top)
+- Theme CSS variables: `docs/styles.css` (:root and [data-theme="dark"]).
+- Main page skeleton: `docs/index.html` (hero, blog grid, templates)
 
 If anything here is unclear or you need a deeper dive (e.g., refactor plan, move to Jekyll, accessibility audit), ask for permission before making large changes.

@@ -1,0 +1,22 @@
+<svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.7" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0F172A" flood-opacity="0.35" />
+    </filter>
+  </defs>
+  <rect width="260" height="260" rx="34" fill="url(#bg)" filter="url(#shadow)" />
+  <circle cx="130" cy="110" r="70" fill="white" fill-opacity="0.12" />
+  <circle cx="130" cy="110" r="58" fill="white" fill-opacity="0.35" />
+  <path d="M130 66C108 66 91 84.5 91 107C91 129.5 108 148 130 148C152 148 169 129.5 169 107C169 84.5 152 66 130 66ZM130 82C141.046 82 150 90.9543 150 102C150 113.046 141.046 122 130 122C118.954 122 110 113.046 110 102C110 90.9543 118.954 82 130 82Z" fill="white" />
+  <path d="M67 208.8C67 174.5 95.5 146 129.8 146H130.2C164.5 146 193 174.5 193 208.8V214H67V208.8Z" fill="url(#glow)" fill-opacity="0.95" />
+  <text x="130" y="221" text-anchor="middle" font-family="'Inter', system-ui" font-size="28" font-weight="700" fill="#0F172A">You</text>
+</svg>
