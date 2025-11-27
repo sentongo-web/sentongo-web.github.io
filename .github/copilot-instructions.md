@@ -13,7 +13,7 @@ Key files and locations
 - `docs/index.html` — Main page HTML. The site expects `index.html` to live at `docs/` so GitHub Pages can find it.
 - `docs/script.js` — Main interactive JS. Contains the `posts` array that powers the blog list, the theme toggle logic, and search/tag filtering.
 - `docs/styles.css` — Styling and design tokens (CSS variables) for light/dark themes.
-- `docs/assets/profile.svg` — Profile image used in the hero card.
+- `docs/assets/profile.png` — Profile image used in the hero card. Add `profile.webp` for best performance.
 
 Important patterns & conventions (do not change without review)
 - Static posts live inside `script.js` as a JS array. Each post uses the fields: `title`, `date`, `tags` (array), `summary`, `body`. Example object:
@@ -44,7 +44,7 @@ Local dev & debugging
 When to create or update files
  - Adding blog posts: Edit `docs/script.js` -- do not forget to keep tag arrays simple and update templates if you need to support richer content.
  - Styling changes: `docs/styles.css` is the single source of truth for tokens; prefer editing variables at the top for site-wide changes.
- - Assets: Replace `profile.svg` in `docs/assets/` and keep the filename to avoid index changes.
+- - Assets: Replace `profile.png` in `docs/assets/` and keep the filename to avoid index changes; optionally provide `profile.webp` for improved compression.
 
 Testing & validation
 - Visual checks are the main validation method. Use the local server workflow above.

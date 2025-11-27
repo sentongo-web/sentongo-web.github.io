@@ -26,4 +26,4 @@ index 0000000000000000000000000000000000000000..1ce5db3212d3043d09e09d93ca614440
 +## Customization
 +- Update `docs/index.html`, `docs/styles.css`, and `docs/script.js` to adjust copy, styling, or add posts.
 +- Replace `docs/assets/profile.svg` with your own portrait image (keep the same filename for simplicity).
-+- If your repo name changes, set `baseurl` in `docs/_config.yml` so asset links resolve correctly when using Jekyll.
+- Replace `docs/assets/profile.png` with your portrait image (keep the same filename for simplicity); optionally add `docs/assets/profile.webp` for improved performance.
