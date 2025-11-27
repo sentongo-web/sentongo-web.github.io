@@ -18,5 +18,5 @@
   <circle cx="130" cy="110" r="58" fill="white" fill-opacity="0.35" />
   <path d="M130 66C108 66 91 84.5 91 107C91 129.5 108 148 130 148C152 148 169 129.5 169 107C169 84.5 152 66 130 66ZM130 82C141.046 82 150 90.9543 150 102C150 113.046 141.046 122 130 122C118.954 122 110 113.046 110 102C110 90.9543 118.954 82 130 82Z" fill="white" />
   <path d="M67 208.8C67 174.5 95.5 146 129.8 146H130.2C164.5 146 193 174.5 193 208.8V214H67V208.8Z" fill="url(#glow)" fill-opacity="0.95" />
-  <text x="130" y="221" text-anchor="middle" font-family="'Inter', system-ui" font-size="28" font-weight="700" fill="#0F172A">You</text>
+  <text x="130" y="221" text-anchor="middle" font-family="'Inter', system-ui" font-size="24" font-weight="700" fill="#0F172A">Paul Sentongo</text>
 </svg>
