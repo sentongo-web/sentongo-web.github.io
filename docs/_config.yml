@@ -1,0 +1,24 @@
+# Basic Jekyll config to make the site Pages-ready
+# GitHub Pages will build content from the docs/ directory.
+# If your repository name changes, set `baseurl` accordingly (e.g., "/Data-mining").
+# For a user/organization site like username.github.io, leave baseurl blank.
+# Learn more: https://pages.github.com/
+
+# Site settings
+name: "Data Science & AI Portfolio"
+title: "Data Science & AI Portfolio"
+description: "Personal portfolio and blog for data science and AI work"
+# Uncomment and adjust the next line if you want a baseurl added automatically to asset links
+# baseurl: "/Data-mining"
+
+# Theme & plugins that work on GitHub Pages
+# The custom HTML/CSS/JS already provides the UI; enabling a theme helps with metadata and SEO tags.
+theme: minima
+plugins:
+  - jekyll-seo-tag
+
+# Exclude build artifacts we don't need
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
