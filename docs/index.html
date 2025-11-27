@@ -45,7 +45,12 @@
       </div>
       <div class="hero-visual">
         <div class="glass-card">
-          <img src="assets/paul-passport.png" alt="Paul Sentongo — portrait photo" class="profile" />
+          <picture>
+            <!-- Modern browsers prefer WebP; include PNG as a fallback. If neither is present, SVG is used. -->
+            <source type="image/webp" srcset="assets/paul-passport.webp">
+            <source type="image/png" srcset="assets/paul-passport.png">
+            <img src="assets/profile.svg" alt="Paul Sentongo — portrait photo" class="profile" width="260" height="260" loading="lazy" decoding="async" />
+          </picture>
           <div class="status-pill">Available for collaborations</div>
           <div class="badge">AI & Data Science</div>
         </div>
