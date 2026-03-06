@@ -26,6 +26,42 @@
     --font-mono: 'DM Mono', monospace;
   }
 
+  [data-theme="light"] {
+    --bg: #f4f4ef;
+    --bg2: #eaeae5;
+    --surface: #e0e0db;
+    --border: rgba(0,0,0,0.09);
+    --text: #0f0f0f;
+    --muted: #555;
+    --accent: #007744;
+    --accent2: #005fa3;
+    --accent3: #cc2222;
+  }
+  [data-theme="light"] body::before { opacity: 0.06; }
+  [data-theme="light"] .cursor { mix-blend-mode: normal; background: var(--accent); }
+  [data-theme="light"] .hero-grid {
+    background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  }
+  [data-theme="light"] nav {
+    background: linear-gradient(to bottom, rgba(244,244,239,0.97), transparent);
+  }
+  [data-theme="light"] .ticker-item::before { color: var(--accent); }
+
+  .theme-toggle {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
@@ -1029,6 +1065,7 @@
     <li><a href="#cv">CV</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">Light</button>
 </nav>
 
 <!-- HERO -->
@@ -1111,73 +1148,44 @@
 
     <div class="project-card featured">
       <div>
-        <div class="project-tag">Featured Project</div>
-        <h3 class="project-title">Predictive Analytics Dashboard — East Africa Health Sector</h3>
-        <p class="project-desc">Built an end-to-end ML pipeline that forecasts disease outbreaks up to six weeks ahead, combining satellite imagery, climate data, and hospital records. The system is deployed and actively used by health ministries across Uganda and Kenya, providing real-time alerts that help coordinate rapid response.</p>
+        <div class="project-tag">Computer Vision / Medical AI</div>
+        <h3 class="project-title">Dental OPG Cavity Detection</h3>
+        <p class="project-desc">Dentists miss cavities. Not because they are bad at their jobs. Because they review dozens of X-rays under time pressure every single day. I built an object detection model that reads Orthopantomographic (full-mouth panoramic) X-rays and flags potential cavity regions in seconds. You upload a dental OPG scan. The model draws bounding boxes around suspicious areas with confidence scores. It works as a second pair of eyes. The kind of tool that could genuinely change outcomes in under-resourced clinics across Africa and beyond. Trained on annotated dental X-ray datasets using a fine-tuned YOLO architecture. Deployed as a live interactive app on HuggingFace Spaces.</p>
         <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">XGBoost</span>
-          <span class="tech-tag">Google Earth Engine</span>
-          <span class="tech-tag">Tableau</span>
-          <span class="tech-tag">PostgreSQL</span>
-          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">PyTorch</span>
+          <span class="tech-tag">YOLOv8</span>
+          <span class="tech-tag">Computer Vision</span>
+          <span class="tech-tag">Gradio</span>
+          <span class="tech-tag">HuggingFace Spaces</span>
         </div>
-        <a href="#" class="project-link">View Case Study →</a>
+        <a href="https://huggingface.co/spaces/Sentoz/dental-opg-cavity-detection" target="_blank" rel="noreferrer" class="project-link">Try Live Demo →</a>
       </div>
       <div class="project-visual">
-        <svg width="100%" height="100%" viewBox="0 0 400 260" preserveAspectRatio="none">
-          <polyline points="0,200 40,180 80,150 120,170 160,100 200,120 240,60 280,80 320,40 360,55 400,30"
-            fill="none" stroke="#00ff88" stroke-width="2" opacity="0.8"/>
-          <polyline points="0,220 40,200 80,190 120,210 160,160 200,170 240,130 280,150 320,110 360,125 400,100"
-            fill="none" stroke="#0af" stroke-width="1.5" opacity="0.5"/>
-          <line x1="0" y1="0" x2="0" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-          <line x1="80" y1="0" x2="80" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-          <line x1="160" y1="0" x2="160" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-          <line x1="240" y1="0" x2="240" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-          <line x1="320" y1="0" x2="320" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-          <circle cx="240" cy="60" r="5" fill="#00ff88" opacity="0.9"/>
-          <text x="250" y="55" fill="#00ff88" font-size="10" font-family="DM Mono, monospace" opacity="0.8">94.2% accuracy</text>
+        <svg width="100%" height="100%" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet">
+          <rect x="60" y="40" width="280" height="180" rx="4" fill="none" stroke="rgba(0,255,136,0.15)" stroke-width="1"/>
+          <rect x="120" y="80" width="60" height="50" rx="2" fill="none" stroke="#00ff88" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.8"/>
+          <rect x="220" y="100" width="50" height="45" rx="2" fill="none" stroke="#0af" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.7"/>
+          <text x="120" y="76" fill="#00ff88" font-size="9" font-family="DM Mono,monospace" opacity="0.9">Cavity 94%</text>
+          <text x="220" y="96" fill="#0af" font-size="9" font-family="DM Mono,monospace" opacity="0.9">Cavity 87%</text>
+          <line x1="60" y1="130" x2="400" y2="130" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+          <text x="140" y="248" fill="rgba(255,255,255,0.15)" font-size="9" font-family="DM Mono,monospace">OPG X-ray analysis</text>
         </svg>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-tag">NLP</div>
-      <h3 class="project-title">Swahili & Luganda Sentiment Engine</h3>
-      <p class="project-desc">Fine-tuned a transformer model for sentiment analysis in Swahili and Luganda — East African languages largely absent from global NLP benchmarks. Trained on 2M+ scraped social posts, the model now powers brand monitoring for two regional companies.</p>
-      <div class="project-tech">
-        <span class="tech-tag">BERT</span>
-        <span class="tech-tag">HuggingFace</span>
-        <span class="tech-tag">PyTorch</span>
-        <span class="tech-tag">MLflow</span>
-      </div>
-      <a href="#" class="project-link">View Project →</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-tag">Computer Vision</div>
-      <h3 class="project-title">Crop Disease Detection via Drone Imagery</h3>
-      <p class="project-desc">CNN-based system achieving 91% accuracy detecting 12 crop diseases from drone imagery. Deployed as a mobile-friendly API, helping smallholder farmers in rural Uganda identify problems and act within the critical response window.</p>
+    <div class="project-card" style="grid-column: span 2;">
+      <div class="project-tag">Computer Vision / Medical AI</div>
+      <h3 class="project-title">Kidney Condition Classifier</h3>
+      <p class="project-desc">CT scans reveal everything. But reading them takes years of training and time that busy radiologists do not always have. I trained a multi-class deep learning classifier that categorizes kidney CT images into four conditions: Normal, Cyst, Stone, and Tumor. The model processes an image in under a second and returns a classification with a confidence score. This is medical AI that is actually useful. Not a research toy. A real tool that could assist radiologists in high-volume settings, flagging images that need urgent attention. Built on a ResNet architecture fine-tuned on a curated kidney CT dataset. Deployed as a live Gradio app on HuggingFace Spaces where you can upload any kidney CT slice and get an instant result.</p>
       <div class="project-tech">
         <span class="tech-tag">TensorFlow</span>
         <span class="tech-tag">ResNet-50</span>
-        <span class="tech-tag">OpenCV</span>
-        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">Medical Imaging</span>
+        <span class="tech-tag">Gradio</span>
+        <span class="tech-tag">HuggingFace Spaces</span>
+        <span class="tech-tag">Transfer Learning</span>
       </div>
-      <a href="#" class="project-link">View Project →</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-tag">MLOps</div>
-      <h3 class="project-title">End-to-End MLOps Pipeline Template</h3>
-      <p class="project-desc">Open-source template for production ML pipelines: automated training, MLflow experiment tracking, Docker containerisation, CI/CD with GitHub Actions, and model monitoring. Designed to give data scientists a running start without reinventing infrastructure.</p>
-      <div class="project-tech">
-        <span class="tech-tag">MLflow</span>
-        <span class="tech-tag">Docker</span>
-        <span class="tech-tag">GitHub Actions</span>
-        <span class="tech-tag">FastAPI</span>
-      </div>
-      <a href="https://github.com" target="_blank" rel="noreferrer" class="project-link">View on GitHub →</a>
+      <a href="https://huggingface.co/spaces/Sentoz/kidney-classifier" target="_blank" rel="noreferrer" class="project-link">Try Live Demo →</a>
     </div>
 
   </div>
@@ -1199,35 +1207,37 @@
     </div>
     <div class="about-content">
       <p class="about-intro">
-        A data scientist who believes the most powerful thing you can do with data is make it <em>understandable</em> — and then make it <em>actually work</em>.
+        I build machine learning systems that actually work. Not demos. Not proofs of concept. <em>Production systems</em> that make real decisions every single day.
       </p>
 
       <div class="degree-badge">
         <span class="badge-icon">🎓</span>
         <span class="badge-text">
-          Master of Science — Data Science &amp; Analytics
+          Master of Science in Data Science &amp; Analytics
           <small>Postgraduate · Distinction</small>
         </span>
       </div>
 
       <p class="about-text">
-        I am Paul Sentongo, a Data Scientist and Machine Learning professional with a Master's degree in Data Science and Analytics. My work sits at the intersection of rigorous statistical thinking and hands-on engineering — I don't just build models, I build systems that keep working long after the notebook is closed.
+        I am Paul Sentongo. MSc in Data Science and Analytics. Five years building end-to-end machine learning systems from raw data to deployed product. I grew up in Uganda. I watched brilliant ideas fail because no one could make the data work. That is what I fix.
       </p>
       <p class="about-text">
-        I grew up in Uganda, where I saw first-hand how the gap between "knowing something is wrong" and "having the data to prove it — and fix it" costs lives and opportunities. That observation drove me to pursue data science not as an academic exercise but as a practical force for change. Today I build ML systems, craft interpretable visualisations for non-technical stakeholders, and mentor the next generation of African data scientists.
+        My stack goes the full distance. Python for everything. SQL for when the data lives in a database (which is almost always). Power BI for when a decision-maker needs a dashboard they can actually use. MLflow for tracking experiments so good results are repeatable. Docker so models run the same everywhere. FastAPI so those models become services other systems can call. The whole chain, not just one piece.
       </p>
       <p class="about-text">
-        I am actively seeking roles and collaborations where deep technical skill meets meaningful impact — whether that is a senior data science position, an MLOps engineering role, or a research partnership. If you are building something that matters and need someone who can take it from idea to production, let's talk.
+        I build medical AI that assists clinicians. I build dashboards that help executives stop guessing. I build pipelines that do not break at 2am. If you have a hard data problem and need someone who will go from first principles to working solution, reach out now.
       </p>
 
       <div class="about-skills">
-        <div class="skill-item"><span class="skill-icon">🧠</span> Machine Learning &amp; MLOps</div>
-        <div class="skill-item"><span class="skill-icon">🐍</span> Python, Pandas, NumPy</div>
+        <div class="skill-item"><span class="skill-icon">🧠</span> Machine Learning &amp; Deep Learning</div>
+        <div class="skill-item"><span class="skill-icon">🐍</span> Python, Pandas, NumPy, Scikit-learn</div>
+        <div class="skill-item"><span class="skill-icon">📊</span> Power BI Dashboards</div>
+        <div class="skill-item"><span class="skill-icon">🗄️</span> SQL &amp; Data Warehousing</div>
         <div class="skill-item"><span class="skill-icon">🐳</span> Docker &amp; Containerisation</div>
-        <div class="skill-item"><span class="skill-icon">📊</span> MLflow &amp; Experiment Tracking</div>
-        <div class="skill-item"><span class="skill-icon">🗄️</span> SQL &amp; Data Pipelines</div>
-        <div class="skill-item"><span class="skill-icon">☁️</span> Cloud — GCP &amp; AWS</div>
+        <div class="skill-item"><span class="skill-icon">🔬</span> MLflow &amp; Experiment Tracking</div>
+        <div class="skill-item"><span class="skill-icon">☁️</span> Cloud: GCP &amp; AWS</div>
         <div class="skill-item"><span class="skill-icon">📡</span> Deep Learning &amp; NLP</div>
+        <div class="skill-item"><span class="skill-icon">👁️</span> Computer Vision</div>
         <div class="skill-item"><span class="skill-icon">📈</span> Statistical Modelling</div>
       </div>
     </div>
@@ -1246,51 +1256,99 @@
   </p>
   <div class="blog-grid reveal">
 
-    <div class="blog-card big" onclick="openPost('mlops-101')">
-      <div class="blog-category">Deep Dive</div>
-      <div class="blog-date">March 2025</div>
-      <h3 class="blog-title">MLOps 101: What It Is, Why It Matters, and Where to Start</h3>
-      <p class="blog-excerpt">You trained a model. It works beautifully on your laptop. Now what? MLOps is the discipline that answers that question — and it's the difference between a science project and a real product. Let's break it down from scratch.</p>
+    <div class="blog-card big" onclick="openPost('why-machines-learn')">
+      <div class="blog-category">Big Picture</div>
+      <div class="blog-date">March 2026</div>
+      <h3 class="blog-title">Why Do We Teach Machines to Learn?</h3>
+      <p class="blog-excerpt">This is the question nobody asks first. Everyone jumps straight to "how." But the why changes everything. Why not just write rules? Why let machines figure it out? The answer will shift how you think about every model you ever build.</p>
       <button class="blog-read">Read Article →</button>
+    </div>
+
+    <div class="blog-card" onclick="openPost('linear-regression')">
+      <div class="blog-category">Beginner Guide</div>
+      <div class="blog-date">February 2026</div>
+      <h3 class="blog-title">Linear Regression: The Most Important Algorithm Nobody Respects</h3>
+      <p class="blog-excerpt">Everyone wants to jump to neural networks. Stop. Learn this first. Linear regression is how machines draw a line through data. Simple. Powerful. The foundation of everything else.</p>
+      <button class="blog-read">Read →</button>
+    </div>
+
+    <div class="blog-card" onclick="openPost('logistic-regression')">
+      <div class="blog-category">Beginner Guide</div>
+      <div class="blog-date">February 2026</div>
+      <h3 class="blog-title">Logistic Regression: When Your Answer Is Yes or No</h3>
+      <p class="blog-excerpt">Spam or not spam. Fraud or not fraud. Cancer or clear. When the output is a decision, logistic regression is often the right tool. Here is how it actually works, without the maths fog.</p>
+      <button class="blog-read">Read →</button>
+    </div>
+
+    <div class="blog-card" onclick="openPost('decision-trees')">
+      <div class="blog-category">Beginner Guide</div>
+      <div class="blog-date">January 2026</div>
+      <h3 class="blog-title">Decision Trees and Random Forests: How Machines Make Choices</h3>
+      <p class="blog-excerpt">A decision tree is a machine playing 20 questions. A random forest is a thousand trees voting. This is how they work, why ensembles beat single models, and when to reach for each.</p>
+      <button class="blog-read">Read →</button>
+    </div>
+
+    <div class="blog-card" onclick="openPost('power-bi')">
+      <div class="blog-category">Tutorial</div>
+      <div class="blog-date">January 2026</div>
+      <h3 class="blog-title">Power BI: From Raw Data to Boardroom Dashboard</h3>
+      <p class="blog-excerpt">Data that stays in a spreadsheet changes nothing. Power BI turns it into something executives actually look at and act on. Here is the full workflow from connecting your data to publishing a dashboard that moves decisions.</p>
+      <button class="blog-read">Read →</button>
+    </div>
+
+    <div class="blog-card" onclick="openPost('computer-vision')">
+      <div class="blog-category">Deep Dive</div>
+      <div class="blog-date">December 2025</div>
+      <h3 class="blog-title">Computer Vision: Teaching Machines to See</h3>
+      <p class="blog-excerpt">How does a model look at a dental X-ray and spot a cavity? How does a self-driving car know there is a person crossing? It all starts with pixels as numbers. Here is the full story, from image to prediction.</p>
+      <button class="blog-read">Read →</button>
+    </div>
+
+    <div class="blog-card" onclick="openPost('deep-learning')">
+      <div class="blog-category">Deep Dive</div>
+      <div class="blog-date">December 2025</div>
+      <h3 class="blog-title">Deep Learning: The Revolution That Changed Everything</h3>
+      <p class="blog-excerpt">Why did neural networks suddenly start working in 2012 after decades of failure? What changed? And what can they actually do that old-school ML cannot? The honest, plain-English story of the deep learning revolution.</p>
+      <button class="blog-read">Read →</button>
+    </div>
+
+    <div class="blog-card" onclick="openPost('mlops-101')">
+      <div class="blog-category">Deep Dive</div>
+      <div class="blog-date">November 2025</div>
+      <h3 class="blog-title">MLOps 101: What It Is, Why It Matters, and Where to Start</h3>
+      <p class="blog-excerpt">You trained a model. It works beautifully on your laptop. Now what? MLOps is the discipline that answers that question. The difference between a science project and a real product.</p>
+      <button class="blog-read">Read →</button>
     </div>
 
     <div class="blog-card" onclick="openPost('docker-data-science')">
       <div class="blog-category">Tutorial</div>
-      <div class="blog-date">February 2025</div>
-      <h3 class="blog-title">Docker Explained With a Pizza Analogy (No, Really)</h3>
-      <p class="blog-excerpt">If you've ever said "but it works on my machine," Docker is the cure. Here's what containers actually are — explained in plain English before a single command is typed.</p>
+      <div class="blog-date">November 2025</div>
+      <h3 class="blog-title">Docker Explained With a Pizza Analogy</h3>
+      <p class="blog-excerpt">If you have ever said "but it works on my machine," Docker is the cure. Here is what containers actually are, explained in plain English before a single command is typed.</p>
       <button class="blog-read">Read →</button>
     </div>
 
     <div class="blog-card" onclick="openPost('mlflow-guide')">
       <div class="blog-category">Tutorial</div>
-      <div class="blog-date">January 2025</div>
+      <div class="blog-date">October 2025</div>
       <h3 class="blog-title">MLflow: Track Your ML Experiments Like a Pro</h3>
-      <p class="blog-excerpt">Training a model without tracking experiments is like cooking without writing down the recipe. MLflow fixes that. Here's a beginner-friendly walkthrough of all four components.</p>
+      <p class="blog-excerpt">Training without tracking is like cooking without writing down the recipe. MLflow fixes that. A beginner-friendly walkthrough of all four components with real code.</p>
       <button class="blog-read">Read →</button>
     </div>
 
     <div class="blog-card" onclick="openPost('ml-plain-english')">
       <div class="blog-category">Beginner Guide</div>
-      <div class="blog-date">December 2024</div>
+      <div class="blog-date">October 2025</div>
       <h3 class="blog-title">What Is Machine Learning? A Plain-English Guide</h3>
-      <p class="blog-excerpt">No maths, no intimidating jargon — just a clear, honest explanation of what machine learning actually is, how models "learn," and the three types every beginner should know.</p>
+      <p class="blog-excerpt">No maths. No intimidating jargon. Just a clear, honest explanation of what machine learning actually is, how models learn, and the three types every beginner should know.</p>
       <button class="blog-read">Read →</button>
     </div>
 
     <div class="blog-card" onclick="openPost('notebook-to-production')">
       <div class="blog-category">MLOps</div>
-      <div class="blog-date">November 2024</div>
+      <div class="blog-date">September 2025</div>
       <h3 class="blog-title">From Jupyter Notebook to Production: The Full Journey</h3>
-      <p class="blog-excerpt">Your notebook accuracy looks great. But getting that model into a real application that real people use is a different challenge entirely. Here's the full roadmap.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('african-data')">
-      <div class="blog-category">Opinion</div>
-      <div class="blog-date">October 2024</div>
-      <h3 class="blog-title">Why African Data Scientists Must Build Their Own Datasets</h3>
-      <p class="blog-excerpt">The global ML ecosystem is built on datasets that largely ignore the African context. From ImageNet's demographic gaps to NLP corpora with zero Bantu languages — the status quo is leaving billions underserved.</p>
+      <p class="blog-excerpt">Your notebook accuracy looks great. But getting that model into an application that real people use is a completely different challenge. Here is the full seven-stage roadmap.</p>
       <button class="blog-read">Read →</button>
     </div>
 
@@ -1337,36 +1395,40 @@
         ⬇ Download Full CV
         <small>PDF · Updated 2025</small>
       </a>
-      <a href="mailto:paul.sentongo@gmail.com" class="cv-download">
-        ✉ paul.sentongo@gmail.com
+      <a href="mailto:paul.sentongo@eclipso.de" class="cv-download">
+        ✉ paul.sentongo@eclipso.de
         <small>Get in touch</small>
       </a>
 
       <div class="skills-section">
         <div class="skills-label">Core Skills</div>
         <div class="skill-row">
-          <div class="skill-name"><span>Machine Learning &amp; Deep Learning</span><span>93%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div>
-        </div>
-        <div class="skill-row">
           <div class="skill-name"><span>Python / Pandas / NumPy / Scikit-learn</span><span>96%</span></div>
           <div class="skill-bar"><div class="skill-fill" style="width:96%"></div></div>
         </div>
         <div class="skill-row">
-          <div class="skill-name"><span>MLOps — MLflow, Docker, CI/CD</span><span>88%</span></div>
+          <div class="skill-name"><span>SQL &amp; Data Warehousing</span><span>92%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>Power BI &amp; Dashboard Design</span><span>88%</span></div>
           <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
         </div>
         <div class="skill-row">
-          <div class="skill-name"><span>NLP / LLMs / Transformers</span><span>82%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+          <div class="skill-name"><span>Machine Learning &amp; Deep Learning</span><span>93%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div>
         </div>
         <div class="skill-row">
-          <div class="skill-name"><span>SQL / dbt / Cloud (GCP, AWS)</span><span>86%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:86%"></div></div>
+          <div class="skill-name"><span>MLOps: MLflow, Docker, CI/CD</span><span>87%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div>
         </div>
         <div class="skill-row">
-          <div class="skill-name"><span>Data Visualisation &amp; Storytelling</span><span>90%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          <div class="skill-name"><span>Computer Vision &amp; NLP</span><span>85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>Cloud: GCP &amp; AWS</span><span>83%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:83%"></div></div>
         </div>
       </div>
     </div>
@@ -1415,21 +1477,21 @@
 <section id="contact">
   <div class="reveal">
     <h2 class="contact-big">Let's build<br>something<br><span>meaningful.</span></h2>
-    <p class="contact-email">paul.sentongo@gmail.com</p>
+    <p class="contact-email">paul.sentongo@eclipso.de</p>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/paul-sentongo" target="_blank" rel="noreferrer" class="social-link">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/paul-sentongo-885041284/" target="_blank" rel="noreferrer" class="social-link">LinkedIn</a>
       <a href="https://github.com/sentongo-web" target="_blank" rel="noreferrer" class="social-link">GitHub</a>
-      <a href="https://medium.com/@paul.sentongo" target="_blank" rel="noreferrer" class="social-link">Medium</a>
+      <a href="https://wa.me/4917635130941" target="_blank" rel="noreferrer" class="social-link">WhatsApp</a>
       <a href="assets/paul-sentongo-cv.pdf" download class="social-link">Download CV</a>
     </div>
     <p style="color:var(--muted); font-family:var(--font-mono); font-size:13px; max-width:500px; margin:0 auto; line-height:1.8;">
-      Open to senior data science roles, MLOps engineering positions, research collaborations, speaking engagements, and mentoring opportunities. Based in Kampala, Uganda — open to remote.
+      Open to senior data science roles, MLOps engineering positions, research collaborations, speaking engagements, and mentoring opportunities. Based in Kampala, Uganda. Open to remote.
     </p>
   </div>
 </section>
 
 <footer>
-  <span class="footer-copy">© 2025 Paul Sentongo. All rights reserved.</span>
+  <span class="footer-copy">© 2026 Paul Sentongo. All rights reserved.</span>
   <span class="footer-logo">PS<span>.</span></span>
   <span class="footer-copy">Made with data &amp; design ◆</span>
 </footer>
@@ -1445,6 +1507,356 @@
 <script>
 /* ─── Blog Post Data ─────────────────────────────────────── */
 const posts = {
+
+  'why-machines-learn': {
+    category: 'Big Picture',
+    date: 'March 2026',
+    title: 'Why Do We Teach Machines to Learn?',
+    body: `
+      <p>Most people ask how. Nobody asks why. That is the wrong order.</p>
+      <p>Why would you ever want a machine to learn from examples rather than just following instructions you wrote? Computers are deterministic. They do exactly what you tell them. That is the whole point. So why give up control and let the machine figure things out on its own?</p>
+      <p>The answer has three parts. Each one is more important than the last.</p>
+
+      <h2>Part One. The Rules Problem.</h2>
+      <p>In the 1980s, AI researchers tried to build expert systems. The idea was simple. Take a domain expert, a doctor or a lawyer or an engineer. Interview them. Extract all their knowledge into a set of if-then rules. Put those rules in a computer. Now you have an artificial expert.</p>
+      <p>It did not work.</p>
+      <p>Not because the idea was stupid. It was actually quite smart. It failed because knowledge is not a list of rules. A doctor diagnosing a patient is not running through a flowchart in their head. They are pattern-matching against thousands of cases they have seen before. The knowledge lives in the patterns, not in explicit rules.</p>
+      <p>You cannot write rules for how to recognize a dog from a photo. Try it. "Four legs" fails because tables have four legs. "Fur" fails because some dogs are hairless. "Barks" fails because you cannot hear a photo. The rules explode in complexity and they still do not work.</p>
+      <p>But show a child a hundred photos and they get it instantly. Because humans learn from examples. So the insight was: make machines do the same thing.</p>
+
+      <div class="analogy-box">
+        <span class="label">The core insight</span>
+        <p>Some knowledge is too complex to encode explicitly. It has to be learned by exposure to examples. Machine learning exists because of this fact.</p>
+      </div>
+
+      <h2>Part Two. The Scale Problem.</h2>
+      <p>Even in cases where you could write rules, the world is too big and too fast-changing for rules to keep up.</p>
+      <p>Spam filters are the classic example. In 2000, you could write rules: flag emails that say "FREE MONEY" or "Nigerian prince." Within weeks, spammers adapted. They used "FR££ M0NEY" instead. So you updated the rules. They adapted again. You are in a permanent arms race and the machine wins every round because it moves faster than your team of engineers can rewrite rules.</p>
+      <p>A machine learning model learns directly from examples of what spam looks like right now. It updates as spam evolves. No engineer required.</p>
+      <p>Credit card fraud detection. A human analyst can review maybe 100 transactions a day. A machine learning model can review 100 million transactions per day and flag anything that does not fit the pattern. That is not a 10x improvement. That is a fundamentally different capability.</p>
+
+      <h2>Part Three. The Discovery Problem.</h2>
+      <p>This is the deepest reason. The one most people miss.</p>
+      <p>Sometimes you do not know what the rules should be. You have data. You have outcomes. But the relationship between them is hidden. Machine learning finds it.</p>
+      <p>Researchers fed a deep learning model millions of protein sequences and their corresponding 3D structures. Nobody told the model the rules of how proteins fold. It discovered the rules on its own. The result was AlphaFold. It solved a problem that had defeated structural biologists for 50 years.</p>
+      <p>That is the real power. Not automation of known processes. Discovery of unknown ones.</p>
+
+      <h2>So Why Do We Teach Machines to Learn?</h2>
+      <p>Because some things cannot be programmed. They can only be learned.</p>
+      <p>Because the world changes faster than engineers can write rules.</p>
+      <p>Because the most valuable knowledge is often the knowledge that nobody has made explicit yet.</p>
+      <p>Machine learning is not about replacing human intelligence. It is about applying the same learning mechanism that makes humans intelligent to a machine that can process vastly more data, faster, without getting tired.</p>
+      <p>That is why this field matters. And that is why understanding it is not optional for anyone who wants to understand the next 50 years of human history.</p>
+    `
+  },
+
+  'linear-regression': {
+    category: 'Beginner Guide',
+    date: 'February 2026',
+    title: 'Linear Regression: The Most Important Algorithm Nobody Respects',
+    body: `
+      <p>Everyone wants to jump straight to neural networks. I understand. Neural networks sound impressive. But if you do not understand linear regression first, you do not understand machine learning.</p>
+      <p>Linear regression is how a machine draws a line through data. That is it. That is the whole algorithm. But inside that simple idea is almost everything important in ML.</p>
+
+      <h2>The Core Problem</h2>
+      <p>You have data. House size and house price. Plot it on a graph. You get a scatter of dots. The question is: what is the relationship between size and price?</p>
+      <p>A human looks at the scatter and mentally draws a line through the middle. Linear regression does the same thing mathematically. It finds the line that minimizes the total error between the line's predictions and the actual values.</p>
+
+      <div class="analogy-box">
+        <span class="label">The line equation</span>
+        <p>Price = (Weight × Size) + Bias</p>
+        <p>The machine learns the Weight and the Bias. Those two numbers are the entire "model." Give the model a size, it multiplies by the weight, adds the bias, and gives you a predicted price.</p>
+      </div>
+
+      <h2>How It Learns: Gradient Descent</h2>
+      <p>Start with random values for Weight and Bias. Make predictions for all training examples. Measure how wrong those predictions are. That wrongness is called the loss or cost.</p>
+      <p>Now adjust Weight and Bias slightly in the direction that reduces the loss. Repeat thousands of times. Each iteration the predictions get a little better. Eventually the model converges to the best possible line.</p>
+      <p>This process is called gradient descent. You will encounter it in every ML algorithm from now on. The math gets more complex but the idea never changes: measure the error, adjust the parameters, repeat.</p>
+
+      <h2>Multiple Features</h2>
+      <p>Real problems have more than one input. Predicting house price from size and number of bedrooms and location and age. Same algorithm. Now the "line" lives in multi-dimensional space. But the math is identical.</p>
+      <pre>Price = w1*Size + w2*Bedrooms + w3*Location + bias</pre>
+      <p>The model learns one weight for each feature plus a bias term. That is all multiple linear regression is.</p>
+
+      <h2>How to Know If Your Model Is Good</h2>
+      <p>R-squared. This number ranges from 0 to 1. It tells you what fraction of the variation in your target variable your model explains. An R-squared of 0.85 means your model explains 85% of the variance in house prices. The other 15% is noise or features you have not included.</p>
+      <p>Root Mean Squared Error (RMSE). The average size of your predictions' errors, in the original units. An RMSE of 20,000 on house prices means your predictions are off by about $20,000 on average.</p>
+
+      <h2>When Linear Regression Fails</h2>
+      <p>When the relationship is not linear. If house prices plateau above a certain size, a straight line will be wrong. When there are strong interactions between features. When your target variable is a category rather than a number. When your data has outliers that pull the line badly.</p>
+      <p>But here is the thing. Even when linear regression fails, you learn why it fails. And that tells you what tool to reach for next. It is always the right starting point.</p>
+
+      <pre>from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error
+import numpy as np
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+print(f"R2: {r2_score(y_test, predictions):.3f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}")</pre>
+
+      <p>Ten lines of code. The fundamentals of supervised machine learning. Everything else is a variation on this.</p>
+    `
+  },
+
+  'logistic-regression': {
+    category: 'Beginner Guide',
+    date: 'February 2026',
+    title: 'Logistic Regression: When Your Answer Is Yes or No',
+    body: `
+      <p>Linear regression predicts a number. A price. A temperature. A score.</p>
+      <p>But half the interesting problems in data science have outputs that are not numbers. They are decisions. Spam or not spam. Fraud or legitimate. Disease present or absent. Will this customer churn? Will this loan default?</p>
+      <p>For those problems, you need logistic regression.</p>
+
+      <h2>The Problem With Using Linear Regression for Classification</h2>
+      <p>Say you want to predict whether a patient has a disease based on a test result. You could try linear regression. Train it to predict 1 for disease and 0 for no disease.</p>
+      <p>Two problems. First, the model will predict values above 1 and below 0, which make no sense as probabilities. Second, the line will be pulled badly by extreme values.</p>
+      <p>What you actually want is a model that outputs a probability between 0 and 1. That is what logistic regression does.</p>
+
+      <h2>The Sigmoid Function</h2>
+      <p>Logistic regression takes the same linear combination as linear regression and squashes it through a function called the sigmoid.</p>
+      <pre>Probability = 1 / (1 + e^(-z))
+where z = w1*x1 + w2*x2 + ... + bias</pre>
+      <p>The sigmoid function outputs values between 0 and 1. Always. No matter what z is. When z is very large and positive, output is close to 1. When z is very large and negative, output is close to 0. In the middle, you get probabilities.</p>
+
+      <div class="analogy-box">
+        <span class="label">Think of it this way</span>
+        <p>Logistic regression is saying: "Based on these features, I am 87% confident this email is spam." You then apply a threshold. Above 50% confidence, call it spam. That threshold is adjustable depending on whether missing a spam is worse than blocking a real email.</p>
+      </div>
+
+      <h2>The Decision Boundary</h2>
+      <p>A trained logistic regression model divides your feature space into two regions. On one side, it predicts class 0. On the other, class 1. The line (or plane, in multiple dimensions) separating them is called the decision boundary.</p>
+      <p>Linear logistic regression draws a straight decision boundary. That works for many problems. When the classes are not linearly separable, you need either feature engineering or a more complex model.</p>
+
+      <h2>Evaluation Metrics That Actually Matter</h2>
+      <p>Accuracy is often misleading. If 99% of transactions are legitimate, a model that calls everything legitimate is 99% accurate and useless.</p>
+      <p>Precision: Of all the transactions flagged as fraud, how many actually were? Recall: Of all actual fraud cases, how many did the model catch? F1 Score: The harmonic mean of precision and recall. Useful when you need to balance both. ROC-AUC: Overall discriminative power across all thresholds. Higher is better, maximum is 1.0.</p>
+
+      <pre>from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, roc_auc_score
+
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+probabilities = model.predict_proba(X_test)[:, 1]
+
+print(classification_report(y_test, predictions))
+print(f"ROC-AUC: {roc_auc_score(y_test, probabilities):.3f}")</pre>
+
+      <h2>When to Use It</h2>
+      <p>Binary classification problems where interpretability matters. Logistic regression coefficients tell you directly how each feature affects the log-odds of the outcome. A weight of +0.8 for "income" means higher income increases the probability of loan approval. You can explain that in a meeting. You cannot explain a random forest's decision the same way.</p>
+      <p>Start with logistic regression. Always. It is fast, interpretable, and often good enough. Move to something more complex only when you can prove it is necessary.</p>
+    `
+  },
+
+  'decision-trees': {
+    category: 'Beginner Guide',
+    date: 'January 2026',
+    title: 'Decision Trees and Random Forests: How Machines Make Choices',
+    body: `
+      <p>A decision tree is a machine playing 20 questions.</p>
+      <p>Is the tumor larger than 2cm? Yes. Has the patient smoked for more than 10 years? Yes. Are there lymph nodes involved? No. Based on this path through the questions, the model makes its prediction.</p>
+      <p>That is a decision tree. Genuinely that simple. And yet from this simple structure comes one of the most powerful families of algorithms in practical machine learning.</p>
+
+      <h2>How a Tree Is Built</h2>
+      <p>The algorithm starts with all your training data at the root. It asks: which feature, and which split point on that feature, divides the data most cleanly into the correct classes?</p>
+      <p>Say you are classifying whether a loan will default. The algorithm tries splitting on income level, on loan amount, on credit score, on age. It measures how "pure" each split makes the resulting groups. The split that creates the purest groups gets chosen. Then it repeats on each branch, splitting again and again until either the groups are pure or you hit a stopping condition.</p>
+      <p>The measure of purity is called Gini impurity or information gain depending on implementation. Both measure the same thing: how mixed up the classes are in a node. Pure means one class dominates. Impure means both classes are equally mixed.</p>
+
+      <h2>The Problem With a Single Tree</h2>
+      <p>Decision trees overfit. Badly. Given enough depth, a single tree will memorize the training data perfectly and fail on anything new. It is unstable too. Change a few training examples and the whole tree structure can change completely.</p>
+      <p>The solution is to not use one tree. Use many.</p>
+
+      <h2>Random Forests: Democracy Among Trees</h2>
+      <p>A random forest trains hundreds of decision trees, each on a slightly different random subset of the training data and a random subset of the features. Then it takes a vote. Classification: majority wins. Regression: average the predictions.</p>
+      <p>Why does this work? Because each tree makes different errors. The errors are uncorrelated. When you average uncorrelated errors, they cancel out. The average of many imperfect, independent models is better than any single one.</p>
+
+      <div class="analogy-box">
+        <span class="label">The wisdom of crowds</span>
+        <p>Ask 500 people to guess the weight of a cow at a country fair. No single person is very accurate. The average of all 500 guesses is remarkably close to the true weight. Random forests exploit the same statistical phenomenon.</p>
+      </div>
+
+      <h2>Gradient Boosting: The Next Level</h2>
+      <p>Random forests train trees in parallel, independently. Gradient boosting trains them sequentially. Each new tree is trained specifically to fix the errors of all previous trees.</p>
+      <p>Start with a simple prediction. Train a tree on the residual errors. Add that tree to the model with a small weight. Train the next tree on the new residuals. Repeat hundreds of times. The model gradually homes in on perfection.</p>
+      <p>XGBoost and LightGBM implement gradient boosting with aggressive optimizations. They dominate tabular data competitions. For structured data problems, they often beat neural networks.</p>
+
+      <pre>from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+
+rf = RandomForestClassifier(n_estimators=200, max_depth=8, random_state=42)
+rf.fit(X_train, y_train)
+
+xgb = XGBClassifier(n_estimators=200, learning_rate=0.05, max_depth=6)
+xgb.fit(X_train, y_train,
+        eval_set=[(X_test, y_test)],
+        early_stopping_rounds=20, verbose=False)
+
+# Feature importance is built in
+print(rf.feature_importances_)</pre>
+
+      <h2>When to Use Each</h2>
+      <p>Decision tree: when you need to show stakeholders exactly how the model makes a decision. Insurance underwriting. Medical triage. Legal compliance.</p>
+      <p>Random forest: strong baseline for any tabular classification or regression problem. Fast to train, hard to overfit badly, gives feature importances for free.</p>
+      <p>XGBoost or LightGBM: when you need the best possible performance on structured data and have time to tune hyperparameters.</p>
+    `
+  },
+
+  'power-bi': {
+    category: 'Tutorial',
+    date: 'January 2026',
+    title: 'Power BI: From Raw Data to Boardroom Dashboard',
+    body: `
+      <p>Data that stays in a spreadsheet changes nothing.</p>
+      <p>Insights buried in a Jupyter notebook change nothing. A beautiful, interactive dashboard that an executive can open on their laptop during a meeting and actually understand, that changes decisions. That is what Power BI does.</p>
+      <p>This is the complete workflow. From connecting your data source to publishing a dashboard that moves the needle.</p>
+
+      <h2>What Power BI Actually Is</h2>
+      <p>Power BI is Microsoft's business intelligence platform. Three components you need to know. Power BI Desktop: the application you use to build reports, on your Windows machine. Power BI Service: the cloud platform where you publish and share those reports. Power BI Mobile: how your stakeholders read those reports on their phones.</p>
+      <p>Most of your time is in Desktop. Build there. Publish to Service. They view on Service or Mobile.</p>
+
+      <h2>Step One: Connect Your Data</h2>
+      <p>Power BI connects to almost anything. Excel files. SQL databases (PostgreSQL, MySQL, SQL Server, Azure SQL, all of them). Google Sheets. SharePoint. REST APIs. Python and R scripts. CSV files. Even web pages.</p>
+      <p>Go to Home, click Get Data, choose your source. For a SQL database, paste your server address and credentials. Power BI pulls the tables and shows you a preview. Select what you need and click Load.</p>
+      <p>Connecting to multiple sources in the same report is normal. Sales data from your SQL database. Targets from an Excel file. Regional definitions from a SharePoint list. Power BI handles the join.</p>
+
+      <h2>Step Two: Transform With Power Query</h2>
+      <p>Raw data is never clean. Power Query is Power BI's built-in transformation engine. Every step you take is recorded as a query you can inspect and modify later. No data is changed at the source. All transformations are non-destructive.</p>
+      <p>Common transformations you will use constantly: rename columns to human-readable names, change data types (string to date, text to number), filter out rows you do not need, split columns (full name into first and last), merge queries (equivalent to SQL JOIN), create calculated columns, unpivot wide tables into long format.</p>
+      <p>Do all cleaning in Power Query, not in the report. Keep the two steps separate.</p>
+
+      <h2>Step Three: Build Your Data Model</h2>
+      <p>If you have multiple tables, define the relationships between them in the Model view. Drag from the key in one table to the foreign key in another. Power BI creates the relationship. Now all your visuals can use fields from multiple tables simultaneously.</p>
+      <p>Star schema is the best pattern. One fact table in the center containing transactions or events. Dimension tables around it containing descriptive attributes. Date, Product, Customer, Region. Keep it clean and simple.</p>
+
+      <h2>DAX: The Formula Language</h2>
+      <p>DAX stands for Data Analysis Expressions. It is the language you use to create calculated measures and columns in Power BI. It looks like Excel formulas but operates on entire columns and tables.</p>
+      <pre>Total Revenue = SUM(Sales[Amount])
+
+Revenue YTD = TOTALYTD([Total Revenue], 'Date'[Date])
+
+Revenue vs Target =
+    DIVIDE([Total Revenue], SUM(Targets[Target]), 0)
+
+Top 10 Customers =
+    CALCULATE([Total Revenue],
+              TOPN(10, Customer, [Total Revenue]))</pre>
+      <p>Learn CALCULATE first. It is the most powerful function in DAX. It evaluates an expression in a modified filter context. Once you understand CALCULATE, everything else follows.</p>
+
+      <h2>Step Four: Design Visuals That Work</h2>
+      <p>Less is more. Most dashboards fail because they have too much on them. A stakeholder should understand the key message in 5 seconds.</p>
+      <p>One KPI card per critical metric at the top. One main chart that tells the primary story. Secondary charts for drill-down. Slicers on the side for filtering by time, region, product. Use consistent colors. Use the company's brand colors if you have them. Never use more than three chart types on one page.</p>
+      <p>Bar charts for comparisons. Line charts for trends over time. Card visuals for single KPIs. Map visuals for geographic data. Matrix for when people genuinely need a table. Scatter plots for correlation.</p>
+
+      <h2>Step Five: Publish and Share</h2>
+      <p>Click Publish in Desktop. Sign in to your Power BI Service account. The report and dataset upload to the cloud. Share the link with stakeholders. Set up a data refresh schedule so the dashboard stays current automatically. Daily refresh for most business data. Hourly if you have a Pro license and need near-real-time.</p>
+
+      <div class="callout">
+        The technical skill is building the model and writing the DAX. The professional skill is choosing what to show and making it so clear that a busy executive glances at it and immediately knows what to do. Both matter. Most data people focus only on the first one.
+      </div>
+    `
+  },
+
+  'computer-vision': {
+    category: 'Deep Dive',
+    date: 'December 2025',
+    title: 'Computer Vision: Teaching Machines to See',
+    body: `
+      <p>You look at a photo and you instantly see a dog, a street, a face, a dental X-ray with a cavity. It feels effortless. You have no idea how your brain does it.</p>
+      <p>For decades, neither did computer scientists. Then convolutional neural networks arrived. And machines started seeing too.</p>
+
+      <h2>What an Image Actually Is</h2>
+      <p>To a computer, an image is a grid of numbers. A 256 by 256 pixel image is a 256 by 256 array of values between 0 and 255. Black is 0. White is 255. Everything in between is a shade of gray. A color image is three such grids stacked together: one for red, one for green, one for blue. RGB.</p>
+      <p>That is the input to a computer vision model. Not a photo. A 3-dimensional array of numbers with shape (256, 256, 3). The model's job is to learn what combinations of those numbers correspond to what real-world concepts.</p>
+
+      <h2>Why Classic Approaches Failed</h2>
+      <p>Early computer vision tried to hand-engineer features. Edges. Corners. Textures. Write algorithms to detect these features, then use those features as inputs to a classifier.</p>
+      <p>This worked for controlled environments. It failed in the real world because the same object looks completely different depending on lighting, angle, background, occlusion, and scale. You cannot write enough rules to handle all the variation.</p>
+
+      <h2>Convolutional Neural Networks</h2>
+      <p>The breakthrough idea: let the network learn the features itself from data. A Convolutional Neural Network (CNN) learns hierarchical features automatically.</p>
+      <p>Early layers learn simple features: edges, corners, color gradients. Middle layers combine these into shapes: curves, textures, patterns. Deep layers recognize complex structures: eyes, wheels, teeth, tumors.</p>
+      <p>The key operation is convolution. A small filter (typically 3x3 or 5x5 pixels) slides across the image. At each position, it computes a dot product between its weights and the image patch underneath. The result is a feature map showing where that filter's pattern appears in the image. The network learns what the filters should look for by training on labeled examples.</p>
+
+      <div class="analogy-box">
+        <span class="label">Think of it this way</span>
+        <p>You have a magnifying glass that lights up when it finds the pattern it is looking for. One magnifying glass looks for horizontal edges. Another looks for diagonal lines. Another looks for certain color combinations. You slide all of them across the image simultaneously. The combination of what they find tells you what is in the image.</p>
+      </div>
+
+      <h2>Transfer Learning: The Practical Key</h2>
+      <p>Training a CNN from scratch requires millions of images and weeks of compute. Almost nobody does this.</p>
+      <p>Instead, use transfer learning. Take a model already trained on millions of images (ResNet, EfficientNet, VGG). Those early layers already know how to detect edges and textures. Freeze them. Replace only the final classification layer and train that on your specific dataset.</p>
+      <p>This is how I built the dental cavity detector and the kidney classifier. Pre-trained backbone on ImageNet. Fine-tuned final layers on medical images. Achieves strong performance with a fraction of the data and compute that training from scratch would require.</p>
+
+      <pre>import torchvision.models as models
+import torch.nn as nn
+
+# Load pre-trained ResNet
+model = models.resnet50(pretrained=True)
+
+# Freeze all layers
+for param in model.parameters():
+    param.requires_grad = False
+
+# Replace final layer for your number of classes
+model.fc = nn.Linear(model.fc.in_features, num_classes)
+
+# Only the final layer trains
+optimizer = torch.optim.Adam(model.fc.parameters(), lr=1e-3)</pre>
+
+      <h2>Real Applications That Are Working Right Now</h2>
+      <p>Medical imaging: detecting tumors, reading X-rays, counting blood cells, diagnosing retinal disease. Autonomous vehicles: detecting pedestrians, reading traffic signs, tracking other vehicles. Agriculture: identifying crop diseases from drone images, counting livestock, estimating yield. Manufacturing: detecting defects on production lines with sub-millimeter precision. Security: face recognition, anomaly detection in surveillance footage.</p>
+      <p>Computer vision is not a research curiosity. It is deployed, it is making decisions, and it is improving every year. Understanding how it works is now a core skill for any data scientist who works with visual data.</p>
+    `
+  },
+
+  'deep-learning': {
+    category: 'Deep Dive',
+    date: 'December 2025',
+    title: 'Deep Learning: The Revolution That Changed Everything',
+    body: `
+      <p>In 2012, a neural network entered an image classification competition and destroyed the competition. Its error rate was 10 percentage points lower than the next best approach. That is not an incremental improvement. That is a different order of magnitude.</p>
+      <p>The model was called AlexNet. The moment is called the ImageNet moment. It changed everything. Here is the story of why it happened and what it means.</p>
+
+      <h2>Neural Networks Are Not New</h2>
+      <p>The first artificial neural network was described in 1943. The perceptron was invented in 1958. Backpropagation, the learning algorithm that makes deep networks train, was formalized in the 1980s. Neural networks are not a new idea.</p>
+      <p>They were abandoned twice. The first AI winter in the 1970s. The second in the 1990s. The reason both times: they did not work well enough to justify the cost.</p>
+      <p>So what changed in 2012?</p>
+
+      <h2>Three Things Changed Simultaneously</h2>
+      <p>First: data. ImageNet had 1.2 million labeled images. The internet had generated more data in the previous ten years than in all of human history before that. Models need data to learn. Now there was enough.</p>
+      <p>Second: compute. GPUs, originally designed for video games, turned out to be perfect for the matrix multiplications that neural networks require. Training that would take months on a CPU took days on a GPU. Suddenly "deep" networks with many layers were trainable.</p>
+      <p>Third: algorithms. Dropout, ReLU activation functions, better weight initialization. A handful of algorithmic improvements that made deep networks actually train without getting stuck.</p>
+      <p>All three arrived at the same time. That is why 2012 is the inflection point.</p>
+
+      <h2>What "Deep" Actually Means</h2>
+      <p>Deep learning means neural networks with many layers. Why does depth matter?</p>
+      <p>Each layer learns a representation of the data at a different level of abstraction. Shallow networks can learn simple functions. Deep networks can learn hierarchical representations of arbitrary complexity. A face recognition network learns pixels, then edges, then facial parts, then faces, in successive layers. No human designed those intermediate representations. The network discovered them.</p>
+      <p>This is the key insight: deep learning is representation learning. The network learns what features to look for. This is fundamentally different from classic ML where humans engineered the features.</p>
+
+      <h2>The Main Architectures</h2>
+      <p>Convolutional Neural Networks (CNNs): built for grid-like data, primarily images. The convolution operation exploits spatial locality. A pixel is more related to its neighbors than to a pixel on the other side of the image. CNNs encode this assumption into their architecture.</p>
+      <p>Recurrent Neural Networks (RNNs) and LSTMs: built for sequential data. Text, audio, time series. The network maintains a hidden state that carries information from earlier in the sequence to later. Important for language modeling and speech recognition.</p>
+      <p>Transformers: the current dominant architecture for almost everything. Introduced in 2017. Uses attention mechanisms instead of recurrence. Parallelizes beautifully on GPUs. The architecture behind GPT, BERT, and every major language model. Also now being applied to vision, audio, and protein structure prediction.</p>
+
+      <div class="analogy-box">
+        <span class="label">The transformer revolution</span>
+        <p>In 2017, attention is all you need. That was the paper title. It was right. The transformer replaced the dominant sequence model of the previous five years within two years. GPT-3, GPT-4, Gemini, Claude, all of them are transformers with more data and more compute.</p>
+      </div>
+
+      <h2>The Cost</h2>
+      <p>Deep learning is not free. It requires large datasets (tens of thousands of examples minimum, millions for best performance). It requires significant compute (training a large model costs thousands or millions of dollars). The models are often black boxes. You can inspect what they predict but not always why.</p>
+      <p>For most problems, a well-tuned gradient boosted tree outperforms deep learning on tabular data. Deep learning wins on unstructured data: images, text, audio, video.</p>
+      <p>Use it when the problem warrants it. Do not use it because it sounds impressive.</p>
+
+      <h2>Where It Is Going</h2>
+      <p>Multimodal models that understand images and text simultaneously. Foundation models trained on everything, fine-tuned for specific tasks. Autonomous agents that plan and take actions. The trajectory is clear. More capable, more general, more integrated into every system.</p>
+      <p>Understanding the fundamentals now means you can work intelligently with these systems as they get more powerful, rather than treating them as magic you cannot inspect.</p>
+    `
+  },
 
   'mlops-101': {
     category: 'Deep Dive',
@@ -1982,6 +2394,29 @@ const counterObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 const statsBar = document.querySelector('.stats-bar');
 if (statsBar) counterObs.observe(statsBar);
+
+/* ─── Theme Toggle ────────────────────────────────────────── */
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+
+const savedTheme = localStorage.getItem('theme') || 'dark';
+if (savedTheme === 'light') {
+  html.setAttribute('data-theme', 'light');
+  themeToggle.textContent = 'Dark';
+}
+
+themeToggle.addEventListener('click', () => {
+  const isLight = html.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    html.removeAttribute('data-theme');
+    themeToggle.textContent = 'Light';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    html.setAttribute('data-theme', 'light');
+    themeToggle.textContent = 'Dark';
+    localStorage.setItem('theme', 'light');
+  }
+});
 
 /* ─── AI News Feed ────────────────────────────────────────── */
 const RSS2JSON = 'https://api.rss2json.com/v1/api.json?num=6&rss_url=';
