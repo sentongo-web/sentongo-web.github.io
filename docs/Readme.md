@@ -1,75 +1,69 @@
-# Data Science & AI Portfolio
+# Paul Sentongo — Personal Portfolio & Blog
 
-This repository hosts a personal GitHub Pages site (served from the `docs/` directory) that highlights data science and AI work with a minimal, responsive design plus light/dark themes.
+Live site: [https://sentongo-web.github.io](https://sentongo-web.github.io)
 
-## Run locally
-1. Install dependencies (optional): `bundle install` if you want to run Jekyll locally. The site is plain HTML/CSS/JS, so you can also serve it directly.
-2. Serve the site:
-   - With Jekyll: `bundle exec jekyll serve --source docs --livereload`
-   - With Python: `python -m http.server 8000 --directory docs`
-3. Open `http://localhost:4000` (Jekyll) or `http://localhost:8000` (Python) in your browser.
+## About
 
-## Deploy on GitHub Pages
-1. Push this branch to GitHub.
-2. In repository **Settings → Pages**, choose **Source: Deploy from a branch**.
-3. Select the `work` (or `main`) branch and the `/docs` folder, then save.
-4. After Pages finishes building, your site will be available at:
-   - `https://<username>.github.io/Data-mining/` (for a project site), or
-   - `https://<username>.github.io/` if this repo is named `<username>.github.io`.
+Personal portfolio and technical blog for Paul Sentongo, Data Scientist and Analytics professional with an MSc in Data Science and Analytics. The site covers ML engineering, MLOps, data visualisation, and makes data science concepts accessible to beginners.
 
-## Customization
-- Update `docs/index.html`, `docs/styles.css`, and `docs/script.js` to adjust copy, styling, or add posts.
- - Replace `assets/profile.svg` or `assets/profile.png` with your portrait image (keep the same filename for simplicity). Optionally provide a `profile.webp` variant for better performance.
-- If your repo name changes, set `baseurl` in `docs/_config.yml` so asset links resolve correctly when using Jekyll.
- - If you want automated image optimization, add an appropriate workflow to `.github/workflows/` or run a local script to generate -260/-520 `srcset` variants.
-# Data Science & AI Portfolio
+## Contents
 
-This repository hosts a personal GitHub Pages site (served from the `docs/` directory) that highlights data science and AI work with a minimal, responsive design plus light/dark themes.
+**Portfolio**
+- Professional background and skills (Python, SQL, Power BI, MLOps, Deep Learning)
+- CV with downloadable PDF
+- Contact and social links
 
-## Run locally
-1. Install dependencies (optional): `bundle install` if you want to run Jekyll locally. The site is plain HTML/CSS/JS, so you can also serve it directly.
-2. Serve the site:
-   - With Jekyll: `bundle exec jekyll serve --source docs --livereload`
-   - With Python: `python -m http.server 8000 --directory docs`
-3. Open `http://localhost:4000` (Jekyll) or `http://localhost:8000` (Python) in your browser.
+**Projects**
+- Dental OPG Cavity Detection — computer vision model for detecting cavities in panoramic dental X-rays
+- Kidney Condition Classifier — multi-class deep learning classifier for kidney CT scan analysis (Normal, Cyst, Stone, Tumor)
 
-## Deploy on GitHub Pages
-1. Push this branch to GitHub.
-2. In repository **Settings → Pages**, choose **Source: Deploy from a branch**.
-3. Select the `work` (or `main`) branch and the `/docs` folder, then save.
-4. After Pages finishes building, your site will be available at:
-   - `https://<username>.github.io/Data-mining/` (for a project site), or
-   - `https://<username>.github.io/` if this repo is named `<username>.github.io`.
+Both projects are deployed as live demos on HuggingFace Spaces.
 
-## Customization
-- Update `docs/index.html`, `docs/styles.css`, and `docs/script.js` to adjust copy, styling, or add posts.
-- Replace `assets/profile.png` with your portrait image (keep the same filename for simplicity); optionally add `assets/profile.webp` for improved performance.
-- If your repo name changes, set `baseurl` in `docs/_config.yml` so asset links resolve correctly when using Jekyll.
-diff --git a/README.md b/README.md
-new file mode 100644
-index 0000000000000000000000000000000000000000..1ce5db3212d3043d09e09d93ca61444008feb822
---- /dev/null
-+++ b/README.md
-@@ -0,0 +1,23 @@
-+# Data Science & AI Portfolio
-+
-+This repository hosts a personal GitHub Pages site (served from the `docs/` directory) that highlights data science and AI work with a minimal, responsive design plus light/dark themes.
-+
-+## Run locally
-+1. Install dependencies (optional): `bundle install` if you want to run Jekyll locally. The site is plain HTML/CSS/JS, so you can also serve it directly.
-+2. Serve the site:
-+   - With Jekyll: `bundle exec jekyll serve --source docs --livereload`
-+   - With Python: `python -m http.server 8000 --directory docs`
-+3. Open `http://localhost:4000` (Jekyll) or `http://localhost:8000` (Python) in your browser.
-+
-+## Deploy on GitHub Pages
-+1. Push this branch to GitHub.
-+2. In repository **Settings → Pages**, choose **Source: Deploy from a branch**.
-+3. Select the `work` (or `main`) branch and the `/docs` folder, then save.
-+4. After Pages finishes building, your site will be available at:
-+   - `https://<username>.github.io/Data-mining/` (for a project site), or
-+   - `https://<username>.github.io/` if this repo is named `<username>.github.io`.
-+
-## Customization
-- Update `docs/index.html`, `docs/styles.css`, and `docs/script.js` to adjust copy, styling, or add posts.
-- Replace `assets/profile.svg` or `assets/profile.png` with your portrait image (keep the same filename for simplicity). If you want to add responsive sizes and webp versions, generate them locally and add them to `assets/`.
+**Blog**
+Articles written for beginners and practising data scientists:
+
+- Why Do We Teach Machines to Learn?
+- Linear Regression: The Most Important Algorithm Nobody Respects
+- Logistic Regression: When Your Answer Is Yes or No
+- Decision Trees and Random Forests
+- Power BI: From Raw Data to Boardroom Dashboard
+- Computer Vision: Teaching Machines to See
+- Deep Learning: The Revolution That Changed Everything
+- MLOps 101: What It Is, Why It Matters, Where to Start
+- Docker Explained Simply
+- MLflow: Track Your ML Experiments Like a Pro
+- What Is Machine Learning? A Plain-English Guide
+- From Jupyter Notebook to Production
+
+**Live AI News Feed**
+The blog section includes a live feed pulling the latest headlines in AI, LLMs, Robotics, and MLOps via Google News RSS. Filter by topic directly on the page.
+
+## Tech Stack
+
+Single-file static site. No frameworks, no build step, no dependencies.
+
+- HTML, CSS, JavaScript (vanilla)
+- Google Fonts (Syne, Fraunces, DM Mono)
+- rss2json.com for the live news feed
+- Hosted on GitHub Pages
+
+## Structure
+
+```
+sentongo-web.github.io/
+├── index.html          # Entire site (self-contained)
+├── assets/
+│   ├── profile.svg.png # Profile photo
+│   └── paul-sentongo-cv.pdf  # CV download (add this file)
+└── README.md
+```
+
+## Local Preview
+
+No build step required. Open `index.html` directly in a browser.
+
+## Contact
+
+Email: paul.sentongo@eclipso.de
+LinkedIn: https://www.linkedin.com/in/paul-sentongo-885041284/
+WhatsApp: https://wa.me/4917635130941
