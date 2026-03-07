@@ -1395,7 +1395,7 @@
         ⬇ Download Full CV
         <small>PDF · Updated 2025</small>
       </a>
-      <a href="mailto:paul.sentongo@eclipso.de" class="cv-download">
+      <a href="mailto:paulsentongo@eclipso.de" class="cv-download">
         ✉ paul.sentongo@eclipso.de
         <small>Get in touch</small>
       </a>
@@ -1445,10 +1445,10 @@
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-year">2021 –<br>2023</div>
+          <div class="timeline-year">2023 –<br>2025</div>
           <div class="timeline-content">
             <div class="timeline-role">MSc Data Science &amp; Analytics</div>
-            <div class="timeline-company">Postgraduate Studies · Distinction</div>
+            <div class="timeline-company">Graduate Studies · Distinction</div>
             <div class="timeline-desc">Advanced coursework in statistical learning, deep learning, NLP, and data engineering. Dissertation focused on applying ML to disease surveillance in low-resource settings.</div>
           </div>
         </div>
@@ -1461,11 +1461,11 @@
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-year">2015 –<br>2019</div>
+          <div class="timeline-year">2011 –<br>2014</div>
           <div class="timeline-content">
-            <div class="timeline-role">BSc Statistics &amp; Computer Science</div>
-            <div class="timeline-company">Makerere University · Kampala</div>
-            <div class="timeline-desc">First Class Honours. Final-year project: a predictive model for flood risk assessment in Northern Uganda using satellite remote sensing data.</div>
+            <div class="timeline-role">BSc Business Computing/div>
+            <div class="timeline-company">Uganda Christian University · Mukono</div>
+            <div class="timeline-desc">Honours Degree. Final-year project: a predictive model for flood risk assessment in Northern Uganda using satellite remote sensing data.</div>
           </div>
         </div>
       </div>
@@ -2419,8 +2419,6 @@ themeToggle.addEventListener('click', () => {
 });
 
 /* ─── AI News Feed ────────────────────────────────────────── */
-const RSS2JSON = 'https://api.rss2json.com/v1/api.json?num=6&rss_url=';
-
 const topicLabels = {
   'artificial intelligence machine learning': 'All',
   'large language models LLMs GPT': 'LLMs',
@@ -2428,15 +2426,21 @@ const topicLabels = {
   'MLOps data engineering production ML': 'MLOps',
 };
 
-function googleNewsRSS(q) {
-  return encodeURIComponent(
-    `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`
-  );
+function newsRssUrl(q) {
+  return `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
+}
+
+// Two independent CORS proxies — tried in order until one succeeds
+function proxyUrls(rssUrl) {
+  return [
+    `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
+  ];
 }
 
 function relativeDate(dateStr) {
   const date = new Date(dateStr);
-  if (isNaN(date)) return dateStr;
+  if (isNaN(date)) return '';
   const diff = Math.floor((Date.now() - date) / 1000);
   if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
   if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
@@ -2444,60 +2448,65 @@ function relativeDate(dateStr) {
   return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 }
 
-function extractSource(item) {
-  if (item.source) {
-    const s = typeof item.source === 'string' ? item.source : item.source.name || '';
-    if (s) return s.replace(/^https?:\/\//, '').split('/')[0];
-  }
-  const link = item.link || '';
-  const m = link.match(/https?:\/\/([^/]+)/);
-  return m ? m[1].replace(/^www\./, '') : 'News';
+function extractDomain(url) {
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return 'News'; }
 }
 
-function tagForTopic(topic) {
-  return topicLabels[topic] || 'AI';
+function showSkeleton() {
+  document.getElementById('newsGrid').innerHTML = Array(6).fill(
+    `<div class="news-skeleton"><div class="skel-line" style="width:40%"></div><div class="skel-line" style="width:88%"></div><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:25%"></div></div>`
+  ).join('');
 }
 
-function renderNews(items, topic) {
+function renderNewsXML(xmlText, topic) {
   const grid = document.getElementById('newsGrid');
-  if (!items || items.length === 0) {
-    grid.innerHTML = '<div class="news-error">Could not load latest news. Check back soon.</div>';
-    return;
-  }
-  grid.innerHTML = items.slice(0, 6).map(item => {
-    const title = item.title ? item.title.replace(/\s*-\s*[^-]+$/, '').trim() : 'Untitled';
-    const source = extractSource(item);
-    const date = relativeDate(item.pubDate || '');
-    const url = item.link || '#';
-    const tag = tagForTopic(topic);
-    return `
-      <a class="news-card" href="${url}" target="_blank" rel="noreferrer noopener">
-        <span class="news-card-source">${source}</span>
-        <span class="news-card-tag">${tag}</span>
-        <span class="news-card-title">${title}</span>
-        <span class="news-card-date">${date}</span>
-      </a>`;
+  const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
+  const items = [...xml.querySelectorAll('item')].slice(0, 6);
+  const tag = topicLabels[topic] || 'AI';
+
+  if (!items.length) throw new Error('empty feed');
+
+  grid.innerHTML = items.map(item => {
+    // Strip trailing " - Source Name" that Google News appends to titles
+    let title = (item.querySelector('title')?.textContent || 'Untitled')
+      .replace(/\s+-\s+[^-]+$/, '').trim();
+
+    // Google News <link> sits between tags as a text node — nextSibling trick
+    const linkEl = item.querySelector('link');
+    const link = linkEl?.nextSibling?.nodeValue?.trim()
+      || linkEl?.textContent?.trim()
+      || item.querySelector('guid')?.textContent?.trim()
+      || '#';
+
+    const pubDate = item.querySelector('pubDate')?.textContent || '';
+    const source  = item.querySelector('source')?.textContent?.trim()
+      || extractDomain(link);
+
+    return `<a class="news-card" href="${link}" target="_blank" rel="noreferrer noopener">
+      <span class="news-card-source">${source}</span>
+      <span class="news-card-tag">${tag}</span>
+      <span class="news-card-title">${title}</span>
+      <span class="news-card-date">${relativeDate(pubDate)}</span>
+    </a>`;
   }).join('');
 }
 
 async function fetchNews(topic) {
-  const grid = document.getElementById('newsGrid');
-  grid.innerHTML = [1,2,3,4,5,6].map(() =>
-    `<div class="news-skeleton"><div class="skel-line" style="width:40%"></div><div class="skel-line" style="width:88%"></div><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:25%"></div></div>`
-  ).join('');
+  showSkeleton();
+  const rssUrl = newsRssUrl(topic);
 
-  try {
-    const url = RSS2JSON + googleNewsRSS(topic);
-    const res = await fetch(url);
-    const data = await res.json();
-    if (data.status === 'ok' && data.items && data.items.length) {
-      renderNews(data.items, topic);
-    } else {
-      throw new Error('empty');
-    }
-  } catch {
-    grid.innerHTML = '<div class="news-error">Live news unavailable right now — check back shortly.</div>';
+  for (const url of proxyUrls(rssUrl)) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(9000) });
+      if (!res.ok) continue;
+      const text = await res.text();
+      renderNewsXML(text, topic);
+      return; // success — stop trying other proxies
+    } catch { /* try next proxy */ }
   }
+
+  document.getElementById('newsGrid').innerHTML =
+    '<div class="news-error">Live news unavailable right now. Check back shortly.</div>';
 }
 
 // Wire filter buttons
