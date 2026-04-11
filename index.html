@@ -1118,6 +1118,275 @@
     display: block;
   }
 
+  /* ACADEMIA */
+  #academia {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .academia-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  .academia-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 5px 14px;
+    animation: pulseBadge 3s ease-in-out infinite;
+  }
+  @keyframes pulseBadge {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
+    50% { box-shadow: 0 0 0 6px rgba(0,255,136,0.08); }
+  }
+  .academia-banner-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .academia-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3px;
+    margin-bottom: 48px;
+  }
+  .degree-card {
+    background: var(--surface);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .degree-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .degree-card.secondary::before {
+    background: linear-gradient(to bottom, var(--accent2), transparent);
+  }
+  .degree-level {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .degree-card.secondary .degree-level { color: var(--accent2); }
+  .degree-title {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .degree-institution {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .degree-major {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(0,255,136,0.07);
+    color: var(--accent);
+    padding: 6px 14px;
+    margin-bottom: 24px;
+    border-left: 2px solid var(--accent);
+  }
+  .degree-card.secondary .degree-major {
+    background: rgba(0,170,255,0.07);
+    color: var(--accent2);
+    border-left-color: var(--accent2);
+  }
+  .degree-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .degree-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .degree-meta-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .degree-meta-value {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .degree-card.secondary .degree-meta-value { color: var(--accent2); }
+  .degree-dissertation {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+  }
+  .degree-dissertation strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+  /* Certifications */
+  .certs-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+  }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 3px;
+  }
+  .cert-card {
+    background: var(--surface);
+    padding: 28px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent); background: rgba(0,255,136,0.03); }
+  .cert-icon {
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .cert-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .cert-issuer {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .cert-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(0,255,136,0.2);
+    padding: 2px 8px;
+    margin-top: 8px;
+  }
+  .phd-callout {
+    margin-top: 60px;
+    padding: 48px;
+    background: linear-gradient(135deg, rgba(0,255,136,0.04) 0%, rgba(0,170,255,0.04) 100%);
+    border: 1px solid rgba(0,255,136,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+  .phd-callout::before {
+    content: 'PhD';
+    position: absolute;
+    right: -10px; top: -20px;
+    font-family: var(--font-display);
+    font-size: 140px;
+    font-weight: 800;
+    color: rgba(0,255,136,0.04);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .phd-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .phd-headline {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .phd-headline span { color: var(--accent); }
+  .phd-body {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 680px;
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+  .phd-interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .phd-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid rgba(0,170,255,0.25);
+    padding: 6px 14px;
+    transition: background 0.2s;
+  }
+  .phd-tag:hover { background: rgba(0,170,255,0.08); }
+  .phd-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .phd-cta:hover { color: var(--accent); }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
@@ -1125,7 +1394,10 @@
     section, #hero, #contact { padding: 80px 24px; }
     .stats-bar { padding: 32px 24px; flex-wrap: wrap; gap: 24px; }
     .stat { border-right: none; padding: 0; }
-    .projects-grid, .about-grid, .blog-grid, .cv-layout { grid-template-columns: 1fr; }
+    .projects-grid, .about-grid, .blog-grid, .cv-layout, .academia-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .phd-callout { padding: 32px 24px; }
+    .phd-callout::before { font-size: 80px; }
     .project-card.featured { grid-column: 1; grid-template-columns: 1fr; }
     .modal { padding: 40px 24px; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
@@ -1142,6 +1414,7 @@
   <a href="#hero" class="nav-logo">PS<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#projects">Work</a></li>
+    <li><a href="#academia">Academia</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#cv">CV</a></li>
@@ -1219,11 +1492,148 @@
   </div>
 </div>
 
+<!-- ACADEMIA -->
+<section id="academia">
+  <div class="section-header reveal">
+    <span class="section-num">00 /</span>
+    <h2 class="section-title">Academic Profile</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="academia-banner reveal">
+    <span class="academia-badge">Seeking PhD Opportunities</span>
+    <span class="academia-banner-text">Open to fully-funded doctoral positions in AI for Health &amp; Computer Vision</span>
+  </div>
+
+  <!-- Degrees -->
+  <div class="academia-grid reveal">
+    <div class="degree-card">
+      <div class="degree-level">Master of Science &nbsp;·&nbsp; 2023 – 2025</div>
+      <div class="degree-title">Data Science &amp;<br>Analytics</div>
+      <div class="degree-institution">Uganda Christian University &nbsp;·&nbsp; Mukono</div>
+      <div class="degree-major">Major: Machine Learning for Health Informatics &amp; Computer Vision</div>
+      <div class="degree-meta">
+        <div class="degree-meta-item">
+          <span class="degree-meta-label">CGPA</span>
+          <span class="degree-meta-value">4.16 / 5</span>
+        </div>
+        <div class="degree-meta-item">
+          <span class="degree-meta-label">Classification</span>
+          <span class="degree-meta-value" style="font-size:16px;margin-top:4px">Distinction</span>
+        </div>
+      </div>
+      <div class="degree-dissertation">
+        <strong>Dissertation:</strong> Applying convolutional neural networks to disease surveillance and medical image analysis in low-resource clinical settings across East Africa.
+      </div>
+    </div>
+
+    <div class="degree-card secondary">
+      <div class="degree-level">Bachelor of Science &nbsp;·&nbsp; 2011 – 2014</div>
+      <div class="degree-title">Business<br>Computing</div>
+      <div class="degree-institution">Uganda Christian University &nbsp;·&nbsp; Mukono</div>
+      <div class="degree-major">Major: Business Intelligence &amp; Data Warehousing</div>
+      <div class="degree-meta">
+        <div class="degree-meta-item">
+          <span class="degree-meta-label">CGPA</span>
+          <span class="degree-meta-value">3.6 / 5</span>
+        </div>
+        <div class="degree-meta-item">
+          <span class="degree-meta-label">Honours</span>
+          <span class="degree-meta-value" style="font-size:16px;margin-top:4px">Second Upper</span>
+        </div>
+      </div>
+      <div class="degree-dissertation">
+        <strong>Final Project:</strong> Designed a data warehouse and BI dashboard system for tracking academic performance metrics across faculty departments.
+      </div>
+    </div>
+  </div>
+
+  <!-- Certifications -->
+  <div class="reveal">
+    <div class="certs-label">Certifications &amp; Professional Training</div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🤖</div>
+        <div>
+          <div class="cert-name">AI For Everyone</div>
+          <div class="cert-issuer">DeepLearning.AI &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-tag">Artificial Intelligence</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🐍</div>
+        <div>
+          <div class="cert-name">Python for Everybody</div>
+          <div class="cert-issuer">University of Michigan &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-tag">Python Programming</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📊</div>
+        <div>
+          <div class="cert-name">Big Data Analytics with Hadoop &amp; Spark</div>
+          <div class="cert-issuer">IBM &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-tag">Big Data</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🧠</div>
+        <div>
+          <div class="cert-name">NLP with BERT &amp; Transformers</div>
+          <div class="cert-issuer">DeepLearning.AI &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-tag">NLP &nbsp;·&nbsp; BERT</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🗄️</div>
+        <div>
+          <div class="cert-name">SQL for Business Intelligence</div>
+          <div class="cert-issuer">Mode Analytics &nbsp;·&nbsp; Udacity</div>
+          <div class="cert-tag">SQL &nbsp;·&nbsp; BI</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">☁️</div>
+        <div>
+          <div class="cert-name">Cloud Computing Fundamentals</div>
+          <div class="cert-issuer">Google Cloud &nbsp;·&nbsp; Qwiklabs</div>
+          <div class="cert-tag">GCP &nbsp;·&nbsp; Cloud</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PhD Callout -->
+  <div class="phd-callout reveal">
+    <div class="phd-eyebrow">Next Chapter</div>
+    <div class="phd-headline">
+      Looking for a doctoral home in<br>
+      <span>AI for Health &amp; Computer Vision.</span>
+    </div>
+    <p class="phd-body">
+      My research sits at the intersection of deep learning and real-world clinical impact. I want to build systems that detect disease from images, automate screening in under-resourced hospitals, and ultimately save lives at scale. The MSc was chapter one. A PhD is where the real work starts.
+    </p>
+    <div class="phd-interests">
+      <span class="phd-tag">Medical Image Analysis</span>
+      <span class="phd-tag">Computer Vision</span>
+      <span class="phd-tag">AI for Global Health</span>
+      <span class="phd-tag">Low-Resource ML</span>
+      <span class="phd-tag">Convolutional Neural Networks</span>
+      <span class="phd-tag">Disease Surveillance</span>
+      <span class="phd-tag">Federated Learning</span>
+    </div>
+    <a href="mailto:paulsentongo@eclipso.de" class="phd-cta">
+      Contact me about PhD opportunities →
+    </a>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-header reveal">
     <span class="section-num">01 /</span>
     <h2 class="section-title">Selected Work</h2>
+
     <div class="section-line"></div>
   </div>
   <div class="projects-grid reveal">
@@ -1705,24 +2115,16 @@
           <div class="timeline-year">2023 –<br>2025</div>
           <div class="timeline-content">
             <div class="timeline-role">MSc Data Science &amp; Analytics</div>
-            <div class="timeline-company">Graduate Studies · Distinction</div>
-            <div class="timeline-desc">Advanced coursework in statistical learning, deep learning, NLP, and data engineering. Dissertation focused on applying ML to disease surveillance in low-resource settings.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">2019 –<br>2021</div>
-          <div class="timeline-content">
-            <div class="timeline-role">Data Analyst</div>
-            <div class="timeline-company">Research Institute · Uganda</div>
-            <div class="timeline-desc">Statistical analysis and reporting for public health research. Designed dashboards that condensed complex epidemiological data into clear narratives for policymakers.</div>
+            <div class="timeline-company">Uganda Christian University &nbsp;·&nbsp; CGPA 4.16 / 5 &nbsp;·&nbsp; Distinction</div>
+            <div class="timeline-desc">Major: Machine Learning for Health Informatics &amp; Computer Vision. Dissertation on CNNs for disease surveillance in low-resource clinical settings.</div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">2011 –<br>2014</div>
           <div class="timeline-content">
-            <div class="timeline-role">BSc Business Computing/div>
-            <div class="timeline-company">Uganda Christian University · Mukono</div>
-            <div class="timeline-desc">Honours Degree. Final-year project: a predictive model for flood risk assessment in Northern Uganda using satellite remote sensing data.</div>
+            <div class="timeline-role">BSc Business Computing</div>
+            <div class="timeline-company">Uganda Christian University &nbsp;·&nbsp; CGPA 3.6 / 5 &nbsp;·&nbsp; Second Upper Honours</div>
+            <div class="timeline-desc">Major: Business Intelligence &amp; Data Warehousing. Final project: BI dashboard system for tracking academic performance metrics across faculty departments.</div>
           </div>
         </div>
       </div>
