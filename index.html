@@ -193,7 +193,15 @@
     -webkit-text-stroke: 1px rgba(255,255,255,0.3);
     color: transparent;
   }
-  .hero-title .accent { color: var(--accent); }
+  .hero-title .accent { color: var(--accent); -webkit-text-stroke: 0; }
+  .hero-title .accent2 {
+    color: var(--accent2);
+    -webkit-text-stroke: 0;
+    text-shadow: 0 0 40px rgba(0,170,255,0.35);
+  }
+  [data-theme="light"] .hero-title .accent2 {
+    text-shadow: 0 0 30px rgba(0,95,163,0.25);
+  }
   .hero-tagline {
     font-family: var(--font-body);
     font-style: italic;
@@ -1430,7 +1438,7 @@
   <div class="hero-eyebrow">MSc Data Science &amp; Analytics &nbsp;·&nbsp; Kampala, Uganda</div>
   <h1 class="hero-title">
     Paul<br>
-    <span class="line2">Sen<span class="accent">tongo</span></span>
+    <span class="line2"><span class="accent2">Sen</span><span class="accent">tongo</span></span>
   </h1>
   <p class="hero-tagline">
     I turn raw data into <em>clarity</em> —<br>
@@ -1523,7 +1531,7 @@
         </div>
       </div>
       <div class="degree-dissertation">
-        <strong>Dissertation:</strong> Applying convolutional neural networks to disease surveillance and medical image analysis in low-resource clinical settings across East Africa.
+        <strong>Thesis:</strong> <a href="https://ucudir.ucu.ac.ug/items/a422584f-96fb-481e-90c5-324800fadc75" target="_blank" rel="noreferrer" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,255,136,0.3);">Machine Learning for Accurate Valuation of Imports in Uganda</a> — UCU Digital Repository.
       </div>
     </div>
 
@@ -1555,49 +1563,49 @@
       <div class="cert-card">
         <div class="cert-icon">🤖</div>
         <div>
-          <div class="cert-name">AI For Everyone</div>
-          <div class="cert-issuer">DeepLearning.AI &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-name">Artificial Intelligence A-Z</div>
+          <div class="cert-issuer">Udemy</div>
           <div class="cert-tag">Artificial Intelligence</div>
         </div>
       </div>
       <div class="cert-card">
         <div class="cert-icon">🐍</div>
         <div>
-          <div class="cert-name">Python for Everybody</div>
-          <div class="cert-issuer">University of Michigan &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-name">Python Bootcamp: Zero to Hero</div>
+          <div class="cert-issuer">Udemy</div>
           <div class="cert-tag">Python Programming</div>
         </div>
       </div>
       <div class="cert-card">
         <div class="cert-icon">📊</div>
         <div>
-          <div class="cert-name">Big Data Analytics with Hadoop &amp; Spark</div>
-          <div class="cert-issuer">IBM &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-name">Big Data &amp; Hadoop: The Complete Guide</div>
+          <div class="cert-issuer">Udemy</div>
           <div class="cert-tag">Big Data</div>
         </div>
       </div>
       <div class="cert-card">
         <div class="cert-icon">🧠</div>
         <div>
-          <div class="cert-name">NLP with BERT &amp; Transformers</div>
-          <div class="cert-issuer">DeepLearning.AI &nbsp;·&nbsp; Coursera</div>
+          <div class="cert-name">NLP with BERT, GPT &amp; Transformers</div>
+          <div class="cert-issuer">Udemy</div>
           <div class="cert-tag">NLP &nbsp;·&nbsp; BERT</div>
         </div>
       </div>
       <div class="cert-card">
         <div class="cert-icon">🗄️</div>
         <div>
-          <div class="cert-name">SQL for Business Intelligence</div>
-          <div class="cert-issuer">Mode Analytics &nbsp;·&nbsp; Udacity</div>
+          <div class="cert-name">SQL for Business Intelligence &amp; Reporting</div>
+          <div class="cert-issuer">Udemy</div>
           <div class="cert-tag">SQL &nbsp;·&nbsp; BI</div>
         </div>
       </div>
       <div class="cert-card">
         <div class="cert-icon">☁️</div>
         <div>
-          <div class="cert-name">Cloud Computing Fundamentals</div>
-          <div class="cert-issuer">Google Cloud &nbsp;·&nbsp; Qwiklabs</div>
-          <div class="cert-tag">GCP &nbsp;·&nbsp; Cloud</div>
+          <div class="cert-name">Cloud Computing &amp; AWS: Complete Bootcamp</div>
+          <div class="cert-issuer">Udemy</div>
+          <div class="cert-tag">Cloud &nbsp;·&nbsp; AWS</div>
         </div>
       </div>
     </div>
@@ -2116,7 +2124,7 @@
           <div class="timeline-content">
             <div class="timeline-role">MSc Data Science &amp; Analytics</div>
             <div class="timeline-company">Uganda Christian University &nbsp;·&nbsp; CGPA 4.16 / 5 &nbsp;·&nbsp; Distinction</div>
-            <div class="timeline-desc">Major: Machine Learning for Health Informatics &amp; Computer Vision. Dissertation on CNNs for disease surveillance in low-resource clinical settings.</div>
+            <div class="timeline-desc">Major: Machine Learning for Health Informatics &amp; Computer Vision. Thesis: Machine Learning for Accurate Valuation of Imports in Uganda.</div>
           </div>
         </div>
         <div class="timeline-item">
