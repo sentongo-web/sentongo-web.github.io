@@ -1673,6 +1673,50 @@
       </div>
     </div>
 
+    <div class="project-card featured">
+      <div>
+        <div class="project-tag">Machine Learning / Public Health AI</div>
+        <h3 class="project-title">Nakaseke NCD-AI: Hypertension Risk Screener</h3>
+        <p class="project-desc">Hypertension kills quietly. No symptoms. No warning. Just a heart attack or stroke that nobody saw coming. At Nakaseke Hospital in Uganda, community health workers screen thousands of patients a year — but blood pressure cuffs and clinical equipment are not always available in rural areas. I built an end-to-end machine learning system that estimates a patient's hypertension risk from a short questionnaire alone. A CHW with a basic smartphone could use it to identify who most urgently needs a clinical assessment, directing scarce healthcare resources exactly where they are needed most. Built on real patient data from 3,471 individuals in the Nakaseke NCD survey. The pipeline trains six competing models with Optuna-tuned hyperparameters, SMOTE for class balance, and SHAP values for clinical explainability. AUC 0.64 — consistent with published literature for questionnaire-only hypertension screening in low-income settings. Served via a Flask web app with Docker and MLflow tracking.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">scikit-learn</span>
+          <span class="tech-tag">XGBoost</span>
+          <span class="tech-tag">LightGBM</span>
+          <span class="tech-tag">SHAP</span>
+          <span class="tech-tag">Optuna</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">MLflow</span>
+        </div>
+        <a href="https://github.com/sentongo-web/Diabetes-Detection-Complete-MLOPs" target="_blank" rel="noreferrer" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-visual">
+        <svg width="100%" height="100%" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet">
+          <!-- Gauge arc background -->
+          <path d="M 80 200 A 120 120 0 0 1 320 200" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="18" stroke-linecap="round"/>
+          <!-- Low risk (green) -->
+          <path d="M 80 200 A 120 120 0 0 1 170 95" fill="none" stroke="rgba(0,255,136,0.5)" stroke-width="18" stroke-linecap="round"/>
+          <!-- Moderate risk (yellow) -->
+          <path d="M 170 95 A 120 120 0 0 1 230 85" fill="none" stroke="rgba(255,211,0,0.5)" stroke-width="18" stroke-linecap="round"/>
+          <!-- High risk (red) -->
+          <path d="M 230 85 A 120 120 0 0 1 320 200" fill="none" stroke="rgba(255,80,80,0.35)" stroke-width="18" stroke-linecap="round"/>
+          <!-- Needle -->
+          <line x1="200" y1="200" x2="178" y2="100" stroke="#00ff88" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+          <circle cx="200" cy="200" r="6" fill="#00ff88" opacity="0.9"/>
+          <!-- Labels -->
+          <text x="64" y="226" fill="rgba(0,255,136,0.6)" font-size="9" font-family="DM Mono,monospace">LOW</text>
+          <text x="185" y="72" fill="rgba(255,211,0,0.6)" font-size="9" font-family="DM Mono,monospace">MOD</text>
+          <text x="308" y="226" fill="rgba(255,80,80,0.6)" font-size="9" font-family="DM Mono,monospace">HIGH</text>
+          <!-- Risk score display -->
+          <text x="200" y="175" fill="rgba(255,255,255,0.7)" font-size="22" font-family="DM Mono,monospace" text-anchor="middle">34%</text>
+          <text x="200" y="192" fill="rgba(255,255,255,0.25)" font-size="8" font-family="DM Mono,monospace" text-anchor="middle">HYPERTENSION RISK</text>
+          <!-- Data points -->
+          <text x="80" y="248" fill="rgba(255,255,255,0.12)" font-size="8" font-family="DM Mono,monospace">n=3,471 · Nakaseke Hospital, Uganda</text>
+        </svg>
+      </div>
+    </div>
+
     <div class="project-card" style="grid-column: span 2;">
       <div class="project-tag">Computer Vision / Medical AI</div>
       <h3 class="project-title">Kidney Condition Classifier</h3>
@@ -2066,7 +2110,7 @@
       <p class="cv-intro">
         Five years turning messy, real-world data into systems that actually ship — from the Jupyter notebook to the production server to the boardroom presentation.
       </p>
-      <a href="assets/paul_sentongo_Resume.pdf" download class="cv-download">
+      <a href="assets/Paul_Sentongo_CV___CELEBRA.pdf" download class="cv-download">
         ⬇ Download Full CV
         <small>PDF · Updated 2025</small>
       </a>
@@ -2149,7 +2193,7 @@
       <a href="https://www.linkedin.com/in/paul-sentongo-885041284/" target="_blank" rel="noreferrer" class="social-link">LinkedIn</a>
       <a href="https://github.com/sentongo-web" target="_blank" rel="noreferrer" class="social-link">GitHub</a>
       <a href="https://wa.me/4917635130941" target="_blank" rel="noreferrer" class="social-link">WhatsApp</a>
-      <a href="assets/paul_sentongo_Resume.pdf" download class="social-link">Download CV</a>
+      <a href="assets/Paul_Sentongo_CV___CELEBRA.pdf" download class="social-link">Download CV</a>
     </div>
     <p style="color:var(--muted); font-family:var(--font-mono); font-size:13px; max-width:500px; margin:0 auto; line-height:1.8;">
       Open to senior data science roles, MLOps engineering positions, research collaborations, speaking engagements, and mentoring opportunities. Based in Kampala, Uganda. Open to remote.
