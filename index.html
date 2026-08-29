@@ -3,35 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Paul Sentongo - Research Portfolio. Specializing in clinical AI, algorithmic fairness, and machine learning operations in resource-constrained healthcare systems.">
-    <meta name="keywords" content="Paul Sentongo, Research, Clinical AI, Fairness, Machine Learning, Data Science, Healthcare ML">
-    <meta property="og:title" content="Paul Sentongo - Research Portfolio">
-    <meta property="og:description" content="Research in clinical AI, fairness, and MLOps. Focus on Sub-Saharan healthcare systems.">
-    <title>Paul Sentongo | Research Portfolio</title>
+    <meta name="description" content="Paul Sentongo's selected research portfolio: trustworthy clinical AI, medical imaging, MLOps, and data engineering.">
+    <meta name="keywords" content="Paul Sentongo, Clinical AI, Data Science, MLOps, SQL Data Warehouse, Medical Imaging, Uganda">
+    <meta property="og:title" content="Paul Sentongo | Selected Research Projects">
+    <meta property="og:description" content="Four carefully explained projects in clinical AI, medical imaging, MLOps, and data engineering.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sentongo-web.github.io/">
+    <meta name="theme-color" content="#07111f">
+    <title>Paul Sentongo | Selected Research Projects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-bg: #0a0e27;
-            --dark-bg-secondary: #141829;
-            --dark-border: rgba(255, 255, 255, 0.08);
-            --dark-text: #e5e7eb;
-            --dark-text-secondary: #9ca3af;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --success: #10b981;
-            --warning: #f59e0b;
+            color-scheme: dark;
+            --bg: #07111f;
+            --bg-soft: #0b1728;
+            --surface: #101f33;
+            --surface-strong: #14263d;
+            --text: #f4f7fb;
+            --muted: #a7b4c5;
+            --faint: #74849a;
+            --line: rgba(255, 255, 255, 0.1);
+            --accent: #5eead4;
+            --accent-strong: #2dd4bf;
+            --blue: #60a5fa;
+            --amber: #fbbf24;
+            --rose: #fb7185;
+            --shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+            --radius: 24px;
+            --max-width: 1160px;
+        }
 
-            --light-bg: #ffffff;
-            --light-bg-secondary: #f9fafb;
-            --light-border: rgba(0, 0, 0, 0.08);
-            --light-text: #111827;
-            --light-text-secondary: #6b7280;
+        html[data-theme="light"] {
+            color-scheme: light;
+            --bg: #f5f7f8;
+            --bg-soft: #edf2f4;
+            --surface: #ffffff;
+            --surface-strong: #f8fafb;
+            --text: #102033;
+            --muted: #526176;
+            --faint: #6d7d91;
+            --line: rgba(16, 32, 51, 0.12);
+            --accent: #0f766e;
+            --accent-strong: #0d9488;
+            --blue: #2563eb;
+            --amber: #b45309;
+            --rose: #be123c;
+            --shadow: 0 24px 70px rgba(26, 43, 66, 0.1);
         }
 
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
@@ -40,416 +62,1146 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--dark-bg);
-            color: var(--dark-text);
-            line-height: 1.6;
+            margin: 0;
+            background:
+                radial-gradient(circle at 85% 5%, rgba(94, 234, 212, 0.09), transparent 28rem),
+                radial-gradient(circle at 8% 24%, rgba(96, 165, 250, 0.07), transparent 24rem),
+                var(--bg);
+            color: var(--text);
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             font-size: 16px;
+            line-height: 1.7;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        body.light-mode {
-            background: var(--light-bg);
-            color: var(--light-text);
+        a {
+            color: inherit;
         }
 
-        /* Header & Navigation */
-        header {
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
             position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 2000;
+            transform: translateY(-150%);
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            background: var(--text);
+            color: var(--bg);
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .site-header {
+            position: sticky;
             top: 0;
-            width: 100%;
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--dark-border);
             z-index: 1000;
-            padding: 1rem 0;
+            border-bottom: 1px solid var(--line);
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(16px);
         }
 
-        body.light-mode header {
-            background: rgba(255, 255, 255, 0.95);
-            border-bottom: 1px solid var(--light-border);
-        }
-
-        .header-content {
-            max-width: 1200px;
+        .nav-shell {
+            width: min(calc(100% - 2rem), var(--max-width));
+            min-height: 72px;
             margin: 0 auto;
-            padding: 0 2rem;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.5px;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--dark-text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .theme-toggle {
-            background: var(--dark-bg-secondary);
-            border: 1px solid var(--dark-border);
-            color: var(--dark-text);
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        body.light-mode .theme-toggle {
-            background: var(--light-bg-secondary);
-            border: 1px solid var(--light-border);
-            color: var(--light-text);
-        }
-
-        .theme-toggle:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 60px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 4rem 2rem 3rem;
-            background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg));
-            border-bottom: 1px solid var(--dark-border);
-        }
-
-        body.light-mode .hero {
-            background: linear-gradient(135deg, var(--light-bg-secondary), var(--light-bg));
-            border-bottom: 1px solid var(--light-border);
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--dark-text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        body.light-mode .hero-text p {
-            color: var(--light-text-secondary);
-        }
-
-        .hero-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--dark-bg);
-            border: 1px solid var(--dark-border);
-            color: var(--dark-text);
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        body.light-mode .badge {
-            background: var(--light-bg-secondary);
-            border: 1px solid var(--light-border);
-            color: var(--light-text);
-        }
-
-        .research-areas {
-            display: flex;
-            flex-direction: column;
             gap: 1.5rem;
         }
 
-        .research-area {
-            padding: 1.5rem;
-            background: var(--dark-bg);
-            border-left: 3px solid var(--accent);
-            border-radius: 6px;
-        }
-
-        body.light-mode .research-area {
-            background: var(--light-bg-secondary);
-        }
-
-        .research-area h3 {
-            color: var(--accent);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .research-area p {
-            color: var(--dark-text-secondary);
-            font-size: 0.95rem;
-        }
-
-        body.light-mode .research-area p {
-            color: var(--light-text-secondary);
-        }
-
-        @media (max-width: 900px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 3rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
-            border: 1px solid var(--dark-border);
-            border-radius: 12px;
-            margin: 3rem 0;
-        }
-
-        body.light-mode .cta-section {
-            border: 1px solid var(--light-border);
-        }
-
-        .cta-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            color: var(--dark-text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        body.light-mode .cta-section p {
-            color: var(--light-text-secondary);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
+        .brand {
             text-decoration: none;
+            font-family: "Manrope", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 1rem;
-            transition: background 0.3s, transform 0.3s;
-            border: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .theme-toggle {
+            min-width: 94px;
+            padding: 0.58rem 0.8rem;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--text);
+            font: inherit;
+            font-size: 0.78rem;
+            font-weight: 700;
             cursor: pointer;
         }
 
-        .cta-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
+        .theme-toggle:hover {
+            border-color: var(--accent);
         }
 
-        /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--dark-border);
-            text-align: center;
+        main {
+            overflow: hidden;
         }
 
-        body.light-mode footer {
-            border-top: 1px solid var(--light-border);
+        .shell {
+            width: min(calc(100% - 2rem), var(--max-width));
+            margin: 0 auto;
         }
 
-        footer p {
-            color: var(--dark-text-secondary);
-            margin-bottom: 1.5rem;
+        .hero {
+            min-height: calc(100vh - 73px);
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.75fr);
+            align-items: center;
+            gap: clamp(2.5rem, 7vw, 6.5rem);
+            padding: 5rem 0;
         }
 
-        body.light-mode footer p {
-            color: var(--light-text-secondary);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin: 0 0 1.25rem;
             color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 2px;
+            background: currentColor;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Manrope", sans-serif;
+            letter-spacing: -0.035em;
+        }
+
+        h1 {
+            max-width: 820px;
+            margin-bottom: 1.5rem;
+            font-size: clamp(3rem, 7.2vw, 6.2rem);
+            line-height: 0.98;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-copy {
+            max-width: 760px;
+            margin-bottom: 2rem;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2vw, 1.26rem);
+        }
+
+        .hero-actions,
+        .project-links,
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0.75rem 1.15rem;
+            border: 1px solid var(--line);
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s;
-        }
-
-        .social-links a:hover {
-            opacity: 0.7;
-        }
-
-        .footer-text {
             font-size: 0.9rem;
-            color: var(--dark-text-secondary);
+            font-weight: 800;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
 
-        body.light-mode .footer-text {
-            color: var(--light-text-secondary);
+        .button:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
         }
 
-        @media (max-width: 768px) {
-            .hero-text h1 {
-                font-size: 1.75rem;
+        .button.primary {
+            border-color: var(--accent-strong);
+            background: var(--accent-strong);
+            color: #04120f;
+        }
+
+        html[data-theme="light"] .button.primary {
+            color: #ffffff;
+        }
+
+        .hero-guide {
+            padding: 1.6rem;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, var(--surface-strong), var(--surface));
+            box-shadow: var(--shadow);
+        }
+
+        .hero-guide h2 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-guide ol {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: guide;
+        }
+
+        .hero-guide li {
+            counter-increment: guide;
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 0.7rem;
+            padding: 0.75rem 0;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .hero-guide li::before {
+            content: "0" counter(guide);
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .section-intro {
+            max-width: 820px;
+            padding: 7rem 0 3.5rem;
+        }
+
+        .section-intro h2 {
+            margin-bottom: 1rem;
+            font-size: clamp(2.25rem, 5vw, 4.5rem);
+            line-height: 1.05;
+        }
+
+        .section-intro p:last-child {
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        .case-studies {
+            display: grid;
+            gap: 2rem;
+            padding-bottom: 7rem;
+        }
+
+        .case-study {
+            --project-color: var(--accent);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .case-study::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 4px;
+            background: var(--project-color);
+        }
+
+        .case-study.sql {
+            --project-color: var(--blue);
+        }
+
+        .case-study.kidney {
+            --project-color: var(--rose);
+        }
+
+        .case-study.dental {
+            --project-color: var(--amber);
+        }
+
+        .project-header {
+            padding: clamp(1.6rem, 4vw, 3.2rem);
+            border-bottom: 1px solid var(--line);
+            background:
+                linear-gradient(135deg, color-mix(in srgb, var(--project-color) 9%, transparent), transparent 46%),
+                var(--surface);
+        }
+
+        .project-kicker {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--project-color);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .project-kicker .number {
+            display: inline-grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border: 1px solid color-mix(in srgb, var(--project-color) 45%, transparent);
+            border-radius: 50%;
+            letter-spacing: 0;
+        }
+
+        .project-header h2 {
+            max-width: 900px;
+            margin-bottom: 1rem;
+            font-size: clamp(2rem, 4.8vw, 4rem);
+            line-height: 1.08;
+        }
+
+        .project-deck {
+            max-width: 880px;
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            border-bottom: 1px solid var(--line);
+        }
+
+        .metric {
+            min-height: 126px;
+            padding: 1.35rem clamp(1rem, 3vw, 1.8rem);
+            border-right: 1px solid var(--line);
+        }
+
+        .metric:last-child {
+            border-right: 0;
+        }
+
+        .metric strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--project-color);
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(1.45rem, 3vw, 2.25rem);
+            line-height: 1;
+        }
+
+        .metric span {
+            display: block;
+            color: var(--muted);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .project-body {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .story-block {
+            padding: clamp(1.5rem, 4vw, 2.6rem);
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .story-block:nth-child(even) {
+            border-right: 0;
+        }
+
+        .story-block h3 {
+            margin-bottom: 0.9rem;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+        }
+
+        .story-block p,
+        .story-block li {
+            color: var(--muted);
+            font-size: 0.94rem;
+        }
+
+        .story-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-block ul {
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+
+        .story-block li + li {
+            margin-top: 0.55rem;
+        }
+
+        .plain-result {
+            grid-column: 1 / -1;
+            padding: clamp(1.6rem, 4vw, 2.8rem);
+            border-bottom: 1px solid var(--line);
+            background: color-mix(in srgb, var(--project-color) 7%, var(--surface));
+        }
+
+        .plain-result h3 {
+            margin-bottom: 0.7rem;
+            color: var(--project-color);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .plain-result p {
+            max-width: 920px;
+            margin-bottom: 0;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(1.08rem, 2vw, 1.35rem);
+            font-weight: 600;
+            line-height: 1.55;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 1.35rem clamp(1.5rem, 4vw, 2.6rem);
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-list span {
+            padding: 0.35rem 0.62rem;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .project-links {
+            flex-shrink: 0;
+        }
+
+        .project-links a {
+            color: var(--project-color);
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+        }
+
+        .research-approach {
+            padding: 7rem 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.3fr;
+            gap: clamp(2.5rem, 8vw, 7rem);
+            align-items: start;
+        }
+
+        .approach-copy h2 {
+            font-size: clamp(2.2rem, 4.5vw, 4rem);
+            line-height: 1.05;
+        }
+
+        .approach-copy p {
+            color: var(--muted);
+        }
+
+        .principles {
+            display: grid;
+            gap: 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .principle {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 1rem;
+            padding: 1.3rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .principle > span {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .principle h3 {
+            margin-bottom: 0.35rem;
+            font-size: 1rem;
+        }
+
+        .principle p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .contact {
+            margin-bottom: 4rem;
+            padding: clamp(2rem, 6vw, 4.5rem);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background:
+                linear-gradient(130deg, rgba(94, 234, 212, 0.11), transparent 48%),
+                var(--surface);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .contact h2 {
+            margin-bottom: 1rem;
+            font-size: clamp(2.2rem, 5vw, 4.2rem);
+            line-height: 1.05;
+        }
+
+        .contact > p {
+            max-width: 650px;
+            margin: 0 auto 1.6rem;
+            color: var(--muted);
+        }
+
+        .contact-links {
+            justify-content: center;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-shell {
+            width: min(calc(100% - 2rem), var(--max-width));
+            margin: 0 auto;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            color: var(--faint);
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero,
+            .approach-grid {
+                grid-template-columns: 1fr;
             }
 
-            nav {
-                gap: 1rem;
+            .hero {
+                min-height: auto;
             }
 
-            nav a {
-                font-size: 0.85rem;
+            .hero-guide {
+                max-width: 640px;
             }
 
-            .cta-section h2 {
-                font-size: 1.4rem;
+            .metrics {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .metric:nth-child(2) {
+                border-right: 0;
+            }
+
+            .metric:nth-child(-n + 2) {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .project-footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .nav-shell {
+                min-height: 64px;
+            }
+
+            .nav-links a {
+                display: none;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .section-intro,
+            .research-approach {
+                padding-top: 5rem;
+            }
+
+            .project-body {
+                grid-template-columns: 1fr;
+            }
+
+            .story-block,
+            .story-block:nth-child(even) {
+                border-right: 0;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric {
+                min-height: 112px;
+            }
+
+            .footer-shell {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 460px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .metric,
+            .metric:nth-child(2) {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .metric:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">Paul Sentongo</div>
-            <nav>
-                <a href="research-portfolio.html">Research</a>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="#top" aria-label="Paul Sentongo, home">Paul Sentongo<span>.</span></a>
+            <nav class="nav-links" aria-label="Primary navigation">
                 <a href="#projects">Projects</a>
+                <a href="#approach">Research approach</a>
                 <a href="#contact">Contact</a>
-                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">🌙</button>
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">Light mode</button>
             </nav>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Clinical AI Research</h1>
-                    <p>Developing trustworthy, fair, and interpretable machine learning systems for healthcare in resource-constrained settings. Focus on Sub-Saharan Africa.</p>
-                    <div class="hero-badges">
-                        <span class="badge">Clinical AI</span>
-                        <span class="badge">Algorithmic Fairness</span>
-                        <span class="badge">MLOps</span>
-                        <span class="badge">Medical Imaging</span>
-                    </div>
+    <main id="main-content">
+        <section class="shell hero" id="top">
+            <div>
+                <p class="eyebrow">Selected work · Clinical AI + Data Systems</p>
+                <h1>Four projects. <span>Real questions.</span> Honest results.</h1>
+                <p class="hero-copy">
+                    I am Paul Sentongo, a data scientist and applied AI researcher. I build systems,
+                    test what they can actually do, and explain where the evidence is still weak.
+                    This portfolio focuses on the four projects that best show how I think.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#projects">Read the project stories</a>
+                    <a class="button" href="https://github.com/sentongo-web" target="_blank" rel="noopener noreferrer">View my GitHub</a>
                 </div>
-                <div class="research-areas">
-                    <div class="research-area">
-                        <h3>🔍 Primary Focus</h3>
-                        <p>Addressing bias and fairness in machine learning models for clinical decision support, particularly in settings with incomplete data and underrepresented populations.</p>
+            </div>
+
+            <aside class="hero-guide" aria-label="How to read this portfolio">
+                <h2>Every project answers five questions</h2>
+                <ol>
+                    <li>What real problem was I trying to understand?</li>
+                    <li>What did I build or test?</li>
+                    <li>What do the results mean in normal language?</li>
+                    <li>What are the important limitations?</li>
+                    <li>What research should come next?</li>
+                </ol>
+            </aside>
+        </section>
+
+        <section class="shell" id="projects">
+            <div class="section-intro">
+                <p class="eyebrow">Selected research projects</p>
+                <h2>Depth matters more than a long project list.</h2>
+                <p>
+                    These projects cover clinical fairness, medical imaging, reproducible machine
+                    learning, and trustworthy data infrastructure. The results are presented without
+                    hiding failed assumptions or turning prototypes into claims they cannot support.
+                </p>
+            </div>
+
+            <div class="case-studies">
+                <article class="case-study hypertension">
+                    <header class="project-header">
+                        <p class="project-kicker"><span class="number">01</span> Clinical AI · Fairness · Uganda</p>
+                        <h2>Hypertension risk research in a real, incomplete clinical cohort</h2>
+                        <p class="project-deck">
+                            A study of whether a screening model can remain useful, understandable,
+                            and fair when the health records contain serious missing data.
+                        </p>
+                    </header>
+
+                    <div class="metrics" aria-label="Hypertension project headline results">
+                        <div class="metric"><strong>3,471</strong><span>patient records in the Nakaseke cohort</span></div>
+                        <div class="metric"><strong>49.3%</strong><span>of age values missing at intake</span></div>
+                        <div class="metric"><strong>0.649</strong><span>AUROC on the held-out test group</span></div>
+                        <div class="metric"><strong>26.2%</strong><span>overall recall at the tested threshold</span></div>
                     </div>
-                    <div class="research-area">
-                        <h3>📊 Data Science</h3>
-                        <p>Advanced statistical methods, missing data imputation, SHAP-based interpretability, and rigorous validation frameworks.</p>
+
+                    <div class="project-body">
+                        <section class="story-block">
+                            <h3>The research question</h3>
+                            <p>
+                                Can a hypertension risk model trained on community health records be
+                                trusted when almost half of the age entries are missing—and does it
+                                work equally well for different patient groups?
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>What I did</h3>
+                            <ul>
+                                <li>Compared simple missing-value filling with MICE and a MissForest-style method that learn from relationships between fields.</li>
+                                <li>Kept imputation inside the training pipeline so test patients could not leak information into the model.</li>
+                                <li>Audited performance separately by sex and age instead of trusting one overall score.</li>
+                                <li>Used SHAP to study which features and feature pairs influenced predictions.</li>
+                            </ul>
+                        </section>
+
+                        <section class="plain-result">
+                            <h3>The result, in everyday language</h3>
+                            <p>
+                                An AUROC of 0.649 means the model found some real signal, but it was
+                                only moderately better than chance. More importantly, the fairness
+                                audit found that it identified just 14% of hypertensive men, compared
+                                with 36.2% of hypertensive women, and missed every hypertensive patient
+                                under 30 in that test group. That is not a result to hide—it is the
+                                strongest reason this model should not yet be used on its own.
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Limitations</h3>
+                            <ul>
+                                <li>The data comes from people who reached one hospital-linked screening programme, not a representative sample of rural Uganda.</li>
+                                <li>The study is a single snapshot in time and lacks several useful biomarkers and long-term follow-up.</li>
+                                <li>Age-group findings use only records with observed age, because grouping people by an imputed age would introduce another uncertainty.</li>
+                                <li>The fairness audit currently covers sex and age, but not geography or other access-related groups.</li>
+                            </ul>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Research opportunities</h3>
+                            <ul>
+                                <li>Collect prospective data across more hospitals and community settings.</li>
+                                <li>Recalibrate the decision threshold and test whether group-aware rules improve sensitivity without creating new harms.</li>
+                                <li>Add geographic access, stronger clinical measures, and repeated patient visits.</li>
+                                <li>Explore retinal imaging only after paired image-and-record data is collected, followed by a new fairness audit.</li>
+                            </ul>
+                        </section>
                     </div>
-                    <div class="research-area">
-                        <h3>🏥 Application</h3>
-                        <p>Working with real-world clinical cohorts from Sub-Saharan healthcare systems to translate research into deployable solutions.</p>
+
+                    <footer class="project-footer">
+                        <div class="tech-list" aria-label="Hypertension project tools">
+                            <span>Python</span><span>scikit-learn</span><span>MICE</span><span>SHAP</span><span>MLflow</span><span>Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sentongo-web/Hypertension-Detection-Complete-MLOPs" target="_blank" rel="noopener noreferrer">Read the repository ↗</a>
+                            <a href="https://nakaseke-hypertension-screener.onrender.com/" target="_blank" rel="noopener noreferrer">Open the research demo ↗</a>
+                        </div>
+                    </footer>
+                </article>
+
+                <article class="case-study sql">
+                    <header class="project-header">
+                        <p class="project-kicker"><span class="number">02</span> Data Engineering · SQL Server</p>
+                        <h2>Turning disconnected CRM and ERP files into a trusted data warehouse</h2>
+                        <p class="project-deck">
+                            A complete T-SQL pipeline that preserves raw data, fixes inconsistencies,
+                            tests quality, and gives analysts a clean model for customer and product questions.
+                        </p>
+                    </header>
+
+                    <div class="metrics" aria-label="SQL data warehouse project facts">
+                        <div class="metric"><strong>6</strong><span>raw CRM and ERP source files</span></div>
+                        <div class="metric"><strong>3</strong><span>Bronze, Silver, and Gold layers</span></div>
+                        <div class="metric"><strong>1</strong><span>sales fact table at order-line level</span></div>
+                        <div class="metric"><strong>2</strong><span>customer and product dimensions</span></div>
                     </div>
+
+                    <div class="project-body">
+                        <section class="story-block">
+                            <h3>The research and engineering question</h3>
+                            <p>
+                                How can data from two systems that use different keys, codes, and
+                                formats be turned into one reliable source for reporting—without
+                                losing the original evidence or silently accepting bad records?
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>What I did</h3>
+                            <ul>
+                                <li>Loaded six source files unchanged into a Bronze layer to preserve an audit trail.</li>
+                                <li>Built a transactional Silver process that cleans dates, removes duplicates, standardises codes, and recalculates inconsistent sales values.</li>
+                                <li>Modelled the Gold layer as a star schema with sales, customers, and products.</li>
+                                <li>Added referential-integrity tests, a data catalogue, design documentation, and reusable customer and product reports.</li>
+                            </ul>
+                        </section>
+
+                        <section class="plain-result">
+                            <h3>The result, in everyday language</h3>
+                            <p>
+                                The original files disagree and require cleaning every time someone
+                                wants an answer. The warehouse does that difficult work once, records
+                                the rules, and presents simple tables for analysis. A user can study
+                                sales trends, valuable customers, or product performance without
+                                first becoming an expert in the messy source systems.
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Limitations</h3>
+                            <ul>
+                                <li>This is a portfolio-scale, batch-loaded warehouse rather than a live high-volume enterprise system.</li>
+                                <li>Source paths must currently be configured for the SQL Server host.</li>
+                                <li>The pipeline does not yet demonstrate change-data capture, automated orchestration, or slowly changing dimensions.</li>
+                                <li>Performance has not been benchmarked at production-scale data volumes.</li>
+                            </ul>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Research and engineering opportunities</h3>
+                            <ul>
+                                <li>Measure data-quality improvement at each layer and publish reproducible benchmarks.</li>
+                                <li>Add incremental loading, Type 2 history, orchestration, alerting, and lineage.</li>
+                                <li>Test the model against larger workloads and compare query/index strategies.</li>
+                                <li>Connect the Gold layer to a governed BI dashboard and study how definitions affect decisions.</li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <footer class="project-footer">
+                        <div class="tech-list" aria-label="SQL warehouse tools">
+                            <span>SQL Server</span><span>T-SQL</span><span>ETL</span><span>Star schema</span><span>Data quality</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sentongo-web/SQL_datawarehouse_Project" target="_blank" rel="noopener noreferrer">Read the repository ↗</a>
+                            <a href="https://sentongo-web.github.io/SQL_datawarehouse_Project/" target="_blank" rel="noopener noreferrer">Open the project page ↗</a>
+                        </div>
+                    </footer>
+                </article>
+
+                <article class="case-study kidney">
+                    <header class="project-header">
+                        <p class="project-kicker"><span class="number">03</span> Medical Imaging · MLOps</p>
+                        <h2>Kidney CT classification built as a reproducible ML system</h2>
+                        <p class="project-deck">
+                            A VGG16 transfer-learning project that classifies kidney CT images as
+                            Normal or Tumour and makes the full training-to-deployment path traceable.
+                        </p>
+                    </header>
+
+                    <div class="metrics" aria-label="Kidney project headline results">
+                        <div class="metric"><strong>89.9%</strong><span>accuracy on the project validation split</span></div>
+                        <div class="metric"><strong>2</strong><span>classes: Normal and Tumour</span></div>
+                        <div class="metric"><strong>4</strong><span>versioned machine-learning stages</span></div>
+                        <div class="metric"><strong>30%</strong><span>of the dataset used for validation</span></div>
+                    </div>
+
+                    <div class="project-body">
+                        <section class="story-block">
+                            <h3>The research question</h3>
+                            <p>
+                                Can transfer learning recognise tumour-related patterns in kidney CT
+                                images, and can the experiment be packaged so another person can
+                                reproduce, inspect, and deploy the same model?
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>What I did</h3>
+                            <ul>
+                                <li>Adapted a VGG16 model pre-trained on ImageNet to classify kidney scans.</li>
+                                <li>Separated ingestion, model preparation, training, and evaluation into a DVC pipeline.</li>
+                                <li>Tracked parameters, metrics, and model versions with MLflow and DagsHub.</li>
+                                <li>Packaged the application with Flask and Docker and automated deployment to Hugging Face Spaces.</li>
+                            </ul>
+                        </section>
+
+                        <section class="plain-result">
+                            <h3>The result, in everyday language</h3>
+                            <p>
+                                The model classified about nine out of every ten images correctly in
+                                its validation split. That is a promising engineering result, but it
+                                does not mean it will be 89.9% accurate in a different hospital.
+                                Images from a new scanner, patient population, or clinical workflow
+                                may look different, so external testing is essential.
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Limitations</h3>
+                            <ul>
+                                <li>The model only separates Normal from Tumour; it does not identify cysts, stones, tumour type, or disease stage.</li>
+                                <li>The reported number is validation accuracy from the project dataset, not independent clinical validation.</li>
+                                <li>Accuracy alone does not show how many tumours were missed or how certain the model was.</li>
+                                <li>The current interface does not explain which image region influenced a prediction.</li>
+                            </ul>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Research opportunities</h3>
+                            <ul>
+                                <li>Evaluate sensitivity, specificity, confidence intervals, and performance by scanner or site.</li>
+                                <li>Validate on an external hospital dataset before making clinical claims.</li>
+                                <li>Extend the classes to cysts and stones and add Grad-CAM explanations reviewed by radiologists.</li>
+                                <li>Monitor image drift and prediction quality after deployment.</li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <footer class="project-footer">
+                        <div class="tech-list" aria-label="Kidney project tools">
+                            <span>TensorFlow</span><span>VGG16</span><span>DVC</span><span>MLflow</span><span>Flask</span><span>Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sentongo-web/Kidney_classification_Using_MLOPS_and_DVC_Data-version-control" target="_blank" rel="noopener noreferrer">Read the repository ↗</a>
+                            <a href="https://huggingface.co/spaces/Sentoz/kidney-classifier" target="_blank" rel="noopener noreferrer">Try the demonstration ↗</a>
+                        </div>
+                    </footer>
+                </article>
+
+                <article class="case-study dental">
+                    <header class="project-header">
+                        <p class="project-kicker"><span class="number">04</span> Dental Imaging · Object Detection</p>
+                        <h2>Dental OPG analysis that shows where a suspected condition appears</h2>
+                        <p class="project-deck">
+                            A YOLOv8 system for panoramic dental X-rays that validates the upload,
+                            draws localised findings, and creates a report a clinician can review.
+                        </p>
+                    </header>
+
+                    <div class="metrics" aria-label="Dental project facts">
+                        <div class="metric"><strong>~260</strong><span>annotated OPG images in the detection subset</span></div>
+                        <div class="metric"><strong>6</strong><span>dental condition categories</span></div>
+                        <div class="metric"><strong>5</strong><span>stages in the DVC pipeline</span></div>
+                        <div class="metric"><strong>75/15/10</strong><span>training, validation, and test split</span></div>
+                    </div>
+
+                    <div class="project-body">
+                        <section class="story-block">
+                            <h3>The research question</h3>
+                            <p>
+                                Can a lightweight detector find and locate several conditions in a
+                                panoramic dental X-ray, while rejecting unsuitable images instead of
+                                producing a confident-looking but meaningless answer?
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>What I did</h3>
+                            <ul>
+                                <li>Trained a YOLOv8s detector for caries, fractures, impacted teeth, infection, badly decayed crowns or roots, and healthy teeth.</li>
+                                <li>Added checks for panoramic shape, grayscale appearance, brightness, and minimum image size.</li>
+                                <li>Built colour-coded boxes, plain-language descriptions, recommended actions, and downloadable PDF reports.</li>
+                                <li>Organised ingestion, validation, transformation, training, and evaluation as a reproducible DVC pipeline with MLflow tracking.</li>
+                            </ul>
+                        </section>
+
+                        <section class="plain-result">
+                            <h3>The result, in everyday language</h3>
+                            <p>
+                                The prototype does more than say “there may be a problem.” It marks
+                                the area that needs attention and produces a report for review. The
+                                repository does not yet publish a final clinically validated accuracy
+                                score, so the honest conclusion is that the workflow is working but
+                                its diagnostic reliability still needs to be established.
+                            </p>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Limitations</h3>
+                            <ul>
+                                <li>About 260 annotated images is small for representing the full variety seen in dental practice.</li>
+                                <li>There is not yet a reported external test on images from a different clinic or scanner.</li>
+                                <li>Per-condition precision, recall, and detection performance still need to be published clearly.</li>
+                                <li>The tool is an aid for qualified professionals, not a replacement for examination and diagnosis.</li>
+                            </ul>
+                        </section>
+
+                        <section class="story-block">
+                            <h3>Research opportunities</h3>
+                            <ul>
+                                <li>Build a larger, diverse OPG dataset with annotations from multiple dental experts.</li>
+                                <li>Measure agreement between annotators and publish per-condition confidence intervals.</li>
+                                <li>Test the model across clinics, machines, and image-quality conditions.</li>
+                                <li>Add uncertainty warnings and study whether the tool improves reading time or consistency in real workflows.</li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <footer class="project-footer">
+                        <div class="tech-list" aria-label="Dental project tools">
+                            <span>Python</span><span>YOLOv8</span><span>Gradio</span><span>DVC</span><span>MLflow</span><span>OpenCV</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sentongo-web/Dental-OPG-XRAY-Analysis-MLOPS" target="_blank" rel="noopener noreferrer">Read the repository ↗</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </section>
+
+        <section class="research-approach" id="approach">
+            <div class="shell approach-grid">
+                <div class="approach-copy">
+                    <p class="eyebrow">How I approach research</p>
+                    <h2>A useful result is more than a high score.</h2>
+                    <p>
+                        My strongest work connects careful engineering with honest interpretation.
+                        I want to know not only whether a model runs, but who it works for, what could
+                        break it, and what evidence is still needed.
+                    </p>
+                </div>
+
+                <div class="principles">
+                    <article class="principle">
+                        <span>01</span>
+                        <div><h3>Start with the real decision</h3><p>Define who will use the system, what they need to decide, and what a harmful error would look like.</p></div>
+                    </article>
+                    <article class="principle">
+                        <span>02</span>
+                        <div><h3>Make the work reproducible</h3><p>Version data and models, record assumptions, and keep training and evaluation steps traceable.</p></div>
+                    </article>
+                    <article class="principle">
+                        <span>03</span>
+                        <div><h3>Translate metrics into meaning</h3><p>Explain what a number says in practical terms—and what it does not prove.</p></div>
+                    </article>
+                    <article class="principle">
+                        <span>04</span>
+                        <div><h3>Treat limitations as findings</h3><p>A subgroup failure, weak external validity, or missing measure is a research direction, not something to bury.</p></div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section" id="projects">
-            <h2>Featured Research & Projects</h2>
-            <p>Explore detailed research on hypertension screening, medical imaging, fairness auditing, and more clinical AI applications.</p>
-            <a href="research-portfolio.html" class="cta-button">View Full Research Portfolio →</a>
-        </section>
-
-        <!-- Contact Section -->
-        <section style="padding: 4rem 2rem; text-align: center; border-bottom: 1px solid var(--dark-border);" id="contact">
-            <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Get in Touch</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--dark-text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Interested in research collaboration, clinical AI projects, or discussing algorithmic fairness in healthcare?
+        <section class="shell contact" id="contact">
+            <p class="eyebrow">Research and collaboration</p>
+            <h2>Let’s work on a question that matters.</h2>
+            <p>
+                I am interested in clinical AI, medical imaging, responsible machine learning,
+                MLOps, and data systems for settings where resources and high-quality data are limited.
             </p>
-            <div class="social-links">
-                <a href="https://github.com/sentongo-web" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.linkedin.com/in/paul-sentongo-885041284/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="mailto:sentongopol@gmail.com">Email</a>
+            <div class="contact-links">
+                <a class="button primary" href="mailto:sentongopol@gmail.com">Email me</a>
+                <a class="button" href="https://www.linkedin.com/in/paul-sentongo-885041284/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a class="button" href="https://github.com/sentongo-web" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Research-driven machine learning for healthcare impact</p>
-        <div class="footer-text">
-            © 2026 Paul Sentongo. All research projects are open source under MIT License.
+        <div class="footer-shell">
+            <span>© <span id="currentYear">2026</span> Paul Sentongo</span>
+            <span>Research-minded data science for practical impact.</span>
         </div>
     </footer>
 
     <script>
-        // Theme toggle
-        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("themeToggle");
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 
-        // Check saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-            themeToggle.textContent = '☀️';
+        function applyTheme(theme) {
+            const isLight = theme === "light";
+            if (isLight) {
+                root.setAttribute("data-theme", "light");
+            } else {
+                root.removeAttribute("data-theme");
+            }
+            themeToggle.textContent = isLight ? "Dark mode" : "Light mode";
+            themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
         }
 
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            themeToggle.textContent = isLight ? '☀️' : '🌙';
-            const nextTheme = isLight ? 'dark' : 'light';
-            themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
-            themeToggle.setAttribute('title', `Switch to ${nextTheme} theme`);
+        applyTheme(savedTheme || preferredTheme);
+
+        themeToggle.addEventListener("click", function () {
+            const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+            localStorage.setItem("portfolio-theme", nextTheme);
+            applyTheme(nextTheme);
         });
+
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>

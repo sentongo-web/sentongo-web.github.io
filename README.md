@@ -8,7 +8,7 @@ I am a data scientist and applied AI researcher focused on building systems that
 
 **Live portfolio:** [sentongo-web.github.io](https://sentongo-web.github.io/)
 
-**Research portfolio:** [sentongo-web.github.io/research-portfolio.html](https://sentongo-web.github.io/research-portfolio.html)
+**Selected project stories:** [sentongo-web.github.io/#projects](https://sentongo-web.github.io/#projects)
 
 ## Featured Projects
 
@@ -100,19 +100,6 @@ I am a data scientist and applied AI researcher focused on building systems that
 **Stack:** Python, TensorFlow/Keras, VGG16, DVC, MLflow, DagsHub, Flask, Docker, GitHub Actions, Hugging Face Spaces.
 
 [Repository](https://github.com/sentongo-web/Kidney_classification_Using_MLOPS_and_DVC_Data-version-control) · [Live demo](https://huggingface.co/spaces/Sentoz/kidney-classifier)
-
-## More Projects
-
-| Project | Problem area | Main focus |
-| --- | --- | --- |
-| [Customer Behavior Analytics](https://github.com/sentongo-web/Customer-Behavior-Analytics-SQL-Python) | Understanding customer behaviour from transactional data | End-to-end SQL and Python analytics |
-| [Breast Cancer Classification](https://github.com/sentongo-web/Breast-Cancer-Classification) | Supporting consistent diagnostic classification | Supervised learning and model evaluation |
-| [Credit Card Fraud Detection](https://github.com/sentongo-web/Credit-Card-Fraud-Detection) | Finding rare fraudulent transactions without overwhelming legitimate users | Imbalanced classification and anomaly detection |
-| [Crop Disease Classifier](https://github.com/sentongo-web/Crop-Disease-Classifier-CV) | Expanding access to early crop-disease identification | Computer vision for agriculture |
-| [Heart Disease Prediction](https://github.com/sentongo-web/Heart-Disease-prediction) | Early cardiovascular risk stratification | Clinical tabular machine learning |
-| [Data Engineering with DLT](https://github.com/sentongo-web/Data-Engineering-with-DLT-Full-Pipeline-APIs-Extraction) | Reproducible ingestion of API data | Data extraction and pipeline engineering |
-
-Browse the complete collection on my [GitHub profile](https://github.com/sentongo-web?tab=repositories).
 
 ## Capabilities Demonstrated
 
