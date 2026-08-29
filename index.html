@@ -1,3358 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Paul Sentongo — Data Scientist & Analytics Professional. Masters in Data Science & Analytics. Building ML systems, writing about MLOps, Docker, and making AI accessible.">
-<meta name="keywords" content="Paul Sentongo, Data Scientist, MLOps, Machine Learning, Uganda, Data Science, Analytics">
-<meta property="og:title" content="Paul Sentongo — Data Scientist & Analytics Professional">
-<meta property="og:description" content="Building production ML systems and making data science accessible to everyone.">
-<title>Paul Sentongo | Data Scientist & Analytics Professional</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #080808;
-    --bg2: #0f0f0f;
-    --surface: #141414;
-    --border: rgba(255,255,255,0.06);
-    --text: #e8e8e8;
-    --muted: #666;
-    --accent: #00ff88;
-    --accent2: #0af;
-    --accent3: #ff6b6b;
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'Fraunces', serif;
-    --font-mono: 'DM Mono', monospace;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paul Sentongo - Research Portfolio. Specializing in clinical AI, algorithmic fairness, and machine learning operations in resource-constrained healthcare systems.">
+    <meta name="keywords" content="Paul Sentongo, Research, Clinical AI, Fairness, Machine Learning, Data Science, Healthcare ML">
+    <meta property="og:title" content="Paul Sentongo - Research Portfolio">
+    <meta property="og:description" content="Research in clinical AI, fairness, and MLOps. Focus on Sub-Saharan healthcare systems.">
+    <title>Paul Sentongo | Research Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0e27;
+            --dark-bg-secondary: #141829;
+            --dark-border: rgba(255, 255, 255, 0.08);
+            --dark-text: #e5e7eb;
+            --dark-text-secondary: #9ca3af;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
 
-  [data-theme="light"] {
-    --bg: #f4f4ef;
-    --bg2: #eaeae5;
-    --surface: #e0e0db;
-    --border: rgba(0,0,0,0.09);
-    --text: #0f0f0f;
-    --muted: #555;
-    --accent: #007744;
-    --accent2: #005fa3;
-    --accent3: #cc2222;
-  }
-  [data-theme="light"] body::before { opacity: 0.06; }
-  [data-theme="light"] .cursor { mix-blend-mode: normal; background: var(--accent); }
-  [data-theme="light"] .hero-grid {
-    background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-  }
-  [data-theme="light"] nav {
-    background: linear-gradient(to bottom, rgba(244,244,239,0.97), transparent);
-  }
-  [data-theme="light"] .ticker-item::before { color: var(--accent); }
+            --light-bg: #ffffff;
+            --light-bg-secondary: #f9fafb;
+            --light-border: rgba(0, 0, 0, 0.08);
+            --light-text: #111827;
+            --light-text-secondary: #6b7280;
+        }
 
-  .theme-toggle {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 7px 16px;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.7;
-    overflow-x: hidden;
-    cursor: none;
-  }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            font-size: 16px;
+        }
 
-  /* Custom cursor */
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    width: 40px; height: 40px;
-    border: 1px solid rgba(0,255,136,0.4);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%,-50%);
-    transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s;
-  }
+        body.light-mode {
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
 
-  /* Noise texture */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9997;
-    opacity: 0.4;
-  }
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--dark-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 28px 60px;
-    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
-    backdrop-filter: blur(0px);
-  }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 20px;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 40px; list-style: none; }
-  .nav-links a {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0;
-    width: 0; height: 1px; background: var(--accent);
-    transition: width 0.3s;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { width: 100%; }
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--light-border);
+        }
 
-  /* HERO */
-  #hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 0 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,255,136,0.04) 0%, transparent 60%),
-                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,170,255,0.03) 0%, transparent 50%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-  }
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-eyebrow::before {
-    content: ''; display: block;
-    width: 40px; height: 1px; background: var(--accent);
-  }
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(60px, 10vw, 130px);
-    font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-title .line2 {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-    color: transparent;
-  }
-  .hero-title .accent { color: var(--accent); -webkit-text-stroke: 0; }
-  .hero-title .accent2 {
-    color: var(--accent2);
-    -webkit-text-stroke: 0;
-    text-shadow: 0 0 40px rgba(0,170,255,0.35);
-  }
-  [data-theme="light"] .hero-title .accent2 {
-    text-shadow: 0 0 30px rgba(0,95,163,0.25);
-  }
-  .hero-tagline {
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--muted);
-    max-width: 520px;
-    margin-bottom: 56px;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-    line-height: 1.5;
-  }
-  .hero-tagline em { color: var(--text); font-style: normal; }
-  .hero-cta {
-    display: flex; gap: 20px; align-items: center;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 32px;
-    background: var(--accent);
-    color: #000;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0,255,136,0.25);
-  }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 32px;
-    background: transparent;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
-  .hero-scroll {
-    position: absolute; bottom: 40px; right: 60px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    writing-mode: vertical-rl;
-    letter-spacing: 0.15em;
-    display: flex; align-items: center; gap: 12px;
-    opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
-  }
-  .hero-scroll::after {
-    content: '';
-    width: 1px; height: 60px;
-    background: linear-gradient(to bottom, var(--muted), transparent);
-  }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  /* STATS */
-  .stats-bar {
-    padding: 40px 60px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    display: flex; gap: 0;
-    overflow: hidden;
-  }
-  .stat { flex: 1; padding: 0 40px; border-right: 1px solid var(--border); }
-  .stat:first-child { padding-left: 0; }
-  .stat:last-child { border-right: none; }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 48px;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--accent);
-    letter-spacing: -0.03em;
-  }
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 6px;
-  }
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
 
-  /* SECTIONS */
-  section { padding: 120px 60px; }
-  .section-header {
-    display: flex; align-items: center; gap: 20px;
-    margin-bottom: 80px;
-  }
-  .section-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-  }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .section-line {
-    flex: 1; height: 1px;
-    background: linear-gradient(to right, var(--border), transparent);
-  }
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
-  /* PROJECTS */
-  #projects { background: var(--bg); }
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-  .project-card {
-    background: var(--surface);
-    padding: 48px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    cursor: none;
-  }
-  .project-card:hover { background: #1a1a1a; }
-  .project-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(to right, var(--accent), transparent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
-  }
-  .project-card:hover::before { transform: scaleX(1); }
-  .project-card.featured {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .project-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border: 1px solid rgba(0,255,136,0.2);
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-  .project-title {
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-    line-height: 1.1;
-  }
-  .project-desc {
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 32px;
-  }
-  .project-tech {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin-bottom: 32px;
-  }
-  .tech-tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    padding: 4px 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-  }
-  .project-link {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    display: inline-flex; align-items: center; gap: 8px;
-    transition: gap 0.2s;
-  }
-  .project-link:hover { gap: 14px; }
-  .project-visual {
-    height: 260px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    position: relative;
-    overflow: hidden;
-  }
-  .project-visual svg { opacity: 0.8; }
+        nav a {
+            color: var(--dark-text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-  /* ABOUT */
-  #about { background: var(--bg2); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 100px;
-    align-items: start;
-  }
-  .about-photo-area { position: relative; }
-  /* NEURAL NETWORK CARD */
-  .nn-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .nn-topbar {
-    display: flex; align-items: center; gap: 7px;
-    padding: 11px 16px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(0,0,0,0.25);
-  }
-  .nn-topbar-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-  .nn-topbar-label {
-    font-family: var(--font-mono); font-size: 10px;
-    color: var(--muted); letter-spacing: 0.12em; margin-left: 6px;
-  }
-  .nn-svg { width: 100%; display: block; }
-  .nn-conn { stroke: rgba(0,255,136,0.13); stroke-width: 1; fill: none; }
-  .nn-conn-out { stroke: rgba(0,170,255,0.2); stroke-width: 1; fill: none; }
-  .nn-node { fill: var(--bg); stroke: rgba(0,255,136,0.45); stroke-width: 1.5; }
-  .nn-node-out { fill: var(--bg); stroke: rgba(0,170,255,0.6); stroke-width: 1.5; }
-  .nn-label-text {
-    font-family: var(--font-mono); font-size: 9px;
-    fill: var(--muted); text-anchor: middle; letter-spacing: 0.1em;
-  }
-  .nn-node-label {
-    font-family: var(--font-mono); font-size: 8px;
-    fill: rgba(0,255,136,0.6); text-anchor: middle;
-  }
-  .nn-metrics {
-    display: flex; border-top: 1px solid var(--border);
-  }
-  .nn-metric { flex: 1; padding: 14px 0; text-align: center; border-right: 1px solid var(--border); }
-  .nn-metric:last-child { border-right: none; }
-  .nn-metric-val {
-    display: block; font-family: var(--font-display);
-    font-size: 20px; font-weight: 800;
-    color: var(--accent); letter-spacing: -0.02em;
-  }
-  .nn-metric-val.blue { color: var(--accent2); }
-  .nn-metric-key {
-    display: block; font-family: var(--font-mono); font-size: 9px;
-    color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px;
-  }
+        nav a:hover {
+            color: var(--accent);
+        }
 
-  /* QUOTES */
-  #quotes { background: var(--bg2); padding: 100px 60px; }
-  .quotes-intro {
-    font-family: var(--font-mono); font-size: 13px; color: var(--muted);
-    letter-spacing: 0.05em; margin-bottom: 56px; max-width: 480px; line-height: 1.8;
-  }
-  .quotes-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-  }
-  .quote-card {
-    background: var(--surface); padding: 40px;
-    border-left: 2px solid transparent;
-    transition: border-color 0.3s, background 0.2s;
-  }
-  .quote-card:hover { border-left-color: var(--accent); background: #191919; }
-  .quote-mark {
-    font-family: var(--font-display); font-size: 72px; line-height: 0.5;
-    color: var(--accent); opacity: 0.2; margin-bottom: 20px; display: block;
-  }
-  .quote-text {
-    font-family: var(--font-body); font-size: 16px; font-style: italic;
-    font-weight: 300; color: var(--text); line-height: 1.75; margin-bottom: 28px;
-  }
-  .quote-author {
-    font-family: var(--font-mono); font-size: 11px; color: var(--accent);
-    text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 4px;
-  }
-  .quote-role {
-    font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em;
-  }
+        .theme-toggle {
+            background: var(--dark-bg-secondary);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
 
-  /* REFERENCES inside modal */
-  .modal-body .references {
-    margin-top: 52px; padding-top: 32px;
-    border-top: 1px solid var(--border);
-  }
-  .modal-body .references h2 {
-    font-size: 14px; letter-spacing: 0.15em; font-family: var(--font-mono);
-    text-transform: uppercase; color: var(--muted); font-weight: 400;
-    margin-bottom: 20px;
-  }
-  .modal-body .references ol { padding-left: 20px; }
-  .modal-body .references li {
-    font-family: var(--font-mono); font-size: 11px; color: var(--muted);
-    line-height: 1.7; margin-bottom: 10px; letter-spacing: 0.01em;
-  }
-  .modal-body .references a { color: var(--accent2); text-decoration: none; }
-  .modal-body .references a:hover { text-decoration: underline; }
+        body.light-mode .theme-toggle {
+            background: var(--light-bg-secondary);
+            border: 1px solid var(--light-border);
+            color: var(--light-text);
+        }
 
-  @media (max-width: 900px) {
-    .quotes-grid { grid-template-columns: 1fr; }
-  }
-  .about-photo-tag {
-    position: absolute;
-    bottom: -20px; right: -20px;
-    background: var(--accent);
-    color: #000;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    padding: 12px 20px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .about-intro {
-    font-size: 22px;
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.6;
-    margin-bottom: 32px;
-    color: var(--text);
-  }
-  .about-intro em { font-style: normal; color: var(--accent); }
-  .about-text {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 24px;
-  }
-  .degree-badge {
-    display: inline-flex; align-items: center; gap: 12px;
-    padding: 16px 24px;
-    border: 1px solid rgba(0,255,136,0.2);
-    background: rgba(0,255,136,0.03);
-    margin: 32px 0;
-  }
-  .degree-badge .badge-icon { font-size: 24px; }
-  .degree-badge .badge-text {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text);
-    letter-spacing: 0.05em;
-  }
-  .degree-badge .badge-text small {
-    display: block;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 10px;
-    margin-top: 2px;
-  }
-  .about-skills {
-    margin-top: 40px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
-  .skill-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 14px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .skill-item:hover { border-color: rgba(0,255,136,0.2); color: var(--text); }
-  .skill-icon { font-size: 18px; }
+        .theme-toggle:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
 
-  /* TICKER */
-  .ticker-wrap {
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0;
-    background: var(--surface);
-  }
-  .ticker {
-    display: flex; gap: 80px;
-    animation: ticker 25s linear infinite;
-    width: max-content;
-  }
-  .ticker-item {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    white-space: nowrap;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .ticker-item::before { content: '◆'; color: var(--accent); font-size: 8px; }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        /* Main Content */
+        main {
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-  /* BLOG */
-  #blog { background: var(--bg); }
-  .blog-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 2px;
-  }
-  .blog-card {
-    background: var(--surface);
-    padding: 40px;
-    display: flex; flex-direction: column;
-    cursor: pointer;
-    transition: background 0.2s;
-    position: relative; overflow: hidden;
-  }
-  .blog-card:hover { background: #1c1c1c; }
-  .blog-card.big { padding: 56px; }
-  .blog-date {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-  }
-  .blog-title {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    flex: 1;
-  }
-  .blog-card.big .blog-title { font-size: 34px; }
-  .blog-excerpt {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 28px;
-  }
-  .blog-read {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: flex; align-items: center; gap: 8px;
-    text-decoration: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: gap 0.2s;
-    align-self: flex-start;
-  }
-  .blog-read:hover { gap: 14px; }
-  .blog-category {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent2);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding: 3px 8px;
-    border: 1px solid rgba(0,170,255,0.2);
-    display: inline-block;
-    margin-bottom: 16px;
-    align-self: flex-start;
-  }
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem 3rem;
+            background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg));
+            border-bottom: 1px solid var(--dark-border);
+        }
 
-  /* NEWS FEED */
-  .news-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin: 80px 0 32px;
-    flex-wrap: wrap; gap: 16px;
-  }
-  .news-header-left {
-    display: flex; align-items: center; gap: 16px;
-  }
-  .news-heading {
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-  }
-  .news-live-dot {
-    width: 8px; height: 8px;
-    background: var(--accent3);
-    border-radius: 50%;
-    display: inline-block;
-    animation: pulse 2s infinite;
-    margin-right: 4px;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.4); }
-  }
-  .news-sub {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .news-filters {
-    display: flex; gap: 8px; flex-wrap: wrap;
-  }
-  .news-filter {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    padding: 5px 14px;
-    border: 1px solid var(--border);
-    background: none;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .news-filter.active,
-  .news-filter:hover {
-    border-color: rgba(0,255,136,0.4);
-    color: var(--accent);
-    background: rgba(0,255,136,0.05);
-  }
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-  .news-card {
-    background: var(--surface);
-    padding: 28px 32px;
-    display: flex; flex-direction: column;
-    gap: 10px;
-    border-top: 2px solid transparent;
-    transition: background 0.2s, border-color 0.2s;
-    text-decoration: none;
-    color: inherit;
-  }
-  .news-card:hover {
-    background: #1c1c1c;
-    border-top-color: var(--accent3);
-    cursor: pointer;
-  }
-  .news-card-source {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent2);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-  .news-card-title {
-    font-family: var(--font-display);
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-    color: var(--text);
-    flex: 1;
-  }
-  .news-card-date {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-  .news-card-tag {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 9px;
-    color: var(--accent3);
-    border: 1px solid rgba(255,107,107,0.25);
-    padding: 2px 8px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    align-self: flex-start;
-  }
-  .news-skeleton {
-    background: var(--surface);
-    padding: 28px 32px;
-    display: flex; flex-direction: column; gap: 10px;
-    animation: shimmer 1.4s infinite;
-  }
-  .skel-line {
-    height: 12px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 2px;
-  }
-  @keyframes shimmer {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-  .news-error {
-    grid-column: 1/-1;
-    padding: 40px;
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    letter-spacing: 0.05em;
-  }
-  @media (max-width: 900px) {
-    .news-grid { grid-template-columns: 1fr; }
-  }
+        body.light-mode .hero {
+            background: linear-gradient(135deg, var(--light-bg-secondary), var(--light-bg));
+            border-bottom: 1px solid var(--light-border);
+        }
 
-  /* CV */
-  #cv { background: var(--bg2); }
-  .cv-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .cv-intro {
-    font-size: 20px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 48px;
-  }
-  .cv-download {
-    display: block;
-    padding: 24px 40px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    text-decoration: none;
-    color: var(--text);
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    transition: border-color 0.2s, background 0.2s;
-    margin-bottom: 8px;
-  }
-  .cv-download:hover { border-color: var(--accent); background: rgba(0,255,136,0.04); }
-  .cv-download small {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 400;
-    margin-top: 4px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .skills-section { margin-top: 60px; }
-  .skills-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 24px;
-  }
-  .skill-row { margin-bottom: 20px; }
-  .skill-name {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-    display: flex; justify-content: space-between;
-  }
-  .skill-bar { height: 2px; background: var(--border); position: relative; }
-  .skill-fill {
-    height: 100%;
-    background: linear-gradient(to right, var(--accent), var(--accent2));
-    animation: barGrow 1.5s ease forwards;
-  }
-  @keyframes barGrow { from { width: 0; } }
-  .cv-section-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-  }
-  .cv-timeline { display: flex; flex-direction: column; }
-  .timeline-item {
-    padding: 32px 0;
-    border-bottom: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 24px;
-  }
-  .timeline-year {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    padding-top: 4px;
-  }
-  .timeline-role {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 4px;
-  }
-  .timeline-company {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
-  }
-  .timeline-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
 
-  /* CONTACT */
-  #contact {
-    background: var(--bg);
-    padding: 120px 60px 80px;
-    text-align: center;
-  }
-  .contact-big {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 8vw, 100px);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-    margin-bottom: 40px;
-  }
-  .contact-big span { color: var(--accent); }
-  .contact-email {
-    font-family: var(--font-mono);
-    font-size: 18px;
-    color: var(--muted);
-    margin-bottom: 56px;
-  }
-  .social-links {
-    display: flex; justify-content: center; gap: 24px; margin-bottom: 80px; flex-wrap: wrap;
-  }
-  .social-link {
-    display: flex; align-items: center; gap: 10px;
-    padding: 14px 28px;
-    border: 1px solid var(--border);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .social-link:hover {
-    border-color: rgba(0,255,136,0.3);
-    color: var(--text);
-    background: rgba(0,255,136,0.04);
-  }
+        .hero-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 60px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-copy {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-  .footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 16px; color: var(--text); }
-  .footer-logo span { color: var(--accent); }
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--dark-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+        body.light-mode .hero-text p {
+            color: var(--light-text-secondary);
+        }
 
-  /* BLOG MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.92);
-    z-index: 10000;
-    display: flex; align-items: flex-start; justify-content: center;
-    padding: 60px 24px;
-    overflow-y: auto;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .modal-overlay.open {
-    opacity: 1;
-    pointer-events: all;
-  }
-  .modal {
-    max-width: 780px;
-    width: 100%;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 60px;
-    position: relative;
-    transform: translateY(20px);
-    transition: transform 0.3s;
-  }
-  .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-close {
-    position: absolute;
-    top: 24px; right: 24px;
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 8px 16px;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .modal-close:hover { border-color: var(--accent3); color: var(--accent3); }
-  .modal-category {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent2);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding: 3px 8px;
-    border: 1px solid rgba(0,170,255,0.2);
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-  .modal-date {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 24px;
-  }
-  .modal-title {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 40px;
-  }
-  .modal-body {
-    font-size: 16px;
-    line-height: 1.9;
-    color: var(--muted);
-  }
-  .modal-body h2 {
-    font-family: var(--font-display);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--text);
-    margin: 48px 0 16px;
-    letter-spacing: -0.02em;
-  }
-  .modal-body h3 {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    margin: 32px 0 12px;
-    letter-spacing: -0.01em;
-  }
-  .modal-body p { margin-bottom: 20px; }
-  .modal-body em { color: var(--accent); font-style: normal; }
-  .modal-body strong { color: var(--text); }
-  .modal-body .callout {
-    border-left: 2px solid var(--accent);
-    padding: 20px 24px;
-    background: rgba(0,255,136,0.03);
-    margin: 32px 0;
-    font-style: italic;
-  }
-  .modal-body pre {
-    background: #0a0a0a;
-    border: 1px solid var(--border);
-    padding: 24px;
-    margin: 24px 0;
-    overflow-x: auto;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent);
-    line-height: 1.6;
-  }
-  .modal-body ul, .modal-body ol {
-    padding-left: 24px;
-    margin-bottom: 20px;
-  }
-  .modal-body li { margin-bottom: 8px; }
-  .modal-body .analogy-box {
-    border: 1px solid var(--border);
-    background: var(--surface);
-    padding: 24px;
-    margin: 32px 0;
-  }
-  .modal-body .analogy-box .label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 12px;
-    display: block;
-  }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
 
-  /* ACADEMIA */
-  #academia {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .academia-banner {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 60px;
-    flex-wrap: wrap;
-  }
-  .academia-badge {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 5px 14px;
-    animation: pulseBadge 3s ease-in-out infinite;
-  }
-  @keyframes pulseBadge {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
-    50% { box-shadow: 0 0 0 6px rgba(0,255,136,0.08); }
-  }
-  .academia-banner-text {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-  .academia-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 3px;
-    margin-bottom: 48px;
-  }
-  .degree-card {
-    background: var(--surface);
-    padding: 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .degree-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-  }
-  .degree-card.secondary::before {
-    background: linear-gradient(to bottom, var(--accent2), transparent);
-  }
-  .degree-level {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .degree-card.secondary .degree-level { color: var(--accent2); }
-  .degree-title {
-    font-family: var(--font-display);
-    font-size: clamp(20px, 2.5vw, 28px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 8px;
-  }
-  .degree-institution {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-  .degree-major {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    background: rgba(0,255,136,0.07);
-    color: var(--accent);
-    padding: 6px 14px;
-    margin-bottom: 24px;
-    border-left: 2px solid var(--accent);
-  }
-  .degree-card.secondary .degree-major {
-    background: rgba(0,170,255,0.07);
-    color: var(--accent2);
-    border-left-color: var(--accent2);
-  }
-  .degree-meta {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .degree-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .degree-meta-label {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-  .degree-meta-value {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-  }
-  .degree-card.secondary .degree-meta-value { color: var(--accent2); }
-  .degree-dissertation {
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.7;
-    letter-spacing: 0.03em;
-  }
-  .degree-dissertation strong {
-    color: var(--text);
-    font-weight: 400;
-  }
-  /* Certifications */
-  .certs-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 24px;
-  }
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 3px;
-  }
-  .cert-card {
-    background: var(--surface);
-    padding: 28px 32px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .cert-card:hover { border-color: var(--accent); background: rgba(0,255,136,0.03); }
-  .cert-icon {
-    font-size: 22px;
-    line-height: 1;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .cert-name {
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 4px;
-  }
-  .cert-issuer {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .cert-tag {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(0,255,136,0.2);
-    padding: 2px 8px;
-    margin-top: 8px;
-  }
-  .phd-callout {
-    margin-top: 60px;
-    padding: 48px;
-    background: linear-gradient(135deg, rgba(0,255,136,0.04) 0%, rgba(0,170,255,0.04) 100%);
-    border: 1px solid rgba(0,255,136,0.12);
-    position: relative;
-    overflow: hidden;
-  }
-  .phd-callout::before {
-    content: 'PhD';
-    position: absolute;
-    right: -10px; top: -20px;
-    font-family: var(--font-display);
-    font-size: 140px;
-    font-weight: 800;
-    color: rgba(0,255,136,0.04);
-    letter-spacing: -0.05em;
-    line-height: 1;
-    pointer-events: none;
-  }
-  .phd-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .phd-headline {
-    font-family: var(--font-display);
-    font-size: clamp(22px, 3vw, 36px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin-bottom: 20px;
-  }
-  .phd-headline span { color: var(--accent); }
-  .phd-body {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 680px;
-    line-height: 1.75;
-    margin-bottom: 28px;
-  }
-  .phd-interests {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 32px;
-  }
-  .phd-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    border: 1px solid rgba(0,170,255,0.25);
-    padding: 6px 14px;
-    transition: background 0.2s;
-  }
-  .phd-tag:hover { background: rgba(0,170,255,0.08); }
-  .phd-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-    transition: color 0.2s;
-  }
-  .phd-cta:hover { color: var(--accent); }
+        .badge {
+            display: inline-block;
+            background: var(--dark-bg);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 20px 24px; }
-    .nav-links { display: none; }
-    section, #hero, #contact { padding: 80px 24px; }
-    .stats-bar { padding: 32px 24px; flex-wrap: wrap; gap: 24px; }
-    .stat { border-right: none; padding: 0; }
-    .projects-grid, .about-grid, .blog-grid, .cv-layout, .academia-grid { grid-template-columns: 1fr; }
-    .certs-grid { grid-template-columns: 1fr; }
-    .phd-callout { padding: 32px 24px; }
-    .phd-callout::before { font-size: 80px; }
-    .project-card.featured { grid-column: 1; grid-template-columns: 1fr; }
-    .modal { padding: 40px 24px; }
-    footer { flex-direction: column; gap: 16px; text-align: center; }
-  }
-</style>
+        body.light-mode .badge {
+            background: var(--light-bg-secondary);
+            border: 1px solid var(--light-border);
+            color: var(--light-text);
+        }
+
+        .research-areas {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .research-area {
+            padding: 1.5rem;
+            background: var(--dark-bg);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+        }
+
+        body.light-mode .research-area {
+            background: var(--light-bg-secondary);
+        }
+
+        .research-area h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-area p {
+            color: var(--dark-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        body.light-mode .research-area p {
+            color: var(--light-text-secondary);
+        }
+
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        body.light-mode .cta-section {
+            border: 1px solid var(--light-border);
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--dark-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        body.light-mode .cta-section p {
+            color: var(--light-text-secondary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--dark-border);
+            text-align: center;
+        }
+
+        body.light-mode footer {
+            border-top: 1px solid var(--light-border);
+        }
+
+        footer p {
+            color: var(--dark-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        body.light-mode footer p {
+            color: var(--light-text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--dark-text-secondary);
+        }
+
+        body.light-mode .footer-text {
+            color: var(--light-text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 1.75rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">PS<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#projects">Work</a></li>
-    <li><a href="#academia">Academia</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#cv">CV</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">Light</button>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-eyebrow">MSc Data Science &amp; Analytics &nbsp;·&nbsp; Kampala, Uganda</div>
-  <h1 class="hero-title">
-    Paul<br>
-    <span class="line2"><span class="accent2">Sen</span><span class="accent">tongo</span></span>
-  </h1>
-  <p class="hero-tagline">
-    I turn raw data into <em>clarity</em> —<br>
-    building ML systems that go beyond the notebook<br>
-    and actually <em>ship to the real world.</em>
-  </p>
-  <div class="hero-cta">
-    <a href="#blog" class="btn-primary">Read the Blog →</a>
-    <a href="#cv" class="btn-ghost">Download CV</a>
-  </div>
-  <div class="hero-scroll">Scroll to explore</div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <span class="ticker-item">Machine Learning</span>
-    <span class="ticker-item">MLOps</span>
-    <span class="ticker-item">Python</span>
-    <span class="ticker-item">Docker</span>
-    <span class="ticker-item">MLflow</span>
-    <span class="ticker-item">Deep Learning</span>
-    <span class="ticker-item">Data Analytics</span>
-    <span class="ticker-item">SQL</span>
-    <span class="ticker-item">NLP</span>
-    <span class="ticker-item">Statistical Modelling</span>
-    <span class="ticker-item">Data Storytelling</span>
-    <span class="ticker-item">Machine Learning</span>
-    <span class="ticker-item">MLOps</span>
-    <span class="ticker-item">Python</span>
-    <span class="ticker-item">Docker</span>
-    <span class="ticker-item">MLflow</span>
-    <span class="ticker-item">Deep Learning</span>
-    <span class="ticker-item">Data Analytics</span>
-    <span class="ticker-item">SQL</span>
-    <span class="ticker-item">NLP</span>
-    <span class="ticker-item">Statistical Modelling</span>
-    <span class="ticker-item">Data Storytelling</span>
-  </div>
-</div>
-
-<!-- STATS -->
-<div class="stats-bar reveal">
-  <div class="stat">
-    <div class="stat-num" data-target="20">0</div>
-    <div class="stat-label">Projects Shipped</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num" data-target="5">0</div>
-    <div class="stat-label">Years Experience</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num" data-target="8">0</div>
-    <div class="stat-label">Blog Articles</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num" data-target="3">0</div>
-    <div class="stat-label">Sectors Impacted</div>
-  </div>
-</div>
-
-<!-- ACADEMIA -->
-<section id="academia">
-  <div class="section-header reveal">
-    <span class="section-num">00 /</span>
-    <h2 class="section-title">Academic Profile</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="academia-banner reveal">
-    <span class="academia-badge">Seeking PhD Opportunities</span>
-    <span class="academia-banner-text">Open to fully-funded doctoral positions in AI for Health &amp; Computer Vision</span>
-  </div>
-
-  <!-- Degrees -->
-  <div class="academia-grid reveal">
-    <div class="degree-card">
-      <div class="degree-level">Master of Science &nbsp;·&nbsp; 2023 – 2025</div>
-      <div class="degree-title">Data Science &amp;<br>Analytics</div>
-      <div class="degree-institution">Uganda Christian University &nbsp;·&nbsp; Mukono</div>
-      <div class="degree-major">Major: Machine Learning for Health Informatics &amp; Computer Vision</div>
-      <div class="degree-meta">
-        <div class="degree-meta-item">
-          <span class="degree-meta-label">CGPA</span>
-          <span class="degree-meta-value">4.16 / 5</span>
+    <header>
+        <div class="header-content">
+            <div class="logo">Paul Sentongo</div>
+            <nav>
+                <a href="research-portfolio.html">Research</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">🌙</button>
+            </nav>
         </div>
-        <div class="degree-meta-item">
-          <span class="degree-meta-label">Classification</span>
-          <span class="degree-meta-value" style="font-size:16px;margin-top:4px">Distinction</span>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Clinical AI Research</h1>
+                    <p>Developing trustworthy, fair, and interpretable machine learning systems for healthcare in resource-constrained settings. Focus on Sub-Saharan Africa.</p>
+                    <div class="hero-badges">
+                        <span class="badge">Clinical AI</span>
+                        <span class="badge">Algorithmic Fairness</span>
+                        <span class="badge">MLOps</span>
+                        <span class="badge">Medical Imaging</span>
+                    </div>
+                </div>
+                <div class="research-areas">
+                    <div class="research-area">
+                        <h3>🔍 Primary Focus</h3>
+                        <p>Addressing bias and fairness in machine learning models for clinical decision support, particularly in settings with incomplete data and underrepresented populations.</p>
+                    </div>
+                    <div class="research-area">
+                        <h3>📊 Data Science</h3>
+                        <p>Advanced statistical methods, missing data imputation, SHAP-based interpretability, and rigorous validation frameworks.</p>
+                    </div>
+                    <div class="research-area">
+                        <h3>🏥 Application</h3>
+                        <p>Working with real-world clinical cohorts from Sub-Saharan healthcare systems to translate research into deployable solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="projects">
+            <h2>Featured Research & Projects</h2>
+            <p>Explore detailed research on hypertension screening, medical imaging, fairness auditing, and more clinical AI applications.</p>
+            <a href="research-portfolio.html" class="cta-button">View Full Research Portfolio →</a>
+        </section>
+
+        <!-- Contact Section -->
+        <section style="padding: 4rem 2rem; text-align: center; border-bottom: 1px solid var(--dark-border);" id="contact">
+            <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Get in Touch</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--dark-text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Interested in research collaboration, clinical AI projects, or discussing algorithmic fairness in healthcare?
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/sentongo-web" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/paul-sentongo-885041284/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:sentongo.paul@outlook.com">Email</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Research-driven machine learning for healthcare impact</p>
+        <div class="footer-text">
+            © 2026 Paul Sentongo. All research projects are open source under MIT License.
         </div>
-      </div>
-      <div class="degree-dissertation">
-        <strong>Thesis:</strong> <a href="https://ucudir.ucu.ac.ug/items/a422584f-96fb-481e-90c5-324800fadc75" target="_blank" rel="noreferrer" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,255,136,0.3);">Machine Learning for Accurate Valuation of Imports in Uganda</a> — UCU Digital Repository.
-      </div>
-    </div>
-
-    <div class="degree-card secondary">
-      <div class="degree-level">Bachelor of Science &nbsp;·&nbsp; 2011 – 2014</div>
-      <div class="degree-title">Business<br>Computing</div>
-      <div class="degree-institution">Uganda Christian University &nbsp;·&nbsp; Mukono</div>
-      <div class="degree-major">Major: Business Intelligence &amp; Data Warehousing</div>
-      <div class="degree-meta">
-        <div class="degree-meta-item">
-          <span class="degree-meta-label">CGPA</span>
-          <span class="degree-meta-value">3.6 / 5</span>
-        </div>
-        <div class="degree-meta-item">
-          <span class="degree-meta-label">Honours</span>
-          <span class="degree-meta-value" style="font-size:16px;margin-top:4px">Second Upper</span>
-        </div>
-      </div>
-      <div class="degree-dissertation">
-        <strong>Final Project:</strong> Designed a data warehouse and BI dashboard system for tracking academic performance metrics across faculty departments.
-      </div>
-    </div>
-  </div>
-
-  <!-- Certifications -->
-  <div class="reveal">
-    <div class="certs-label">Certifications &amp; Professional Training</div>
-    <div class="certs-grid">
-      <div class="cert-card">
-        <div class="cert-icon">🤖</div>
-        <div>
-          <div class="cert-name">Artificial Intelligence A-Z</div>
-          <div class="cert-issuer">Udemy</div>
-          <div class="cert-tag">Artificial Intelligence</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🐍</div>
-        <div>
-          <div class="cert-name">Python Bootcamp: Zero to Hero</div>
-          <div class="cert-issuer">Udemy</div>
-          <div class="cert-tag">Python Programming</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">📊</div>
-        <div>
-          <div class="cert-name">Big Data &amp; Hadoop: The Complete Guide</div>
-          <div class="cert-issuer">Udemy</div>
-          <div class="cert-tag">Big Data</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🧠</div>
-        <div>
-          <div class="cert-name">NLP with BERT, GPT &amp; Transformers</div>
-          <div class="cert-issuer">Udemy</div>
-          <div class="cert-tag">NLP &nbsp;·&nbsp; BERT</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🗄️</div>
-        <div>
-          <div class="cert-name">SQL for Business Intelligence &amp; Reporting</div>
-          <div class="cert-issuer">Udemy</div>
-          <div class="cert-tag">SQL &nbsp;·&nbsp; BI</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">☁️</div>
-        <div>
-          <div class="cert-name">Cloud Computing &amp; AWS: Complete Bootcamp</div>
-          <div class="cert-issuer">Udemy</div>
-          <div class="cert-tag">Cloud &nbsp;·&nbsp; AWS</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PhD Callout -->
-  <div class="phd-callout reveal">
-    <div class="phd-eyebrow">Next Chapter</div>
-    <div class="phd-headline">
-      Looking for a doctoral home in<br>
-      <span>AI for Health &amp; Computer Vision.</span>
-    </div>
-    <p class="phd-body">
-      My research sits at the intersection of deep learning and real-world clinical impact. I want to build systems that detect disease from images, automate screening in under-resourced hospitals, and ultimately save lives at scale. The MSc was chapter one. A PhD is where the real work starts.
-    </p>
-    <div class="phd-interests">
-      <span class="phd-tag">Medical Image Analysis</span>
-      <span class="phd-tag">Computer Vision</span>
-      <span class="phd-tag">AI for Global Health</span>
-      <span class="phd-tag">Low-Resource ML</span>
-      <span class="phd-tag">Convolutional Neural Networks</span>
-      <span class="phd-tag">Disease Surveillance</span>
-      <span class="phd-tag">Federated Learning</span>
-    </div>
-    <a href="mailto:paulsentongo@eclipso.de" class="phd-cta">
-      Contact me about PhD opportunities →
-    </a>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header reveal">
-    <span class="section-num">01 /</span>
-    <h2 class="section-title">Selected Work</h2>
-
-    <div class="section-line"></div>
-  </div>
-  <div class="projects-grid reveal">
-
-    <div class="project-card featured">
-      <div>
-        <div class="project-tag">Computer Vision / Medical AI</div>
-        <h3 class="project-title">Dental OPG Cavity Detection</h3>
-        <p class="project-desc">Dentists miss cavities. Not because they are bad at their jobs. Because they review dozens of X-rays under time pressure every single day. I built an object detection model that reads Orthopantomographic (full-mouth panoramic) X-rays and flags potential cavity regions in seconds. You upload a dental OPG scan. The model draws bounding boxes around suspicious areas with confidence scores. It works as a second pair of eyes. The kind of tool that could genuinely change outcomes in under-resourced clinics across Africa and beyond. Trained on annotated dental X-ray datasets using a fine-tuned YOLO architecture. Deployed as a live interactive app on HuggingFace Spaces.</p>
-        <div class="project-tech">
-          <span class="tech-tag">PyTorch</span>
-          <span class="tech-tag">YOLOv8</span>
-          <span class="tech-tag">Computer Vision</span>
-          <span class="tech-tag">Gradio</span>
-          <span class="tech-tag">HuggingFace Spaces</span>
-        </div>
-        <a href="https://huggingface.co/spaces/Sentoz/dental-opg-cavity-detection" target="_blank" rel="noreferrer" class="project-link">Try Live Demo →</a>
-      </div>
-      <div class="project-visual">
-        <svg width="100%" height="100%" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet">
-          <rect x="60" y="40" width="280" height="180" rx="4" fill="none" stroke="rgba(0,255,136,0.15)" stroke-width="1"/>
-          <rect x="120" y="80" width="60" height="50" rx="2" fill="none" stroke="#00ff88" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.8"/>
-          <rect x="220" y="100" width="50" height="45" rx="2" fill="none" stroke="#0af" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.7"/>
-          <text x="120" y="76" fill="#00ff88" font-size="9" font-family="DM Mono,monospace" opacity="0.9">Cavity 94%</text>
-          <text x="220" y="96" fill="#0af" font-size="9" font-family="DM Mono,monospace" opacity="0.9">Cavity 87%</text>
-          <line x1="60" y1="130" x2="400" y2="130" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-          <text x="140" y="248" fill="rgba(255,255,255,0.15)" font-size="9" font-family="DM Mono,monospace">OPG X-ray analysis</text>
-        </svg>
-      </div>
-    </div>
-
-    <div class="project-card featured">
-      <div>
-        <div class="project-tag">Machine Learning / Public Health AI</div>
-        <h3 class="project-title">Nakaseke NCD-AI: Hypertension Risk Screener</h3>
-        <p class="project-desc">Hypertension kills quietly. No symptoms. No warning. Just a heart attack or stroke that nobody saw coming. At Nakaseke Hospital in Uganda, community health workers screen thousands of patients a year — but blood pressure cuffs and clinical equipment are not always available in rural areas. I built an end-to-end machine learning system that estimates a patient's hypertension risk from a short questionnaire alone. A CHW with a basic smartphone could use it to identify who most urgently needs a clinical assessment, directing scarce healthcare resources exactly where they are needed most. Built on real patient data from 3,471 individuals in the Nakaseke NCD survey. The pipeline trains six competing models with Optuna-tuned hyperparameters, SMOTE for class balance, and SHAP values for clinical explainability. AUC 0.64 — consistent with published literature for questionnaire-only hypertension screening in low-income settings. Served via a Flask web app with Docker and MLflow tracking.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">scikit-learn</span>
-          <span class="tech-tag">XGBoost</span>
-          <span class="tech-tag">LightGBM</span>
-          <span class="tech-tag">SHAP</span>
-          <span class="tech-tag">Optuna</span>
-          <span class="tech-tag">Flask</span>
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">MLflow</span>
-        </div>
-        <a href="https://github.com/sentongo-web/Diabetes-Detection-Complete-MLOPs" target="_blank" rel="noreferrer" class="project-link">View on GitHub →</a>
-      </div>
-      <div class="project-visual">
-        <svg width="100%" height="100%" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet">
-          <!-- Gauge arc background -->
-          <path d="M 80 200 A 120 120 0 0 1 320 200" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="18" stroke-linecap="round"/>
-          <!-- Low risk (green) -->
-          <path d="M 80 200 A 120 120 0 0 1 170 95" fill="none" stroke="rgba(0,255,136,0.5)" stroke-width="18" stroke-linecap="round"/>
-          <!-- Moderate risk (yellow) -->
-          <path d="M 170 95 A 120 120 0 0 1 230 85" fill="none" stroke="rgba(255,211,0,0.5)" stroke-width="18" stroke-linecap="round"/>
-          <!-- High risk (red) -->
-          <path d="M 230 85 A 120 120 0 0 1 320 200" fill="none" stroke="rgba(255,80,80,0.35)" stroke-width="18" stroke-linecap="round"/>
-          <!-- Needle -->
-          <line x1="200" y1="200" x2="178" y2="100" stroke="#00ff88" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-          <circle cx="200" cy="200" r="6" fill="#00ff88" opacity="0.9"/>
-          <!-- Labels -->
-          <text x="64" y="226" fill="rgba(0,255,136,0.6)" font-size="9" font-family="DM Mono,monospace">LOW</text>
-          <text x="185" y="72" fill="rgba(255,211,0,0.6)" font-size="9" font-family="DM Mono,monospace">MOD</text>
-          <text x="308" y="226" fill="rgba(255,80,80,0.6)" font-size="9" font-family="DM Mono,monospace">HIGH</text>
-          <!-- Risk score display -->
-          <text x="200" y="175" fill="rgba(255,255,255,0.7)" font-size="22" font-family="DM Mono,monospace" text-anchor="middle">34%</text>
-          <text x="200" y="192" fill="rgba(255,255,255,0.25)" font-size="8" font-family="DM Mono,monospace" text-anchor="middle">HYPERTENSION RISK</text>
-          <!-- Data points -->
-          <text x="80" y="248" fill="rgba(255,255,255,0.12)" font-size="8" font-family="DM Mono,monospace">n=3,471 · Nakaseke Hospital, Uganda</text>
-        </svg>
-      </div>
-    </div>
-
-    <div class="project-card" style="grid-column: span 2;">
-      <div class="project-tag">Computer Vision / Medical AI</div>
-      <h3 class="project-title">Kidney Condition Classifier</h3>
-      <p class="project-desc">CT scans reveal everything. But reading them takes years of training and time that busy radiologists do not always have. I trained a multi-class deep learning classifier that categorizes kidney CT images into four conditions: Normal, Cyst, Stone, and Tumor. The model processes an image in under a second and returns a classification with a confidence score. This is medical AI that is actually useful. Not a research toy. A real tool that could assist radiologists in high-volume settings, flagging images that need urgent attention. Built on a ResNet architecture fine-tuned on a curated kidney CT dataset. Deployed as a live Gradio app on HuggingFace Spaces where you can upload any kidney CT slice and get an instant result.</p>
-      <div class="project-tech">
-        <span class="tech-tag">TensorFlow</span>
-        <span class="tech-tag">ResNet-50</span>
-        <span class="tech-tag">Medical Imaging</span>
-        <span class="tech-tag">Gradio</span>
-        <span class="tech-tag">HuggingFace Spaces</span>
-        <span class="tech-tag">Transfer Learning</span>
-      </div>
-      <a href="https://huggingface.co/spaces/Sentoz/kidney-classifier" target="_blank" rel="noreferrer" class="project-link">Try Live Demo →</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header reveal">
-    <span class="section-num">02 /</span>
-    <h2 class="section-title">About Me</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="about-grid reveal">
-    <div class="about-photo-area">
-      <div class="nn-card">
-        <div class="nn-topbar">
-          <span class="nn-topbar-dot" style="background:#ff6b6b"></span>
-          <span class="nn-topbar-dot" style="background:#ffd93d"></span>
-          <span class="nn-topbar-dot" style="background:#00ff88"></span>
-          <span class="nn-topbar-label">model.architecture — active</span>
-        </div>
-        <svg class="nn-svg" viewBox="0 0 320 310" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <!-- Animation paths: full routes through the network -->
-            <path id="np1" d="M50,80 L160,52 L270,140"/>
-            <path id="np2" d="M50,160 L160,130 L270,140"/>
-            <path id="np3" d="M50,240 L160,208 L270,220"/>
-            <path id="np4" d="M50,80  L160,286 L270,220"/>
-            <path id="np5" d="M50,160 L160,52  L270,220"/>
-            <path id="np6" d="M50,240 L160,130 L270,140"/>
-          </defs>
-
-          <!-- Input → Hidden connections -->
-          <line class="nn-conn" x1="62" y1="80"  x2="148" y2="52"/>
-          <line class="nn-conn" x1="62" y1="80"  x2="148" y2="130"/>
-          <line class="nn-conn" x1="62" y1="80"  x2="148" y2="208"/>
-          <line class="nn-conn" x1="62" y1="80"  x2="148" y2="286"/>
-          <line class="nn-conn" x1="62" y1="160" x2="148" y2="52"/>
-          <line class="nn-conn" x1="62" y1="160" x2="148" y2="130"/>
-          <line class="nn-conn" x1="62" y1="160" x2="148" y2="208"/>
-          <line class="nn-conn" x1="62" y1="160" x2="148" y2="286"/>
-          <line class="nn-conn" x1="62" y1="240" x2="148" y2="52"/>
-          <line class="nn-conn" x1="62" y1="240" x2="148" y2="130"/>
-          <line class="nn-conn" x1="62" y1="240" x2="148" y2="208"/>
-          <line class="nn-conn" x1="62" y1="240" x2="148" y2="286"/>
-
-          <!-- Hidden → Output connections -->
-          <line class="nn-conn-out" x1="172" y1="52"  x2="258" y2="140"/>
-          <line class="nn-conn-out" x1="172" y1="52"  x2="258" y2="220"/>
-          <line class="nn-conn-out" x1="172" y1="130" x2="258" y2="140"/>
-          <line class="nn-conn-out" x1="172" y1="130" x2="258" y2="220"/>
-          <line class="nn-conn-out" x1="172" y1="208" x2="258" y2="140"/>
-          <line class="nn-conn-out" x1="172" y1="208" x2="258" y2="220"/>
-          <line class="nn-conn-out" x1="172" y1="286" x2="258" y2="140"/>
-          <line class="nn-conn-out" x1="172" y1="286" x2="258" y2="220"/>
-
-          <!-- Input nodes -->
-          <circle class="nn-node" cx="50" cy="80"  r="12"/>
-          <circle class="nn-node" cx="50" cy="160" r="12"/>
-          <circle class="nn-node" cx="50" cy="240" r="12"/>
-
-          <!-- Hidden nodes -->
-          <circle class="nn-node" cx="160" cy="52"  r="12"/>
-          <circle class="nn-node" cx="160" cy="130" r="12"/>
-          <circle class="nn-node" cx="160" cy="208" r="12"/>
-          <circle class="nn-node" cx="160" cy="286" r="12"/>
-
-          <!-- Output nodes -->
-          <circle class="nn-node-out" cx="270" cy="140" r="14"/>
-          <circle class="nn-node-out" cx="270" cy="220" r="14"/>
-
-          <!-- Animated signal pulses -->
-          <circle r="3.5" fill="#00ff88" opacity="0.9">
-            <animateMotion dur="2.0s" repeatCount="indefinite" begin="0s" calcMode="linear">
-              <mpath href="#np1"/>
-            </animateMotion>
-          </circle>
-          <circle r="3.5" fill="#00ff88" opacity="0.9">
-            <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.6s" calcMode="linear">
-              <mpath href="#np2"/>
-            </animateMotion>
-          </circle>
-          <circle r="3.5" fill="#00ff88" opacity="0.9">
-            <animateMotion dur="1.9s" repeatCount="indefinite" begin="1.1s" calcMode="linear">
-              <mpath href="#np3"/>
-            </animateMotion>
-          </circle>
-          <circle r="3" fill="#0af" opacity="0.8">
-            <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.3s" calcMode="linear">
-              <mpath href="#np4"/>
-            </animateMotion>
-          </circle>
-          <circle r="3" fill="#0af" opacity="0.8">
-            <animateMotion dur="2.1s" repeatCount="indefinite" begin="1.4s" calcMode="linear">
-              <mpath href="#np5"/>
-            </animateMotion>
-          </circle>
-          <circle r="3" fill="#0af" opacity="0.8">
-            <animateMotion dur="2.3s" repeatCount="indefinite" begin="0.8s" calcMode="linear">
-              <mpath href="#np6"/>
-            </animateMotion>
-          </circle>
-
-          <!-- Layer labels -->
-          <text class="nn-label-text" x="50"  y="268">INPUT</text>
-          <text class="nn-label-text" x="160" y="302">HIDDEN</text>
-          <text class="nn-label-text" x="270" y="248">OUTPUT</text>
-        </svg>
-        <div class="nn-metrics">
-          <div class="nn-metric">
-            <span class="nn-metric-val">3→4→2</span>
-            <span class="nn-metric-key">Architecture</span>
-          </div>
-          <div class="nn-metric">
-            <span class="nn-metric-val blue">94.2%</span>
-            <span class="nn-metric-key">Accuracy</span>
-          </div>
-          <div class="nn-metric">
-            <span class="nn-metric-val" style="color:var(--accent3)">Live</span>
-            <span class="nn-metric-key">Status</span>
-          </div>
-        </div>
-      </div>
-      <div class="about-photo-tag">Based in Kampala, UG</div>
-    </div>
-    <div class="about-content">
-      <p class="about-intro">
-        I build machine learning systems that actually work. Not demos. Not proofs of concept. <em>Production systems</em> that make real decisions every single day.
-      </p>
-
-      <div class="degree-badge">
-        <span class="badge-icon">🎓</span>
-        <span class="badge-text">
-          Master of Science in Data Science &amp; Analytics
-          <small>Postgraduate · Distinction</small>
-        </span>
-      </div>
-
-      <p class="about-text">
-        I am Paul Sentongo. MSc in Data Science and Analytics. Five years building end-to-end machine learning systems from raw data to deployed product. I grew up in Uganda. I watched brilliant ideas fail because no one could make the data work. That is what I fix.
-      </p>
-      <p class="about-text">
-        My stack goes the full distance. Python for everything. SQL for when the data lives in a database (which is almost always). Power BI for when a decision-maker needs a dashboard they can actually use. MLflow for tracking experiments so good results are repeatable. Docker so models run the same everywhere. FastAPI so those models become services other systems can call. The whole chain, not just one piece.
-      </p>
-      <p class="about-text">
-        I build medical AI that assists clinicians. I build dashboards that help executives stop guessing. I build pipelines that do not break at 2am. If you have a hard data problem and need someone who will go from first principles to working solution, reach out now.
-      </p>
-
-      <div class="about-skills">
-        <div class="skill-item"><span class="skill-icon">🧠</span> Machine Learning &amp; Deep Learning</div>
-        <div class="skill-item"><span class="skill-icon">🐍</span> Python, Pandas, NumPy, Scikit-learn</div>
-        <div class="skill-item"><span class="skill-icon">📊</span> Power BI Dashboards</div>
-        <div class="skill-item"><span class="skill-icon">🗄️</span> SQL &amp; Data Warehousing</div>
-        <div class="skill-item"><span class="skill-icon">🐳</span> Docker &amp; Containerisation</div>
-        <div class="skill-item"><span class="skill-icon">🔬</span> MLflow &amp; Experiment Tracking</div>
-        <div class="skill-item"><span class="skill-icon">☁️</span> Cloud: GCP &amp; AWS</div>
-        <div class="skill-item"><span class="skill-icon">📡</span> Deep Learning &amp; NLP</div>
-        <div class="skill-item"><span class="skill-icon">👁️</span> Computer Vision</div>
-        <div class="skill-item"><span class="skill-icon">📈</span> Statistical Modelling</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG -->
-<section id="blog">
-  <div class="section-header reveal">
-    <span class="section-num">03 /</span>
-    <h2 class="section-title">Writing</h2>
-    <div class="section-line"></div>
-  </div>
-  <p class="reveal" style="color:var(--muted); font-size:16px; font-style:italic; margin-bottom:48px; max-width:560px; line-height:1.7; margin-top:-40px;">
-    I write about machine learning and MLOps the way I wish someone had explained it to me — clearly, honestly, without the jargon fog.
-  </p>
-  <div class="blog-grid reveal">
-
-    <div class="blog-card big" onclick="openPost('why-machines-learn')">
-      <div class="blog-category">Big Picture</div>
-      <div class="blog-date">March 2026</div>
-      <h3 class="blog-title">Why Do We Teach Machines to Learn?</h3>
-      <p class="blog-excerpt">This is the question nobody asks first. Everyone jumps straight to "how." But the why changes everything. Why not just write rules? Why let machines figure it out? The answer will shift how you think about every model you ever build.</p>
-      <button class="blog-read">Read Article →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('linear-regression')">
-      <div class="blog-category">Beginner Guide</div>
-      <div class="blog-date">February 2026</div>
-      <h3 class="blog-title">Linear Regression: The Most Important Algorithm Nobody Respects</h3>
-      <p class="blog-excerpt">Everyone wants to jump to neural networks. Stop. Learn this first. Linear regression is how machines draw a line through data. Simple. Powerful. The foundation of everything else.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('logistic-regression')">
-      <div class="blog-category">Beginner Guide</div>
-      <div class="blog-date">February 2026</div>
-      <h3 class="blog-title">Logistic Regression: When Your Answer Is Yes or No</h3>
-      <p class="blog-excerpt">Spam or not spam. Fraud or not fraud. Cancer or clear. When the output is a decision, logistic regression is often the right tool. Here is how it actually works, without the maths fog.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('decision-trees')">
-      <div class="blog-category">Beginner Guide</div>
-      <div class="blog-date">January 2026</div>
-      <h3 class="blog-title">Decision Trees and Random Forests: How Machines Make Choices</h3>
-      <p class="blog-excerpt">A decision tree is a machine playing 20 questions. A random forest is a thousand trees voting. This is how they work, why ensembles beat single models, and when to reach for each.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('power-bi')">
-      <div class="blog-category">Tutorial</div>
-      <div class="blog-date">January 2026</div>
-      <h3 class="blog-title">Power BI: From Raw Data to Boardroom Dashboard</h3>
-      <p class="blog-excerpt">Data that stays in a spreadsheet changes nothing. Power BI turns it into something executives actually look at and act on. Here is the full workflow from connecting your data to publishing a dashboard that moves decisions.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('computer-vision')">
-      <div class="blog-category">Deep Dive</div>
-      <div class="blog-date">December 2025</div>
-      <h3 class="blog-title">Computer Vision: Teaching Machines to See</h3>
-      <p class="blog-excerpt">How does a model look at a dental X-ray and spot a cavity? How does a self-driving car know there is a person crossing? It all starts with pixels as numbers. Here is the full story, from image to prediction.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('deep-learning')">
-      <div class="blog-category">Deep Dive</div>
-      <div class="blog-date">December 2025</div>
-      <h3 class="blog-title">Deep Learning: The Revolution That Changed Everything</h3>
-      <p class="blog-excerpt">Why did neural networks suddenly start working in 2012 after decades of failure? What changed? And what can they actually do that old-school ML cannot? The honest, plain-English story of the deep learning revolution.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('mlops-101')">
-      <div class="blog-category">Deep Dive</div>
-      <div class="blog-date">November 2025</div>
-      <h3 class="blog-title">MLOps 101: What It Is, Why It Matters, and Where to Start</h3>
-      <p class="blog-excerpt">You trained a model. It works beautifully on your laptop. Now what? MLOps is the discipline that answers that question. The difference between a science project and a real product.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('docker-data-science')">
-      <div class="blog-category">Tutorial</div>
-      <div class="blog-date">November 2025</div>
-      <h3 class="blog-title">Docker Explained With a Pizza Analogy</h3>
-      <p class="blog-excerpt">If you have ever said "but it works on my machine," Docker is the cure. Here is what containers actually are, explained in plain English before a single command is typed.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('mlflow-guide')">
-      <div class="blog-category">Tutorial</div>
-      <div class="blog-date">October 2025</div>
-      <h3 class="blog-title">MLflow: Track Your ML Experiments Like a Pro</h3>
-      <p class="blog-excerpt">Training without tracking is like cooking without writing down the recipe. MLflow fixes that. A beginner-friendly walkthrough of all four components with real code.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('ml-plain-english')">
-      <div class="blog-category">Beginner Guide</div>
-      <div class="blog-date">October 2025</div>
-      <h3 class="blog-title">What Is Machine Learning? A Plain-English Guide</h3>
-      <p class="blog-excerpt">No maths. No intimidating jargon. Just a clear, honest explanation of what machine learning actually is, how models learn, and the three types every beginner should know.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-    <div class="blog-card" onclick="openPost('notebook-to-production')">
-      <div class="blog-category">MLOps</div>
-      <div class="blog-date">September 2025</div>
-      <h3 class="blog-title">From Jupyter Notebook to Production: The Full Journey</h3>
-      <p class="blog-excerpt">Your notebook accuracy looks great. But getting that model into an application that real people use is a completely different challenge. Here is the full seven-stage roadmap.</p>
-      <button class="blog-read">Read →</button>
-    </div>
-
-  </div>
-
-  <!-- LIVE NEWS FEED -->
-  <div class="news-header reveal">
-    <div class="news-header-left">
-      <h3 class="news-heading">Latest in AI</h3>
-      <span class="news-sub"><span class="news-live-dot"></span> Live feed</span>
-    </div>
-    <div class="news-filters">
-      <button class="news-filter active" data-topic="artificial intelligence machine learning">All</button>
-      <button class="news-filter" data-topic="large language models LLMs GPT">LLMs</button>
-      <button class="news-filter" data-topic="robotics autonomous systems">Robotics</button>
-      <button class="news-filter" data-topic="MLOps data engineering production ML">MLOps</button>
-    </div>
-  </div>
-  <div class="news-grid reveal" id="newsGrid">
-    <!-- Skeleton loaders -->
-    <div class="news-skeleton"><div class="skel-line" style="width:40%"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:75%"></div><div class="skel-line" style="width:25%"></div></div>
-    <div class="news-skeleton"><div class="skel-line" style="width:35%"></div><div class="skel-line" style="width:85%"></div><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:30%"></div></div>
-    <div class="news-skeleton"><div class="skel-line" style="width:45%"></div><div class="skel-line" style="width:80%"></div><div class="skel-line" style="width:65%"></div><div class="skel-line" style="width:20%"></div></div>
-    <div class="news-skeleton"><div class="skel-line" style="width:38%"></div><div class="skel-line" style="width:88%"></div><div class="skel-line" style="width:72%"></div><div class="skel-line" style="width:28%"></div></div>
-    <div class="news-skeleton"><div class="skel-line" style="width:42%"></div><div class="skel-line" style="width:76%"></div><div class="skel-line" style="width:60%"></div><div class="skel-line" style="width:33%"></div></div>
-    <div class="news-skeleton"><div class="skel-line" style="width:36%"></div><div class="skel-line" style="width:92%"></div><div class="skel-line" style="width:68%"></div><div class="skel-line" style="width:22%"></div></div>
-  </div>
-
-</section>
-
-<!-- QUOTES -->
-<section id="quotes">
-  <div class="section-header reveal">
-    <span class="section-num">04 /</span>
-    <h2 class="section-title">Words That Shaped the Field</h2>
-    <div class="section-line"></div>
-  </div>
-  <p class="quotes-intro reveal">The people who built modern AI, in their own words. These are the ideas I carry into every project.</p>
-  <div class="quotes-grid reveal">
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">AI is the new electricity. Just as electricity transformed almost everything 100 years ago, I have a hard time thinking of an industry that AI will not transform in the next several years.</p>
-      <span class="quote-author">Andrew Ng</span>
-      <span class="quote-role">Co-founder of Google Brain · Founder of deeplearning.ai · Former Chief Scientist, Baidu</span>
-    </div>
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">If intelligence is a cake, the bulk of the cake is unsupervised learning, the icing on the cake is supervised learning, and the cherry on the cake is reinforcement learning.</p>
-      <span class="quote-author">Yann LeCun</span>
-      <span class="quote-role">Chief AI Scientist, Meta · Turing Award 2018 · Inventor of Convolutional Neural Networks</span>
-    </div>
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">Every time I read a paper saying deep learning cannot do X, I know deep learning will eventually do X. It just needs more data or a slightly different architecture.</p>
-      <span class="quote-author">Geoffrey Hinton</span>
-      <span class="quote-role">Turing Award 2018 · Pioneer of Backpropagation and Deep Belief Networks · "Godfather of Deep Learning"</span>
-    </div>
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">The biggest bottleneck in deploying machine learning is not the algorithms. It is the data. Clean, labelled, representative data is what separates a research demo from a working product.</p>
-      <span class="quote-author">Andrej Karpathy</span>
-      <span class="quote-role">Former Director of AI, Tesla · Former Research Scientist, OpenAI · Creator of micrograd and nanoGPT</span>
-    </div>
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">If we want machines to think, we need to teach them to see. Perception is the gateway to intelligence, and vision is the richest channel we have.</p>
-      <span class="quote-author">Fei-Fei Li</span>
-      <span class="quote-role">Director, Stanford Human-Centered AI Institute · Creator of ImageNet · Former Chief Scientist of AI/ML, Google Cloud</span>
-    </div>
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">The thing that makes deep learning powerful is that it discovers the representations automatically. You do not design the features. The network learns what to look for.</p>
-      <span class="quote-author">Yoshua Bengio</span>
-      <span class="quote-role">Turing Award 2018 · Scientific Director, Mila Quebec AI Institute · Pioneer of Deep Learning Theory</span>
-    </div>
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">A learning machine is any machine that can be programmed in such a way that the output of the machine changes as a result of experience.</p>
-      <span class="quote-author">Arthur Samuel</span>
-      <span class="quote-role">IBM Researcher · Coined the term "Machine Learning" in 1959 · Creator of the first self-learning checkers program</span>
-    </div>
-
-    <div class="quote-card">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">Every master algorithm is evolution done faster and more directed. We are building the thing that built us, and making it better at building the next version.</p>
-      <span class="quote-author">Pedro Domingos</span>
-      <span class="quote-role">Professor of Computer Science, University of Washington · Author of The Master Algorithm</span>
-    </div>
-
-  </div>
-</section>
-
-<!-- CV -->
-<section id="cv">
-  <div class="section-header reveal">
-    <span class="section-num">04 /</span>
-    <h2 class="section-title">Résumé</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="cv-layout reveal">
-    <div>
-      <p class="cv-intro">
-        Five years turning messy, real-world data into systems that actually ship — from the Jupyter notebook to the production server to the boardroom presentation.
-      </p>
-      <a href="assets/Paul_Sentongo_CV___CELEBRA.pdf" download class="cv-download">
-        ⬇ Download Full CV
-        <small>PDF · Updated 2025</small>
-      </a>
-      <a href="mailto:paulsentongo@eclipso.de" class="cv-download">
-        ✉ paulsentongo@eclipso.de
-        <small>Get in touch</small>
-      </a>
-
-      <div class="skills-section">
-        <div class="skills-label">Core Skills</div>
-        <div class="skill-row">
-          <div class="skill-name"><span>Python / Pandas / NumPy / Scikit-learn</span><span>96%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:96%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name"><span>SQL &amp; Data Warehousing</span><span>92%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name"><span>Power BI &amp; Dashboard Design</span><span>88%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name"><span>Machine Learning &amp; Deep Learning</span><span>93%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name"><span>MLOps: MLflow, Docker, CI/CD</span><span>87%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name"><span>Computer Vision &amp; NLP</span><span>85%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name"><span>Cloud: GCP &amp; AWS</span><span>83%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:83%"></div></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="cv-section-label">Education &amp; Experience</div>
-      <div class="cv-timeline">
-        <div class="timeline-item">
-          <div class="timeline-year">2023 –<br>Present</div>
-          <div class="timeline-content">
-            <div class="timeline-role">Data Scientist</div>
-            <div class="timeline-company">Independent &amp; Consulting · Kampala, Uganda</div>
-            <div class="timeline-desc">Designing and deploying end-to-end ML pipelines for health, agriculture, and fintech clients across East Africa. Building open-source MLOps tooling and writing technical content.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">2023 –<br>2025</div>
-          <div class="timeline-content">
-            <div class="timeline-role">MSc Data Science &amp; Analytics</div>
-            <div class="timeline-company">Uganda Christian University &nbsp;·&nbsp; CGPA 4.16 / 5 &nbsp;·&nbsp; Distinction</div>
-            <div class="timeline-desc">Major: Machine Learning for Health Informatics &amp; Computer Vision. Thesis: Machine Learning for Accurate Valuation of Imports in Uganda.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">2011 –<br>2014</div>
-          <div class="timeline-content">
-            <div class="timeline-role">BSc Business Computing</div>
-            <div class="timeline-company">Uganda Christian University &nbsp;·&nbsp; CGPA 3.6 / 5 &nbsp;·&nbsp; Second Upper Honours</div>
-            <div class="timeline-desc">Major: Business Intelligence &amp; Data Warehousing. Final project: BI dashboard system for tracking academic performance metrics across faculty departments.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="reveal">
-    <h2 class="contact-big">Let's build<br>something<br><span>meaningful.</span></h2>
-    <p class="contact-email">paulsentongo@eclipso.de</p>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/paul-sentongo-885041284/" target="_blank" rel="noreferrer" class="social-link">LinkedIn</a>
-      <a href="https://github.com/sentongo-web" target="_blank" rel="noreferrer" class="social-link">GitHub</a>
-      <a href="https://wa.me/4917635130941" target="_blank" rel="noreferrer" class="social-link">WhatsApp</a>
-      <a href="assets/Paul_Sentongo_CV___CELEBRA.pdf" download class="social-link">Download CV</a>
-    </div>
-    <p style="color:var(--muted); font-family:var(--font-mono); font-size:13px; max-width:500px; margin:0 auto; line-height:1.8;">
-      Open to senior data science roles, MLOps engineering positions, research collaborations, speaking engagements, and mentoring opportunities. Based in Kampala, Uganda. Open to remote.
-    </p>
-  </div>
-</section>
-
-<footer>
-  <span class="footer-copy">© 2026 Paul Sentongo. All rights reserved.</span>
-  <span class="footer-logo">PS<span>.</span></span>
-  <span class="footer-copy">Made with data &amp; design ◆</span>
-</footer>
-
-<!-- BLOG MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closePostOnOverlay(event)">
-  <div class="modal" id="modal">
-    <button class="modal-close" onclick="closePost()">ESC / Close</button>
-    <div id="modalContent"></div>
-  </div>
-</div>
-
-<script>
-/* ─── Blog Post Data ─────────────────────────────────────── */
-const posts = {
-
-  'why-machines-learn': {
-    category: 'Big Picture',
-    date: 'March 2026',
-    title: 'Why Do We Teach Machines to Learn?',
-    body: `
-      <p>Most people ask how. Nobody asks why. That is the wrong order.</p>
-      <p>Why would you ever want a machine to learn from examples rather than just following instructions you wrote? Computers are deterministic. They do exactly what you tell them. That is the whole point. So why give up control and let the machine figure things out on its own?</p>
-      <p>The answer has three parts. Each one is more important than the last.</p>
-
-      <h2>Part One. The Rules Problem.</h2>
-      <p>In the 1980s, AI researchers tried to build expert systems. The idea was simple. Take a domain expert, a doctor or a lawyer or an engineer. Interview them. Extract all their knowledge into a set of if-then rules. Put those rules in a computer. Now you have an artificial expert.</p>
-      <p>It did not work.</p>
-      <p>Not because the idea was stupid. It was actually quite smart. It failed because knowledge is not a list of rules. A doctor diagnosing a patient is not running through a flowchart in their head. They are pattern-matching against thousands of cases they have seen before. The knowledge lives in the patterns, not in explicit rules.</p>
-      <p>You cannot write rules for how to recognize a dog from a photo. Try it. "Four legs" fails because tables have four legs. "Fur" fails because some dogs are hairless. "Barks" fails because you cannot hear a photo. The rules explode in complexity and they still do not work.</p>
-      <p>But show a child a hundred photos and they get it instantly. Because humans learn from examples. So the insight was: make machines do the same thing.</p>
-
-      <div class="analogy-box">
-        <span class="label">The core insight</span>
-        <p>Some knowledge is too complex to encode explicitly. It has to be learned by exposure to examples. Machine learning exists because of this fact.</p>
-      </div>
-
-      <h2>Part Two. The Scale Problem.</h2>
-      <p>Even in cases where you could write rules, the world is too big and too fast-changing for rules to keep up.</p>
-      <p>Spam filters are the classic example. In 2000, you could write rules: flag emails that say "FREE MONEY" or "Nigerian prince." Within weeks, spammers adapted. They used "FR££ M0NEY" instead. So you updated the rules. They adapted again. You are in a permanent arms race and the machine wins every round because it moves faster than your team of engineers can rewrite rules.</p>
-      <p>A machine learning model learns directly from examples of what spam looks like right now. It updates as spam evolves. No engineer required.</p>
-      <p>Credit card fraud detection. A human analyst can review maybe 100 transactions a day. A machine learning model can review 100 million transactions per day and flag anything that does not fit the pattern. That is not a 10x improvement. That is a fundamentally different capability.</p>
-
-      <h2>Part Three. The Discovery Problem.</h2>
-      <p>This is the deepest reason. The one most people miss.</p>
-      <p>Sometimes you do not know what the rules should be. You have data. You have outcomes. But the relationship between them is hidden. Machine learning finds it.</p>
-      <p>Researchers fed a deep learning model millions of protein sequences and their corresponding 3D structures. Nobody told the model the rules of how proteins fold. It discovered the rules on its own. The result was AlphaFold. It solved a problem that had defeated structural biologists for 50 years.</p>
-      <p>That is the real power. Not automation of known processes. Discovery of unknown ones.</p>
-
-      <h2>So Why Do We Teach Machines to Learn?</h2>
-      <p>Because some things cannot be programmed. They can only be learned.</p>
-      <p>Because the world changes faster than engineers can write rules.</p>
-      <p>Because the most valuable knowledge is often the knowledge that nobody has made explicit yet.</p>
-      <p>Machine learning is not about replacing human intelligence. It is about applying the same learning mechanism that makes humans intelligent to a machine that can process vastly more data, faster, without getting tired.</p>
-      <p>That is why this field matters. And that is why understanding it is not optional for anyone who wants to understand the next 50 years of human history.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Turing, A. M. (1950). Computing Machinery and Intelligence. <em>Mind</em>, 59(236), 433–460. <a href="https://doi.org/10.1093/mind/LIX.236.433" target="_blank" rel="noreferrer">doi.org/10.1093/mind/LIX.236.433</a></li>
-          <li>Russell, S., &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson.</li>
-          <li>Mitchell, T. M. (1997). <em>Machine Learning</em>. McGraw-Hill.</li>
-          <li>McCorduck, P. (2004). <em>Machines Who Think</em> (2nd ed.). A K Peters/CRC Press.</li>
-          <li>Samuel, A. L. (1959). Some Studies in Machine Learning Using the Game of Checkers. <em>IBM Journal of Research and Development</em>, 3(3), 210–229.</li>
-        </ol>
-      </div>
-    `
-  },
-
-  'linear-regression': {
-    category: 'Beginner Guide',
-    date: 'February 2026',
-    title: 'Linear Regression: The Most Important Algorithm Nobody Respects',
-    body: `
-      <p>Everyone wants to jump straight to neural networks. I understand. Neural networks sound impressive. But if you do not understand linear regression first, you do not understand machine learning.</p>
-      <p>Linear regression is how a machine draws a line through data. That is it. That is the whole algorithm. But inside that simple idea is almost everything important in ML.</p>
-
-      <h2>The Core Problem</h2>
-      <p>You have data. House size and house price. Plot it on a graph. You get a scatter of dots. The question is: what is the relationship between size and price?</p>
-      <p>A human looks at the scatter and mentally draws a line through the middle. Linear regression does the same thing mathematically. It finds the line that minimizes the total error between the line's predictions and the actual values.</p>
-
-      <div class="analogy-box">
-        <span class="label">The line equation</span>
-        <p>Price = (Weight × Size) + Bias</p>
-        <p>The machine learns the Weight and the Bias. Those two numbers are the entire "model." Give the model a size, it multiplies by the weight, adds the bias, and gives you a predicted price.</p>
-      </div>
-
-      <h2>How It Learns: Gradient Descent</h2>
-      <p>Start with random values for Weight and Bias. Make predictions for all training examples. Measure how wrong those predictions are. That wrongness is called the loss or cost.</p>
-      <p>Now adjust Weight and Bias slightly in the direction that reduces the loss. Repeat thousands of times. Each iteration the predictions get a little better. Eventually the model converges to the best possible line.</p>
-      <p>This process is called gradient descent. You will encounter it in every ML algorithm from now on. The math gets more complex but the idea never changes: measure the error, adjust the parameters, repeat.</p>
-
-      <h2>Multiple Features</h2>
-      <p>Real problems have more than one input. Predicting house price from size and number of bedrooms and location and age. Same algorithm. Now the "line" lives in multi-dimensional space. But the math is identical.</p>
-      <pre>Price = w1*Size + w2*Bedrooms + w3*Location + bias</pre>
-      <p>The model learns one weight for each feature plus a bias term. That is all multiple linear regression is.</p>
-
-      <h2>How to Know If Your Model Is Good</h2>
-      <p>R-squared. This number ranges from 0 to 1. It tells you what fraction of the variation in your target variable your model explains. An R-squared of 0.85 means your model explains 85% of the variance in house prices. The other 15% is noise or features you have not included.</p>
-      <p>Root Mean Squared Error (RMSE). The average size of your predictions' errors, in the original units. An RMSE of 20,000 on house prices means your predictions are off by about $20,000 on average.</p>
-
-      <h2>When Linear Regression Fails</h2>
-      <p>When the relationship is not linear. If house prices plateau above a certain size, a straight line will be wrong. When there are strong interactions between features. When your target variable is a category rather than a number. When your data has outliers that pull the line badly.</p>
-      <p>But here is the thing. Even when linear regression fails, you learn why it fails. And that tells you what tool to reach for next. It is always the right starting point.</p>
-
-      <pre>from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score, mean_squared_error
-import numpy as np
-
-model = LinearRegression()
-model.fit(X_train, y_train)
-
-predictions = model.predict(X_test)
-print(f"R2: {r2_score(y_test, predictions):.3f}")
-print(f"RMSE: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}")</pre>
-
-      <p>Ten lines of code. The fundamentals of supervised machine learning. Everything else is a variation on this.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Galton, F. (1886). Regression Towards Mediocrity in Hereditary Stature. <em>Journal of the Anthropological Institute</em>, 15, 246–263. (Original paper introducing regression.)</li>
-          <li>James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2021). <em>An Introduction to Statistical Learning</em> (2nd ed.). Springer. Free PDF at <a href="https://www.statlearning.com" target="_blank" rel="noreferrer">statlearning.com</a></li>
-          <li>Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009). <em>The Elements of Statistical Learning</em> (2nd ed.). Springer. Free PDF at <a href="https://hastie.su.domains/ElemStatLearn/" target="_blank" rel="noreferrer">hastie.su.domains</a></li>
-          <li>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. <em>Journal of Machine Learning Research</em>, 12, 2825–2830. <a href="https://jmlr.org/papers/v12/pedregosa11a.html" target="_blank" rel="noreferrer">jmlr.org</a></li>
-        </ol>
-      </div>
-    `
-  },
-
-  'logistic-regression': {
-    category: 'Beginner Guide',
-    date: 'February 2026',
-    title: 'Logistic Regression: When Your Answer Is Yes or No',
-    body: `
-      <p>Linear regression predicts a number. A price. A temperature. A score.</p>
-      <p>But half the interesting problems in data science have outputs that are not numbers. They are decisions. Spam or not spam. Fraud or legitimate. Disease present or absent. Will this customer churn? Will this loan default?</p>
-      <p>For those problems, you need logistic regression.</p>
-
-      <h2>The Problem With Using Linear Regression for Classification</h2>
-      <p>Say you want to predict whether a patient has a disease based on a test result. You could try linear regression. Train it to predict 1 for disease and 0 for no disease.</p>
-      <p>Two problems. First, the model will predict values above 1 and below 0, which make no sense as probabilities. Second, the line will be pulled badly by extreme values.</p>
-      <p>What you actually want is a model that outputs a probability between 0 and 1. That is what logistic regression does.</p>
-
-      <h2>The Sigmoid Function</h2>
-      <p>Logistic regression takes the same linear combination as linear regression and squashes it through a function called the sigmoid.</p>
-      <pre>Probability = 1 / (1 + e^(-z))
-where z = w1*x1 + w2*x2 + ... + bias</pre>
-      <p>The sigmoid function outputs values between 0 and 1. Always. No matter what z is. When z is very large and positive, output is close to 1. When z is very large and negative, output is close to 0. In the middle, you get probabilities.</p>
-
-      <div class="analogy-box">
-        <span class="label">Think of it this way</span>
-        <p>Logistic regression is saying: "Based on these features, I am 87% confident this email is spam." You then apply a threshold. Above 50% confidence, call it spam. That threshold is adjustable depending on whether missing a spam is worse than blocking a real email.</p>
-      </div>
-
-      <h2>The Decision Boundary</h2>
-      <p>A trained logistic regression model divides your feature space into two regions. On one side, it predicts class 0. On the other, class 1. The line (or plane, in multiple dimensions) separating them is called the decision boundary.</p>
-      <p>Linear logistic regression draws a straight decision boundary. That works for many problems. When the classes are not linearly separable, you need either feature engineering or a more complex model.</p>
-
-      <h2>Evaluation Metrics That Actually Matter</h2>
-      <p>Accuracy is often misleading. If 99% of transactions are legitimate, a model that calls everything legitimate is 99% accurate and useless.</p>
-      <p>Precision: Of all the transactions flagged as fraud, how many actually were? Recall: Of all actual fraud cases, how many did the model catch? F1 Score: The harmonic mean of precision and recall. Useful when you need to balance both. ROC-AUC: Overall discriminative power across all thresholds. Higher is better, maximum is 1.0.</p>
-
-      <pre>from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, roc_auc_score
-
-model = LogisticRegression(max_iter=1000)
-model.fit(X_train, y_train)
-
-predictions = model.predict(X_test)
-probabilities = model.predict_proba(X_test)[:, 1]
-
-print(classification_report(y_test, predictions))
-print(f"ROC-AUC: {roc_auc_score(y_test, probabilities):.3f}")</pre>
-
-      <h2>When to Use It</h2>
-      <p>Binary classification problems where interpretability matters. Logistic regression coefficients tell you directly how each feature affects the log-odds of the outcome. A weight of +0.8 for "income" means higher income increases the probability of loan approval. You can explain that in a meeting. You cannot explain a random forest's decision the same way.</p>
-      <p>Start with logistic regression. Always. It is fast, interpretable, and often good enough. Move to something more complex only when you can prove it is necessary.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Cox, D. R. (1958). The Regression Analysis of Binary Sequences. <em>Journal of the Royal Statistical Society B</em>, 20, 215–242. (Original logistic regression paper.)</li>
-          <li>Hosmer, D. W., Lemeshow, S., &amp; Sturdivant, R. X. (2013). <em>Applied Logistic Regression</em> (3rd ed.). Wiley.</li>
-          <li>Bishop, C. M. (2006). <em>Pattern Recognition and Machine Learning</em>. Springer.</li>
-          <li>James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2021). <em>An Introduction to Statistical Learning</em> (2nd ed.). Springer. <a href="https://www.statlearning.com" target="_blank" rel="noreferrer">statlearning.com</a></li>
-        </ol>
-      </div>
-    `
-  },
-
-  'decision-trees': {
-    category: 'Beginner Guide',
-    date: 'January 2026',
-    title: 'Decision Trees and Random Forests: How Machines Make Choices',
-    body: `
-      <p>A decision tree is a machine playing 20 questions.</p>
-      <p>Is the tumor larger than 2cm? Yes. Has the patient smoked for more than 10 years? Yes. Are there lymph nodes involved? No. Based on this path through the questions, the model makes its prediction.</p>
-      <p>That is a decision tree. Genuinely that simple. And yet from this simple structure comes one of the most powerful families of algorithms in practical machine learning.</p>
-
-      <h2>How a Tree Is Built</h2>
-      <p>The algorithm starts with all your training data at the root. It asks: which feature, and which split point on that feature, divides the data most cleanly into the correct classes?</p>
-      <p>Say you are classifying whether a loan will default. The algorithm tries splitting on income level, on loan amount, on credit score, on age. It measures how "pure" each split makes the resulting groups. The split that creates the purest groups gets chosen. Then it repeats on each branch, splitting again and again until either the groups are pure or you hit a stopping condition.</p>
-      <p>The measure of purity is called Gini impurity or information gain depending on implementation. Both measure the same thing: how mixed up the classes are in a node. Pure means one class dominates. Impure means both classes are equally mixed.</p>
-
-      <h2>The Problem With a Single Tree</h2>
-      <p>Decision trees overfit. Badly. Given enough depth, a single tree will memorize the training data perfectly and fail on anything new. It is unstable too. Change a few training examples and the whole tree structure can change completely.</p>
-      <p>The solution is to not use one tree. Use many.</p>
-
-      <h2>Random Forests: Democracy Among Trees</h2>
-      <p>A random forest trains hundreds of decision trees, each on a slightly different random subset of the training data and a random subset of the features. Then it takes a vote. Classification: majority wins. Regression: average the predictions.</p>
-      <p>Why does this work? Because each tree makes different errors. The errors are uncorrelated. When you average uncorrelated errors, they cancel out. The average of many imperfect, independent models is better than any single one.</p>
-
-      <div class="analogy-box">
-        <span class="label">The wisdom of crowds</span>
-        <p>Ask 500 people to guess the weight of a cow at a country fair. No single person is very accurate. The average of all 500 guesses is remarkably close to the true weight. Random forests exploit the same statistical phenomenon.</p>
-      </div>
-
-      <h2>Gradient Boosting: The Next Level</h2>
-      <p>Random forests train trees in parallel, independently. Gradient boosting trains them sequentially. Each new tree is trained specifically to fix the errors of all previous trees.</p>
-      <p>Start with a simple prediction. Train a tree on the residual errors. Add that tree to the model with a small weight. Train the next tree on the new residuals. Repeat hundreds of times. The model gradually homes in on perfection.</p>
-      <p>XGBoost and LightGBM implement gradient boosting with aggressive optimizations. They dominate tabular data competitions. For structured data problems, they often beat neural networks.</p>
-
-      <pre>from sklearn.ensemble import RandomForestClassifier
-from xgboost import XGBClassifier
-
-rf = RandomForestClassifier(n_estimators=200, max_depth=8, random_state=42)
-rf.fit(X_train, y_train)
-
-xgb = XGBClassifier(n_estimators=200, learning_rate=0.05, max_depth=6)
-xgb.fit(X_train, y_train,
-        eval_set=[(X_test, y_test)],
-        early_stopping_rounds=20, verbose=False)
-
-# Feature importance is built in
-print(rf.feature_importances_)</pre>
-
-      <h2>When to Use Each</h2>
-      <p>Decision tree: when you need to show stakeholders exactly how the model makes a decision. Insurance underwriting. Medical triage. Legal compliance.</p>
-      <p>Random forest: strong baseline for any tabular classification or regression problem. Fast to train, hard to overfit badly, gives feature importances for free.</p>
-      <p>XGBoost or LightGBM: when you need the best possible performance on structured data and have time to tune hyperparameters.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Quinlan, J. R. (1986). Induction of Decision Trees. <em>Machine Learning</em>, 1(1), 81–106.</li>
-          <li>Breiman, L. (2001). Random Forests. <em>Machine Learning</em>, 45(1), 5–32. <a href="https://doi.org/10.1023/A:1010933404324" target="_blank" rel="noreferrer">doi.org/10.1023</a></li>
-          <li>Chen, T., &amp; Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. In <em>Proceedings of KDD '16</em>. ACM. <a href="https://arxiv.org/abs/1603.02754" target="_blank" rel="noreferrer">arxiv.org/abs/1603.02754</a></li>
-          <li>Friedman, J. H. (2001). Greedy Function Approximation: A Gradient Boosting Machine. <em>Annals of Statistics</em>, 29(5), 1189–1232.</li>
-        </ol>
-      </div>
-    `
-  },
-
-  'power-bi': {
-    category: 'Tutorial',
-    date: 'January 2026',
-    title: 'Power BI: From Raw Data to Boardroom Dashboard',
-    body: `
-      <p>Data that stays in a spreadsheet changes nothing.</p>
-      <p>Insights buried in a Jupyter notebook change nothing. A beautiful, interactive dashboard that an executive can open on their laptop during a meeting and actually understand, that changes decisions. That is what Power BI does.</p>
-      <p>This is the complete workflow. From connecting your data source to publishing a dashboard that moves the needle.</p>
-
-      <h2>What Power BI Actually Is</h2>
-      <p>Power BI is Microsoft's business intelligence platform. Three components you need to know. Power BI Desktop: the application you use to build reports, on your Windows machine. Power BI Service: the cloud platform where you publish and share those reports. Power BI Mobile: how your stakeholders read those reports on their phones.</p>
-      <p>Most of your time is in Desktop. Build there. Publish to Service. They view on Service or Mobile.</p>
-
-      <h2>Step One: Connect Your Data</h2>
-      <p>Power BI connects to almost anything. Excel files. SQL databases (PostgreSQL, MySQL, SQL Server, Azure SQL, all of them). Google Sheets. SharePoint. REST APIs. Python and R scripts. CSV files. Even web pages.</p>
-      <p>Go to Home, click Get Data, choose your source. For a SQL database, paste your server address and credentials. Power BI pulls the tables and shows you a preview. Select what you need and click Load.</p>
-      <p>Connecting to multiple sources in the same report is normal. Sales data from your SQL database. Targets from an Excel file. Regional definitions from a SharePoint list. Power BI handles the join.</p>
-
-      <h2>Step Two: Transform With Power Query</h2>
-      <p>Raw data is never clean. Power Query is Power BI's built-in transformation engine. Every step you take is recorded as a query you can inspect and modify later. No data is changed at the source. All transformations are non-destructive.</p>
-      <p>Common transformations you will use constantly: rename columns to human-readable names, change data types (string to date, text to number), filter out rows you do not need, split columns (full name into first and last), merge queries (equivalent to SQL JOIN), create calculated columns, unpivot wide tables into long format.</p>
-      <p>Do all cleaning in Power Query, not in the report. Keep the two steps separate.</p>
-
-      <h2>Step Three: Build Your Data Model</h2>
-      <p>If you have multiple tables, define the relationships between them in the Model view. Drag from the key in one table to the foreign key in another. Power BI creates the relationship. Now all your visuals can use fields from multiple tables simultaneously.</p>
-      <p>Star schema is the best pattern. One fact table in the center containing transactions or events. Dimension tables around it containing descriptive attributes. Date, Product, Customer, Region. Keep it clean and simple.</p>
-
-      <h2>DAX: The Formula Language</h2>
-      <p>DAX stands for Data Analysis Expressions. It is the language you use to create calculated measures and columns in Power BI. It looks like Excel formulas but operates on entire columns and tables.</p>
-      <pre>Total Revenue = SUM(Sales[Amount])
-
-Revenue YTD = TOTALYTD([Total Revenue], 'Date'[Date])
-
-Revenue vs Target =
-    DIVIDE([Total Revenue], SUM(Targets[Target]), 0)
-
-Top 10 Customers =
-    CALCULATE([Total Revenue],
-              TOPN(10, Customer, [Total Revenue]))</pre>
-      <p>Learn CALCULATE first. It is the most powerful function in DAX. It evaluates an expression in a modified filter context. Once you understand CALCULATE, everything else follows.</p>
-
-      <h2>Step Four: Design Visuals That Work</h2>
-      <p>Less is more. Most dashboards fail because they have too much on them. A stakeholder should understand the key message in 5 seconds.</p>
-      <p>One KPI card per critical metric at the top. One main chart that tells the primary story. Secondary charts for drill-down. Slicers on the side for filtering by time, region, product. Use consistent colors. Use the company's brand colors if you have them. Never use more than three chart types on one page.</p>
-      <p>Bar charts for comparisons. Line charts for trends over time. Card visuals for single KPIs. Map visuals for geographic data. Matrix for when people genuinely need a table. Scatter plots for correlation.</p>
-
-      <h2>Step Five: Publish and Share</h2>
-      <p>Click Publish in Desktop. Sign in to your Power BI Service account. The report and dataset upload to the cloud. Share the link with stakeholders. Set up a data refresh schedule so the dashboard stays current automatically. Daily refresh for most business data. Hourly if you have a Pro license and need near-real-time.</p>
-
-      <div class="callout">
-        The technical skill is building the model and writing the DAX. The professional skill is choosing what to show and making it so clear that a busy executive glances at it and immediately knows what to do. Both matter. Most data people focus only on the first one.
-      </div>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Microsoft. (2024). Power BI documentation. <a href="https://learn.microsoft.com/en-us/power-bi/" target="_blank" rel="noreferrer">learn.microsoft.com/power-bi</a></li>
-          <li>Ferrari, A., &amp; Russo, M. (2019). <em>The Definitive Guide to DAX</em> (2nd ed.). Microsoft Press.</li>
-          <li>Kimball, R., &amp; Ross, M. (2013). <em>The Data Warehouse Toolkit</em> (3rd ed.). Wiley. (Star schema design patterns.)</li>
-          <li>Cabello, A. (2019). <em>Mastering Microsoft Power BI</em>. Packt Publishing.</li>
-        </ol>
-      </div>
-    `
-  },
-
-  'computer-vision': {
-    category: 'Deep Dive',
-    date: 'December 2025',
-    title: 'Computer Vision: Teaching Machines to See',
-    body: `
-      <p>You look at a photo and you instantly see a dog, a street, a face, a dental X-ray with a cavity. It feels effortless. You have no idea how your brain does it.</p>
-      <p>For decades, neither did computer scientists. Then convolutional neural networks arrived. And machines started seeing too.</p>
-
-      <h2>What an Image Actually Is</h2>
-      <p>To a computer, an image is a grid of numbers. A 256 by 256 pixel image is a 256 by 256 array of values between 0 and 255. Black is 0. White is 255. Everything in between is a shade of gray. A color image is three such grids stacked together: one for red, one for green, one for blue. RGB.</p>
-      <p>That is the input to a computer vision model. Not a photo. A 3-dimensional array of numbers with shape (256, 256, 3). The model's job is to learn what combinations of those numbers correspond to what real-world concepts.</p>
-
-      <h2>Why Classic Approaches Failed</h2>
-      <p>Early computer vision tried to hand-engineer features. Edges. Corners. Textures. Write algorithms to detect these features, then use those features as inputs to a classifier.</p>
-      <p>This worked for controlled environments. It failed in the real world because the same object looks completely different depending on lighting, angle, background, occlusion, and scale. You cannot write enough rules to handle all the variation.</p>
-
-      <h2>Convolutional Neural Networks</h2>
-      <p>The breakthrough idea: let the network learn the features itself from data. A Convolutional Neural Network (CNN) learns hierarchical features automatically.</p>
-      <p>Early layers learn simple features: edges, corners, color gradients. Middle layers combine these into shapes: curves, textures, patterns. Deep layers recognize complex structures: eyes, wheels, teeth, tumors.</p>
-      <p>The key operation is convolution. A small filter (typically 3x3 or 5x5 pixels) slides across the image. At each position, it computes a dot product between its weights and the image patch underneath. The result is a feature map showing where that filter's pattern appears in the image. The network learns what the filters should look for by training on labeled examples.</p>
-
-      <div class="analogy-box">
-        <span class="label">Think of it this way</span>
-        <p>You have a magnifying glass that lights up when it finds the pattern it is looking for. One magnifying glass looks for horizontal edges. Another looks for diagonal lines. Another looks for certain color combinations. You slide all of them across the image simultaneously. The combination of what they find tells you what is in the image.</p>
-      </div>
-
-      <h2>Transfer Learning: The Practical Key</h2>
-      <p>Training a CNN from scratch requires millions of images and weeks of compute. Almost nobody does this.</p>
-      <p>Instead, use transfer learning. Take a model already trained on millions of images (ResNet, EfficientNet, VGG). Those early layers already know how to detect edges and textures. Freeze them. Replace only the final classification layer and train that on your specific dataset.</p>
-      <p>This is how I built the dental cavity detector and the kidney classifier. Pre-trained backbone on ImageNet. Fine-tuned final layers on medical images. Achieves strong performance with a fraction of the data and compute that training from scratch would require.</p>
-
-      <pre>import torchvision.models as models
-import torch.nn as nn
-
-# Load pre-trained ResNet
-model = models.resnet50(pretrained=True)
-
-# Freeze all layers
-for param in model.parameters():
-    param.requires_grad = False
-
-# Replace final layer for your number of classes
-model.fc = nn.Linear(model.fc.in_features, num_classes)
-
-# Only the final layer trains
-optimizer = torch.optim.Adam(model.fc.parameters(), lr=1e-3)</pre>
-
-      <h2>Real Applications That Are Working Right Now</h2>
-      <p>Medical imaging: detecting tumors, reading X-rays, counting blood cells, diagnosing retinal disease. Autonomous vehicles: detecting pedestrians, reading traffic signs, tracking other vehicles. Agriculture: identifying crop diseases from drone images, counting livestock, estimating yield. Manufacturing: detecting defects on production lines with sub-millimeter precision. Security: face recognition, anomaly detection in surveillance footage.</p>
-      <p>Computer vision is not a research curiosity. It is deployed, it is making decisions, and it is improving every year. Understanding how it works is now a core skill for any data scientist who works with visual data.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Krizhevsky, A., Sutskever, I., &amp; Hinton, G. E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. <em>NeurIPS</em>, 25. <a href="https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html" target="_blank" rel="noreferrer">AlexNet paper</a></li>
-          <li>He, K., Zhang, X., Ren, S., &amp; Sun, J. (2016). Deep Residual Learning for Image Recognition. <em>CVPR</em>. <a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noreferrer">arxiv.org/abs/1512.03385</a></li>
-          <li>LeCun, Y., Bottou, L., Bengio, Y., &amp; Haffner, P. (1998). Gradient-Based Learning Applied to Document Recognition. <em>Proceedings of the IEEE</em>, 86(11), 2278–2324.</li>
-          <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press. Free at <a href="https://www.deeplearningbook.org" target="_blank" rel="noreferrer">deeplearningbook.org</a></li>
-        </ol>
-      </div>
-    `
-  },
-
-  'deep-learning': {
-    category: 'Deep Dive',
-    date: 'December 2025',
-    title: 'Deep Learning: The Revolution That Changed Everything',
-    body: `
-      <p>In 2012, a neural network entered an image classification competition and destroyed the competition. Its error rate was 10 percentage points lower than the next best approach. That is not an incremental improvement. That is a different order of magnitude.</p>
-      <p>The model was called AlexNet. The moment is called the ImageNet moment. It changed everything. Here is the story of why it happened and what it means.</p>
-
-      <h2>Neural Networks Are Not New</h2>
-      <p>The first artificial neural network was described in 1943. The perceptron was invented in 1958. Backpropagation, the learning algorithm that makes deep networks train, was formalized in the 1980s. Neural networks are not a new idea.</p>
-      <p>They were abandoned twice. The first AI winter in the 1970s. The second in the 1990s. The reason both times: they did not work well enough to justify the cost.</p>
-      <p>So what changed in 2012?</p>
-
-      <h2>Three Things Changed Simultaneously</h2>
-      <p>First: data. ImageNet had 1.2 million labeled images. The internet had generated more data in the previous ten years than in all of human history before that. Models need data to learn. Now there was enough.</p>
-      <p>Second: compute. GPUs, originally designed for video games, turned out to be perfect for the matrix multiplications that neural networks require. Training that would take months on a CPU took days on a GPU. Suddenly "deep" networks with many layers were trainable.</p>
-      <p>Third: algorithms. Dropout, ReLU activation functions, better weight initialization. A handful of algorithmic improvements that made deep networks actually train without getting stuck.</p>
-      <p>All three arrived at the same time. That is why 2012 is the inflection point.</p>
-
-      <h2>What "Deep" Actually Means</h2>
-      <p>Deep learning means neural networks with many layers. Why does depth matter?</p>
-      <p>Each layer learns a representation of the data at a different level of abstraction. Shallow networks can learn simple functions. Deep networks can learn hierarchical representations of arbitrary complexity. A face recognition network learns pixels, then edges, then facial parts, then faces, in successive layers. No human designed those intermediate representations. The network discovered them.</p>
-      <p>This is the key insight: deep learning is representation learning. The network learns what features to look for. This is fundamentally different from classic ML where humans engineered the features.</p>
-
-      <h2>The Main Architectures</h2>
-      <p>Convolutional Neural Networks (CNNs): built for grid-like data, primarily images. The convolution operation exploits spatial locality. A pixel is more related to its neighbors than to a pixel on the other side of the image. CNNs encode this assumption into their architecture.</p>
-      <p>Recurrent Neural Networks (RNNs) and LSTMs: built for sequential data. Text, audio, time series. The network maintains a hidden state that carries information from earlier in the sequence to later. Important for language modeling and speech recognition.</p>
-      <p>Transformers: the current dominant architecture for almost everything. Introduced in 2017. Uses attention mechanisms instead of recurrence. Parallelizes beautifully on GPUs. The architecture behind GPT, BERT, and every major language model. Also now being applied to vision, audio, and protein structure prediction.</p>
-
-      <div class="analogy-box">
-        <span class="label">The transformer revolution</span>
-        <p>In 2017, attention is all you need. That was the paper title. It was right. The transformer replaced the dominant sequence model of the previous five years within two years. GPT-3, GPT-4, Gemini, Claude, all of them are transformers with more data and more compute.</p>
-      </div>
-
-      <h2>The Cost</h2>
-      <p>Deep learning is not free. It requires large datasets (tens of thousands of examples minimum, millions for best performance). It requires significant compute (training a large model costs thousands or millions of dollars). The models are often black boxes. You can inspect what they predict but not always why.</p>
-      <p>For most problems, a well-tuned gradient boosted tree outperforms deep learning on tabular data. Deep learning wins on unstructured data: images, text, audio, video.</p>
-      <p>Use it when the problem warrants it. Do not use it because it sounds impressive.</p>
-
-      <h2>Where It Is Going</h2>
-      <p>Multimodal models that understand images and text simultaneously. Foundation models trained on everything, fine-tuned for specific tasks. Autonomous agents that plan and take actions. The trajectory is clear. More capable, more general, more integrated into every system.</p>
-      <p>Understanding the fundamentals now means you can work intelligently with these systems as they get more powerful, rather than treating them as magic you cannot inspect.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>LeCun, Y., Bengio, Y., &amp; Hinton, G. (2015). Deep Learning. <em>Nature</em>, 521(7553), 436–444. <a href="https://doi.org/10.1038/nature14539" target="_blank" rel="noreferrer">doi.org/10.1038/nature14539</a></li>
-          <li>Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). Attention Is All You Need. <em>NeurIPS</em>. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer">arxiv.org/abs/1706.03762</a></li>
-          <li>Rumelhart, D. E., Hinton, G. E., &amp; Williams, R. J. (1986). Learning Representations by Back-propagating Errors. <em>Nature</em>, 323, 533–536.</li>
-          <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press. <a href="https://www.deeplearningbook.org" target="_blank" rel="noreferrer">deeplearningbook.org</a></li>
-        </ol>
-      </div>
-    `
-  },
-
-  'mlops-101': {
-    category: 'Deep Dive',
-    date: 'March 2025',
-    title: 'MLOps 101: What It Is, Why It Matters, and Where to Start',
-    body: `
-      <p>Let's start with an uncomfortable truth: <strong>most machine learning models never make it to production.</strong></p>
-      <p>You spend weeks cleaning data, tuning hyperparameters, and celebrating when your validation accuracy crosses 92%. Then someone asks, "Great — how do we use it?" And everything gets complicated.</p>
-      <p>That's the problem MLOps exists to solve.</p>
-
-      <h2>What Even Is MLOps?</h2>
-      <p>MLOps stands for <em>Machine Learning Operations</em>. Think of it as the marriage of machine learning and DevOps — it's the set of practices, tools, and culture that lets you reliably build, deploy, and maintain ML models in production.</p>
-
-      <div class="analogy-box">
-        <span class="label">Analogy</span>
-        <p>Imagine you've created the world's best chocolate chip cookie recipe. That's your ML model. MLOps is everything that happens between your kitchen and the moment someone bites into a cookie in a shop 500 miles away — the supply chain, the packaging, the quality checks, the shelf-life monitoring, the customer feedback loop. Without it, your cookie never leaves your kitchen.</p>
-      </div>
-
-      <h2>The Problem MLOps Solves</h2>
-      <p>Without MLOps, data science teams typically face:</p>
-      <ul>
-        <li><strong>The "works on my machine" trap.</strong> Your model runs on your laptop but breaks on the server because Python versions differ, packages are mismatched, or the data format is slightly different.</li>
-        <li><strong>Model decay (drift).</strong> The world changes. A fraud detection model trained in 2022 starts performing poorly by 2024 because fraudsters adapt. Without monitoring, nobody notices until real damage is done.</li>
-        <li><strong>No reproducibility.</strong> You achieved 94% accuracy last Tuesday. Can you recreate that exact model next month? If you didn't track your experiment parameters, probably not.</li>
-        <li><strong>Manual, fragile deployments.</strong> Someone manually copies a model file to a server, runs a script they vaguely remember writing, and hopes it works. This is not engineering — it's archaeology.</li>
-      </ul>
-
-      <h2>The Three Pillars of MLOps</h2>
-      <h3>1. Development — Build it right</h3>
-      <p>This is where data scientists live. But even here, MLOps thinking matters. You need version control for your data (not just your code), reproducible experiments, and consistent environments. Tools like <em>MLflow</em> for experiment tracking and <em>DVC</em> for data versioning live here.</p>
-
-      <h3>2. Deployment — Ship it reliably</h3>
-      <p>Once a model is ready, it needs to be served — either as a REST API that applications call, or as a batch pipeline that runs nightly. <em>Docker</em> makes the model portable (same environment everywhere). <em>FastAPI</em> wraps it in an endpoint. CI/CD pipelines (like GitHub Actions) automate the testing and release process so deployments are consistent and safe.</p>
-
-      <h3>3. Monitoring — Keep it working</h3>
-      <p>Production is not the finish line. Models need continuous monitoring for data drift (the input data changes), concept drift (the relationship between inputs and outputs changes), and performance degradation. Tools like <em>Evidently</em> and <em>WhyLogs</em> help you catch problems before your users do.</p>
-
-      <div class="callout">
-        "MLOps is not a single tool. It's a mindset shift — from 'I built a model' to 'I maintain a system that produces value continuously.'"
-      </div>
-
-      <h2>The MLOps Maturity Ladder</h2>
-      <p>You don't have to do everything at once. Here's how teams typically progress:</p>
-      <ul>
-        <li><strong>Level 0:</strong> Manual everything. Data scientist trains model, manually tests it, manually deploys it. No versioning, no monitoring.</li>
-        <li><strong>Level 1:</strong> Automated training pipelines. Experiments are tracked. Models are versioned. Deployment is still semi-manual.</li>
-        <li><strong>Level 2:</strong> Fully automated CI/CD for ML. Models retrain automatically when data changes. Monitoring is in place. Rollback is possible.</li>
-      </ul>
-      <p>Most teams should aim for Level 1 as a realistic near-term goal. Level 2 is the north star.</p>
-
-      <h2>Where to Start</h2>
-      <p>If you're a data scientist who has never thought about MLOps, here's your starter kit:</p>
-      <ol>
-        <li><strong>Learn Git properly.</strong> Version control is the foundation of everything else.</li>
-        <li><strong>Start tracking experiments with MLflow.</strong> Just logging your parameters and metrics will transform how you work.</li>
-        <li><strong>Learn Docker basics.</strong> Being able to containerise your model is the single biggest step toward reproducibility.</li>
-        <li><strong>Build one simple end-to-end pipeline.</strong> Train → log to MLflow → package in Docker → serve with FastAPI. Do it for any project. The muscle memory is invaluable.</li>
-      </ol>
-
-      <p>In the other articles on this blog, I walk through each of these steps in detail — with real code and zero assumptions about prior experience. Start with the Docker article or the MLflow guide, whichever looks less scary.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Sculley, D., Holt, G., Golovin, D., et al. (2015). Hidden Technical Debt in Machine Learning Systems. <em>NeurIPS</em>, 28. <a href="https://proceedings.neurips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html" target="_blank" rel="noreferrer">NeurIPS 2015</a></li>
-          <li>Kreuzberger, D., Kühl, N., &amp; Hirschl, S. (2023). Machine Learning Operations (MLOps): Overview, Definition, and Architecture. <em>IEEE Access</em>, 11, 31866–31879. <a href="https://arxiv.org/abs/2205.02302" target="_blank" rel="noreferrer">arxiv.org/abs/2205.02302</a></li>
-          <li>Huyen, C. (2022). <em>Designing Machine Learning Systems</em>. O'Reilly Media.</li>
-          <li>Google Cloud. (2024). MLOps: Continuous delivery and automation pipelines in machine learning. <a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" target="_blank" rel="noreferrer">cloud.google.com</a></li>
-        </ol>
-      </div>
-    `
-  },
-
-  'docker-data-science': {
-    category: 'Tutorial',
-    date: 'February 2025',
-    title: 'Docker Explained With a Pizza Analogy (No, Really)',
-    body: `
-      <p>The phrase "it works on my machine" has ended more promising data science projects than bad data ever has.</p>
-      <p>You train a model on your laptop. Everything is fine. You share it with a colleague. Broken. You try to deploy it to a server. Broken differently. The root cause is almost always the same: different environments.</p>
-      <p>Docker solves this. And the key idea is simpler than you think.</p>
-
-      <h2>The Pizza Analogy</h2>
-      <div class="analogy-box">
-        <span class="label">Analogy</span>
-        <p>Imagine you've developed the perfect pizza recipe — specific flour, a particular oven temperature, a certain brand of tomatoes. If you cook it in your kitchen, it's perfect. But if you send just the recipe to someone else, they might use different flour, their oven might run hot, and the result is... not the same pizza.</p>
-        <p>Now imagine instead of sending the recipe, you sent a <strong>self-contained mobile kitchen</strong> — with the exact oven, the exact ingredients, the exact tools, pre-configured exactly right. Drop it anywhere in the world, open the door, and you get the same pizza every time.</p>
-        <p>That mobile kitchen is a Docker container.</p>
-      </div>
-
-      <h2>Core Concepts — Three Things to Understand</h2>
-
-      <h3>1. The Dockerfile — Your Recipe</h3>
-      <p>A <em>Dockerfile</em> is a text file that describes how to build your environment. It's a precise, step-by-step recipe: start with this base operating system, install Python 3.10, install these packages, copy in this code.</p>
-
-      <pre>FROM python:3.10-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-CMD ["python", "serve.py"]</pre>
-
-      <p>Read it like a list of instructions: "Start with a minimal Python 3.10 environment. Set the working directory. Copy my requirements and install them. Copy the rest of my code. When the container starts, run serve.py."</p>
-
-      <h3>2. The Image — Your Built Kitchen</h3>
-      <p>Running <code>docker build</code> on your Dockerfile creates a Docker <em>image</em> — a snapshot of everything needed to run your application. You can share this image with colleagues or push it to a registry (like Docker Hub) for others to pull down. The image is immutable and reproducible — it will behave identically everywhere.</p>
-
-      <h3>3. The Container — Your Running Kitchen</h3>
-      <p>A <em>container</em> is a running instance of an image. Start three containers from the same image and you have three identical, isolated environments running in parallel. Stop them, delete them, spin up ten more — the image is unchanged.</p>
-
-      <h2>Why Data Scientists Specifically Need This</h2>
-      <ul>
-        <li><strong>Reproducibility.</strong> Your model is always run in the exact environment it was trained/tested in. No more "works on my machine."</li>
-        <li><strong>Deployment is trivial.</strong> If your model runs in a Docker container, deploying it to a server, to the cloud, or to a colleague's machine is the same command.</li>
-        <li><strong>Isolation.</strong> Different projects can use different Python versions and package versions without conflicting with each other.</li>
-        <li><strong>Collaboration.</strong> Share an image, not a list of instructions. Your teammate doesn't need to spend an hour setting up their environment.</li>
-      </ul>
-
-      <h2>A Real Data Science Example</h2>
-      <p>Let's say you've built a churn prediction model wrapped in a FastAPI endpoint. Your project looks like this:</p>
-
-      <pre>my-model/
-├── model.pkl
-├── serve.py
-├── requirements.txt
-└── Dockerfile</pre>
-
-      <p>Your Dockerfile:</p>
-
-      <pre>FROM python:3.10-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-EXPOSE 8000
-CMD ["uvicorn", "serve:app", "--host", "0.0.0.0", "--port", "8000"]</pre>
-
-      <p>Build and run:</p>
-      <pre>docker build -t churn-model:v1 .
-docker run -p 8000:8000 churn-model:v1</pre>
-
-      <p>Now your model is running at <code>localhost:8000</code>. Anyone with Docker installed can run that same image and get the exact same server. No environment setup, no dependency conflicts.</p>
-
-      <h2>The Two Commands You'll Use 80% of the Time</h2>
-      <pre># Build an image from your Dockerfile
-docker build -t my-image-name:tag .
-
-# Run a container from an image
-docker run -p host_port:container_port my-image-name:tag</pre>
-
-      <div class="callout">
-        Docker doesn't just make things more convenient. It makes ML deployments <em>trustworthy</em> — which is the foundation of production-grade data science.
-      </div>
-
-      <p>Once you're comfortable with the basics, the natural next step is Docker Compose (running multiple containers together, like a model server and a database) and then exploring Kubernetes for large-scale deployments. But start simple. Build one Dockerfile for one project. The habit alone will transform how you work.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Merkel, D. (2014). Docker: Lightweight Linux Containers for Consistent Development and Deployment. <em>Linux Journal</em>, 2014(239).</li>
-          <li>Docker, Inc. (2024). Docker Documentation — Get Started. <a href="https://docs.docker.com/get-started/" target="_blank" rel="noreferrer">docs.docker.com/get-started</a></li>
-          <li>Boettiger, C. (2015). An Introduction to Docker for Reproducible Research. <em>ACM SIGOPS Operating Systems Review</em>, 49(1), 71–79.</li>
-        </ol>
-      </div>
-    `
-  },
-
-  'mlflow-guide': {
-    category: 'Tutorial',
-    date: 'January 2025',
-    title: 'MLflow: Track Your ML Experiments Like a Pro',
-    body: `
-      <p>Here's a situation every data scientist has been in.</p>
-      <p>You train a model. Accuracy: 89%. You change the learning rate, train again. Accuracy: 91%. You tweak the regularisation, train again. Accuracy: 88%. Three hours later, you want to go back to that 91% model — and you have absolutely no idea what you did to get there.</p>
-      <p>This is not a small problem. It is, in fact, one of the biggest time-wasters in practical data science. <em>MLflow</em> is the solution.</p>
-
-      <h2>What Is MLflow?</h2>
-      <p>MLflow is an open-source platform that handles the full lifecycle of a machine learning project. It was created by Databricks but is entirely open-source and free to use. Think of it as a combination of a lab notebook, a model shelf, and a deployment toolkit — all in one.</p>
-
-      <div class="analogy-box">
-        <span class="label">Analogy</span>
-        <p>Imagine you're a chef experimenting with a new dish. Every time you cook, you write down exactly which ingredients you used, in what quantities, at what temperature, and for how long — and you take a photo of the final result. Later, when you produce your best dish, you can look back and recreate it exactly. That notebook is MLflow. The photos are your model artifacts.</p>
-      </div>
-
-      <h2>The Four Components</h2>
-
-      <h3>1. MLflow Tracking — Your Experiment Notebook</h3>
-      <p>This is the component most people start with. Every time you run a training script, MLflow can log:</p>
-      <ul>
-        <li><strong>Parameters</strong> — your hyperparameters (learning rate, number of trees, max depth)</li>
-        <li><strong>Metrics</strong> — your evaluation results (accuracy, F1, RMSE) at every epoch or fold</li>
-        <li><strong>Artifacts</strong> — files like your trained model, plots, feature importance charts</li>
-      </ul>
-
-      <p>Here's what adding MLflow tracking to a training script looks like:</p>
-      <pre>import mlflow
-import mlflow.sklearn
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-
-# Start a run — this is one "experiment"
-with mlflow.start_run():
-
-    # Log your hyperparameters
-    params = {"n_estimators": 100, "max_depth": 6, "random_state": 42}
-    mlflow.log_params(params)
-
-    # Train your model
-    model = RandomForestClassifier(**params)
-    model.fit(X_train, y_train)
-
-    # Evaluate and log your results
-    accuracy = accuracy_score(y_test, model.predict(X_test))
-    mlflow.log_metric("accuracy", accuracy)
-
-    # Save the model as an artifact
-    mlflow.sklearn.log_model(model, "random_forest_model")
-
-    print(f"Accuracy: {accuracy:.4f}")</pre>
-
-      <p>Run this, then type <code>mlflow ui</code> in your terminal and open <code>localhost:5000</code>. You'll see a beautiful interface showing every run, every parameter, every metric — and you can compare them side by side.</p>
-
-      <h3>2. MLflow Projects — Reproducible Code</h3>
-      <p>MLflow Projects let you package your training code in a standard format so anyone (or any automated system) can run it. You define your project in an <code>MLproject</code> file that specifies the entry point and parameters. This makes it possible to trigger training runs programmatically or from a CI/CD pipeline.</p>
-
-      <h3>3. MLflow Models — A Standard Model Format</h3>
-      <p>MLflow Models defines a standard way to save and load models that works regardless of the framework you used — scikit-learn, PyTorch, TensorFlow, XGBoost, whatever. Once saved in MLflow format, any MLflow-compatible tool can load and serve your model, without knowing what library you trained it with.</p>
-
-      <h3>4. MLflow Model Registry — Your Model Library</h3>
-      <p>This is the most powerful component for teams. The Model Registry is a central store where you can:</p>
-      <ul>
-        <li>Register model versions</li>
-        <li>Add descriptions and tags</li>
-        <li>Move models through lifecycle stages: <em>Staging → Production → Archived</em></li>
-        <li>Annotate which version is currently serving traffic</li>
-      </ul>
-      <p>Instead of "which model file is live on the server?" you have a clear, auditable record.</p>
-
-      <h2>Installing and Getting Started in Five Minutes</h2>
-      <pre># Install
-pip install mlflow
-
-# Start the UI (run from your project directory)
-mlflow ui
-
-# Or set a remote tracking server
-export MLFLOW_TRACKING_URI=http://your-server:5000</pre>
-
-      <div class="callout">
-        The discipline of tracking every experiment will feel like overhead at first. Within two weeks, you won't understand how you worked without it. The single best habit you can build as a data scientist.
-      </div>
-
-      <h2>A Practical Workflow</h2>
-      <p>Here's the workflow I use on every project:</p>
-      <ol>
-        <li>Create an MLflow <em>experiment</em> per project (e.g., "churn-prediction-v2")</li>
-        <li>Every training run logs parameters, metrics, and the model artifact</li>
-        <li>Use the UI to compare runs and select the best model</li>
-        <li>Register the best model in the Model Registry as a candidate</li>
-        <li>Promote it to "Staging" for validation, then "Production" when ready</li>
-        <li>Load the production model by name in the serving layer — no hardcoded file paths</li>
-      </ol>
-      <p>This entire workflow can be done locally with zero infrastructure. As your team grows, you point everyone at a shared tracking server and suddenly you have a collaborative ML platform.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Zaharia, M., Chen, A., Davidson, A., et al. (2018). Accelerating the Machine Learning Lifecycle with MLflow. <em>IEEE Data Engineering Bulletin</em>, 41(4), 39–45. <a href="https://mlflow.org" target="_blank" rel="noreferrer">mlflow.org</a></li>
-          <li>MLflow Authors. (2024). MLflow Documentation. <a href="https://mlflow.org/docs/latest/index.html" target="_blank" rel="noreferrer">mlflow.org/docs</a></li>
-          <li>Huyen, C. (2022). <em>Designing Machine Learning Systems</em>. O'Reilly Media. (Chapter on experiment tracking.)</li>
-        </ol>
-      </div>
-    `
-  },
-
-  'ml-plain-english': {
-    category: 'Beginner Guide',
-    date: 'December 2024',
-    title: 'What Is Machine Learning? A Plain-English Guide',
-    body: `
-      <p>Let's cut through the hype and the jargon and answer the question properly.</p>
-      <p><strong>Machine learning is teaching computers to learn from examples, rather than programming them with explicit rules.</strong></p>
-      <p>That sentence deserves unpacking, because it's hiding something important.</p>
-
-      <h2>The Old Way: Programming With Rules</h2>
-      <p>In traditional software, a programmer writes explicit rules. Want to detect spam email? You write rules:</p>
-      <ul>
-        <li>If the email contains "FREE MONEY" in the subject, mark as spam</li>
-        <li>If it's from an unknown sender and has more than three links, mark as spam</li>
-        <li>If it mentions "Nigerian prince"... you get the idea</li>
-      </ul>
-      <p>This works — until spammers adapt. Now they avoid those words. You add more rules. They adapt again. You're in an arms race with an opponent who is faster than you.</p>
-
-      <h2>The ML Way: Learning From Examples</h2>
-      <p>Instead of writing rules, you show the computer thousands of emails you've already classified as spam or not spam. The algorithm finds the patterns itself — patterns more subtle and numerous than any human could manually encode.</p>
-
-      <div class="analogy-box">
-        <span class="label">Analogy</span>
-        <p>Teaching a child what a dog is. You don't give them a definition: "a mammal with four legs, usually between 5–100kg, that barks." You show them dogs. "That's a dog. That's also a dog. That's a cat — not a dog." After enough examples, they can correctly identify a dog they've never seen. Machine learning works the same way.</p>
-      </div>
-
-      <h2>The Three Types of Machine Learning</h2>
-
-      <h3>1. Supervised Learning — Learning With a Teacher</h3>
-      <p>You provide the algorithm with labelled examples: inputs with their corresponding correct outputs. The algorithm learns the mapping from input to output.</p>
-      <p><strong>Examples:</strong> Spam detection (email → spam/not spam), house price prediction (features → price), medical diagnosis (symptoms → condition).</p>
-      <p>This is the most common type of ML in practice, and the most commercially valuable.</p>
-
-      <h3>2. Unsupervised Learning — Learning Without Labels</h3>
-      <p>You provide data with no labels, and the algorithm finds structure on its own — groupings, patterns, anomalies.</p>
-      <p><strong>Examples:</strong> Customer segmentation (grouping customers by behaviour without pre-defining the groups), anomaly detection (finding transactions that don't fit the normal pattern), recommendation systems (users who engaged with this also engaged with that).</p>
-
-      <h3>3. Reinforcement Learning — Learning by Trial and Error</h3>
-      <p>An agent takes actions in an environment, receives rewards or penalties, and learns over time to maximise its cumulative reward. No labelled data — just feedback signals.</p>
-      <p><strong>Examples:</strong> Training AI to play chess or Go, teaching robots to walk, optimising ad bidding strategies.</p>
-
-      <h2>How Does a Model Actually "Learn"?</h2>
-      <p>This is where people often lose the thread. Let's stay concrete.</p>
-      <p>Imagine the simplest possible model: predicting house prices based only on size. The model starts with a random guess: "price = 2 × size." It predicts prices for all the houses in the training set, compares predictions to actual prices, measures the error, and then adjusts — slightly shifting the multiplier to reduce that error. It repeats this thousands of times.</p>
-      <p>That process of measuring error and adjusting parameters to reduce it is called <em>gradient descent</em>. Neural networks do this across millions of parameters simultaneously. The principle is the same.</p>
-
-      <h2>What a Model Is — And What It Isn't</h2>
-      <p>After training, a model is essentially a mathematical function — it takes an input (image, text, numbers) and returns an output (a class, a number, a probability). The "learning" happened during training. At serving time, it's just arithmetic.</p>
-
-      <div class="callout">
-        A machine learning model is not magic and it is not intelligence. It is a function that transforms inputs into outputs based on patterns it extracted from training data. Understanding this clearly helps you know when ML is the right tool — and when it isn't.
-      </div>
-
-      <h2>When to Use Machine Learning</h2>
-      <p>ML is the right tool when:</p>
-      <ul>
-        <li>You have lots of data with known outcomes (for supervised learning)</li>
-        <li>The rules are too complex to write by hand</li>
-        <li>The patterns change over time and rules would need constant updating</li>
-      </ul>
-      <p>ML is NOT the right tool when you can write a simple rule that works, when you have almost no data, or when you need complete interpretability and there's no room for errors.</p>
-      <p>One of the most important skills in data science is knowing when not to use machine learning. Sometimes a well-crafted SQL query is a better solution than a neural network.</p>
-
-      <div class="references">
-        <h2>References</h2>
-        <ol>
-          <li>Samuel, A. L. (1959). Some Studies in Machine Learning Using the Game of Checkers. <em>IBM Journal of Research and Development</em>, 3(3), 210–229. (First formal definition of machine learning.)</li>
-          <li>Mitchell, T. M. (1997). <em>Machine Learning</em>. McGraw-Hill. (Chapter 1: Introduction.)</li>
-          <li>Domingos, P. (2015). <em>The Master Algorithm</em>. Basic Books.</li>
-          <li>Ng, A. (2018). <em>Machine Learning Yearning</em>. deeplearning.ai. Free download at <a href="https://www.deeplearning.ai/programs/" target="_blank" rel="noreferrer">deeplearning.ai</a></li>
-        </ol>
-      </div>
-    `
-  },
-
-  'notebook-to-production': {
-    category: 'MLOps',
-    date: 'November 2024',
-    title: 'From Jupyter Notebook to Production: The Full Journey',
-    body: `
-      <p>The Jupyter notebook is the data scientist's natural habitat. It's exploratory, forgiving, and immediately visual — perfect for figuring things out.</p>
-      <p>It is a terrible place to run a production ML system.</p>
-      <p>The gap between "great notebook" and "reliable product" is where most ML projects die. Here is the full map of that journey.</p>
-
-      <h2>Stage 1: The Notebook (Exploration)</h2>
-      <p>This is where you live in the early days. You load data, visualise distributions, try different models, tune hyperparameters. The notebook is perfect for this. It's meant to be messy and exploratory.</p>
-      <p>The mistake is staying here too long. The moment you've validated that your approach works, the notebook needs to be dismantled and rebuilt properly.</p>
-
-      <h2>Stage 2: Refactoring Into Scripts</h2>
-      <p>Extract your notebook logic into proper Python modules:</p>
-      <ul>
-        <li><code>data.py</code> — data loading and preprocessing functions</li>
-        <li><code>features.py</code> — feature engineering logic</li>
-        <li><code>train.py</code> — model training script</li>
-        <li><code>predict.py</code> — inference logic</li>
-      </ul>
-      <p>Why? Because notebooks don't test well, can't be called by other systems, and hide state in a way that causes subtle bugs. Scripts are importable, testable, and composable.</p>
-
-      <h2>Stage 3: Version Control and Experiment Tracking</h2>
-      <p>Now your code is in Git. Every change is tracked. And every training run is logged in MLflow — parameters, metrics, and the model artifact itself.</p>
-      <p>This is the stage where you stop asking "which model did I have last week?" and start having actual answers.</p>
-
-      <h2>Stage 4: Containerisation with Docker</h2>
-      <p>Write a Dockerfile that encapsulates your serving environment. Your trained model gets packaged with the exact Python version, exact dependencies, and your prediction code.</p>
-      <pre>FROM python:3.10-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY model.pkl .
-COPY predict.py .
-EXPOSE 8000
-CMD ["uvicorn", "predict:app", "--host", "0.0.0.0", "--port", "8000"]</pre>
-      <p>Build it once, run it anywhere.</p>
-
-      <h2>Stage 5: The Serving Layer</h2>
-      <p>Your model needs an interface. For most use cases, a REST API is the right choice. FastAPI is my recommendation — it's fast, modern, and automatically generates documentation.</p>
-      <pre>from fastapi import FastAPI
-import joblib
-import pandas as pd
-
-app = FastAPI()
-model = joblib.load("model.pkl")
-
-@app.post("/predict")
-def predict(data: dict):
-    df = pd.DataFrame([data])
-    prediction = model.predict(df)[0]
-    probability = model.predict_proba(df)[0].max()
-    return {"prediction": int(prediction), "confidence": float(probability)}</pre>
-
-      <h2>Stage 6: CI/CD — Automate the Boring Parts</h2>
-      <p>Manual deployments are risky. A CI/CD pipeline (using GitHub Actions, for example) automatically runs your tests, checks code quality, and deploys when changes are merged to main. You define the process once; the machine does it every time.</p>
-
-      <h2>Stage 7: Monitoring in Production</h2>
-      <p>You're live. Now the real work begins. You need to monitor:</p>
-      <ul>
-        <li><strong>Operational metrics</strong> — is the API responding? What's the latency?</li>
-        <li><strong>Model performance</strong> — if you have ground truth labels, is accuracy holding?</li>
-        <li><strong>Data drift</strong> — are the input distributions shifting compared to training data?</li>
-      </ul>
-
-      <div class="callout">
-        Production ML is not a destination — it's a maintenance discipline. The model that was excellent on launch day will degrade over time as the world changes. Plan for this from day one.
-      </div>
-
-      <h2>The Full Stack</h2>
-      <p>Here's the minimal stack that gets you to production reliability:</p>
-      <ul>
-        <li><strong>Git</strong> — code versioning</li>
-        <li><strong>MLflow</strong> — experiment tracking and model registry</li>
-        <li><strong>Docker</strong> — environment consistency</li>
-        <li><strong>FastAPI</strong> — model serving</li>
-        <li><strong>GitHub Actions</strong> — CI/CD automation</li>
-        <li><strong>Evidently or WhyLogs</strong> — monitoring</li>
-      </ul>
-      <p>None of these tools require a large team or expensive infrastructure to get started. You can run this entire stack locally, then scale to the cloud when the time comes.</p>
-    `
-  },
-
-  'african-data': {
-    category: 'Opinion',
-    date: 'October 2024',
-    title: 'Why African Data Scientists Must Build Their Own Datasets',
-    body: `
-      <p>The global machine learning ecosystem is built on a foundation of data — and most of that data reflects the world of North America and Western Europe.</p>
-      <p>ImageNet, the dataset that trained a generation of computer vision models, is overwhelmingly biased toward Western contexts. Standard NLP datasets — the ones used to benchmark everything from translation to sentiment analysis — contain almost no text in Swahili, Luganda, Amharic, Yoruba, or any of the 2,000+ languages spoken across Africa.</p>
-      <p>This is not a minor inconvenience. It is a structural problem with real consequences.</p>
-
-      <h2>What Happens When Models Don't Know Your Context</h2>
-      <p>A facial recognition system trained on predominantly light-skinned faces performs worse on dark-skinned faces. This is not theory — it's been documented repeatedly. When such systems are deployed in African countries for purposes like law enforcement or financial access, the error rates are highest for the people who can least afford them.</p>
-      <p>A medical diagnostic model trained on US or European patient data may simply not generalise to symptoms, body compositions, or disease presentations common in East Africa. The model says "low risk." The patient is not low risk. The difference is the training data.</p>
-      <p>An NLP model with no exposure to code-switching — the way urban Ugandans naturally mix Luganda and English in everyday speech — is useless for understanding the actual communication patterns of the people it's supposed to serve.</p>
-
-      <h2>The Dependency Problem</h2>
-      <p>African organisations often default to importing ML models built elsewhere and fine-tuning them with whatever local data they have. This is understandable — building from scratch is expensive. But it creates a structural dependency on datasets, benchmarks, and research agendas that were set in other contexts for other needs.</p>
-      <p>When your foundation is someone else's assumptions, your solutions will inevitably carry someone else's blind spots.</p>
-
-      <h2>What Building Our Own Datasets Looks Like</h2>
-      <p>This is not a call for every data scientist to start massive collection projects in isolation. It is a call for intentionality and investment:</p>
-      <ul>
-        <li><strong>Document what exists.</strong> Before building new, map what data is already collected by governments, NGOs, research institutions, and private companies — and often locked in formats no one can use.</li>
-        <li><strong>Build in community.</strong> Initiatives like Masakhane have shown what's possible when African NLP researchers collaborate across institutions and borders. The model is scalable.</li>
-        <li><strong>Demand better from institutions.</strong> When hospitals, banks, and government agencies collect data, they should be collecting it in ways that support analysis — not just compliance reporting.</li>
-        <li><strong>Open-source African datasets.</strong> Data collected with public funding should be publicly available. Every dataset published is infrastructure for the next researcher.</li>
-      </ul>
-
-      <div class="callout">
-        "The datasets we build today are the foundation of the AI systems that will serve our communities tomorrow. If we don't build them, someone else will build something that almost works for us — and 'almost' is not good enough."
-      </div>
-
-      <h2>The Opportunity</h2>
-      <p>There is a genuine first-mover advantage here. The African languages NLP space, the African medical imaging space, the African agricultural data space — these are frontier territories. Researchers and engineers who build the foundational datasets will define the benchmarks, train the models, and hold the expertise that the world will need as it becomes impossible to ignore 1.5 billion people.</p>
-      <p>This is not charity work. This is where the most interesting and important data science problems live — the ones that haven't been solved yet because nobody with the right skills and context has sat down to solve them.</p>
-      <p>I believe African data scientists are in the best position in the world to do this work. And I think the time to start is now.</p>
-    `
-  }
-
-};
-
-/* ─── Modal Functions ─────────────────────────────────────── */
-function openPost(id) {
-  const post = posts[id];
-  if (!post) return;
-
-  const content = document.getElementById('modalContent');
-  content.innerHTML = `
-    <div class="modal-category">${post.category}</div>
-    <div class="modal-date">${post.date}</div>
-    <h1 class="modal-title">${post.title}</h1>
-    <div class="modal-body">${post.body}</div>
-  `;
-
-  const overlay = document.getElementById('modalOverlay');
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  overlay.scrollTop = 0;
-}
-
-function closePost() {
-  const overlay = document.getElementById('modalOverlay');
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function closePostOnOverlay(e) {
-  if (e.target === document.getElementById('modalOverlay')) closePost();
-}
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closePost();
-});
-
-/* ─── Custom Cursor ───────────────────────────────────────── */
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx + 'px';
-  cursor.style.top = my + 'px';
-});
-
-function animateRing() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px';
-  ring.style.top = ry + 'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-
-document.querySelectorAll('a, button, .project-card, .blog-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
-    ring.style.width = '60px'; ring.style.height = '60px';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-    ring.style.width = '40px'; ring.style.height = '40px';
-  });
-});
-
-/* ─── Scroll Reveal ───────────────────────────────────────── */
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-    }
-  });
-}, { threshold: 0.1 });
-reveals.forEach(el => revealObs.observe(el));
-
-/* ─── Counter Animation ───────────────────────────────────── */
-function animateCounter(el, target) {
-  let current = 0;
-  const step = Math.ceil(target / 40);
-  const timer = setInterval(() => {
-    current = Math.min(current + step, target);
-    el.textContent = current + (target >= 10 ? '' : '+');
-    if (current >= target) clearInterval(timer);
-  }, 40);
-}
-const counterObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      document.querySelectorAll('[data-target]').forEach(el => {
-        animateCounter(el, parseInt(el.dataset.target));
-      });
-      counterObs.disconnect();
-    }
-  });
-}, { threshold: 0.5 });
-const statsBar = document.querySelector('.stats-bar');
-if (statsBar) counterObs.observe(statsBar);
-
-/* ─── Theme Toggle ────────────────────────────────────────── */
-const themeToggle = document.getElementById('themeToggle');
-const html = document.documentElement;
-
-const savedTheme = localStorage.getItem('theme') || 'dark';
-if (savedTheme === 'light') {
-  html.setAttribute('data-theme', 'light');
-  themeToggle.textContent = 'Dark';
-}
-
-themeToggle.addEventListener('click', () => {
-  const isLight = html.getAttribute('data-theme') === 'light';
-  if (isLight) {
-    html.removeAttribute('data-theme');
-    themeToggle.textContent = 'Light';
-    localStorage.setItem('theme', 'dark');
-  } else {
-    html.setAttribute('data-theme', 'light');
-    themeToggle.textContent = 'Dark';
-    localStorage.setItem('theme', 'light');
-  }
-});
-
-/* ─── AI News Feed ────────────────────────────────────────── */
-const topicLabels = {
-  'artificial intelligence machine learning': 'All',
-  'large language models LLMs GPT': 'LLMs',
-  'robotics autonomous systems': 'Robotics',
-  'MLOps data engineering production ML': 'MLOps',
-};
-
-function newsRssUrl(q) {
-  return `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
-}
-
-// Two independent CORS proxies — tried in order until one succeeds
-function proxyUrls(rssUrl) {
-  return [
-    `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`,
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
-  ];
-}
-
-function relativeDate(dateStr) {
-  const date = new Date(dateStr);
-  if (isNaN(date)) return '';
-  const diff = Math.floor((Date.now() - date) / 1000);
-  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-}
-
-function extractDomain(url) {
-  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return 'News'; }
-}
-
-function showSkeleton() {
-  document.getElementById('newsGrid').innerHTML = Array(6).fill(
-    `<div class="news-skeleton"><div class="skel-line" style="width:40%"></div><div class="skel-line" style="width:88%"></div><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:25%"></div></div>`
-  ).join('');
-}
-
-function renderNewsXML(xmlText, topic) {
-  const grid = document.getElementById('newsGrid');
-  const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
-  const items = [...xml.querySelectorAll('item')].slice(0, 6);
-  const tag = topicLabels[topic] || 'AI';
-
-  if (!items.length) throw new Error('empty feed');
-
-  grid.innerHTML = items.map(item => {
-    // Strip trailing " - Source Name" that Google News appends to titles
-    let title = (item.querySelector('title')?.textContent || 'Untitled')
-      .replace(/\s+-\s+[^-]+$/, '').trim();
-
-    // Google News <link> sits between tags as a text node — nextSibling trick
-    const linkEl = item.querySelector('link');
-    const link = linkEl?.nextSibling?.nodeValue?.trim()
-      || linkEl?.textContent?.trim()
-      || item.querySelector('guid')?.textContent?.trim()
-      || '#';
-
-    const pubDate = item.querySelector('pubDate')?.textContent || '';
-    const source  = item.querySelector('source')?.textContent?.trim()
-      || extractDomain(link);
-
-    return `<a class="news-card" href="${link}" target="_blank" rel="noreferrer noopener">
-      <span class="news-card-source">${source}</span>
-      <span class="news-card-tag">${tag}</span>
-      <span class="news-card-title">${title}</span>
-      <span class="news-card-date">${relativeDate(pubDate)}</span>
-    </a>`;
-  }).join('');
-}
-
-async function fetchNews(topic) {
-  showSkeleton();
-  const rssUrl = newsRssUrl(topic);
-
-  for (const url of proxyUrls(rssUrl)) {
-    try {
-      const res = await fetch(url, { signal: AbortSignal.timeout(9000) });
-      if (!res.ok) continue;
-      const text = await res.text();
-      renderNewsXML(text, topic);
-      return; // success — stop trying other proxies
-    } catch { /* try next proxy */ }
-  }
-
-  document.getElementById('newsGrid').innerHTML =
-    '<div class="news-error">Live news unavailable right now. Check back shortly.</div>';
-}
-
-// Wire filter buttons
-document.querySelectorAll('.news-filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.news-filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    fetchNews(btn.dataset.topic);
-  });
-});
-
-// Load default on page ready
-fetchNews('artificial intelligence machine learning');
-
-/* ─── Active Nav on Scroll ────────────────────────────────── */
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 200) current = s.id;
-  });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
-  });
-});
-</script>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+
+        // Check saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeToggle.textContent = isLight ? '☀️' : '🌙';
+            const nextTheme = isLight ? 'dark' : 'light';
+            themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+            themeToggle.setAttribute('title', `Switch to ${nextTheme} theme`);
+        });
+    </script>
 </body>
 </html>
