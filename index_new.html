@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paul Sentongo - Research Portfolio. Specializing in clinical AI, algorithmic fairness, and machine learning operations in resource-constrained healthcare systems.">
+    <meta name="keywords" content="Paul Sentongo, Research, Clinical AI, Fairness, Machine Learning, Data Science, Healthcare ML">
+    <meta property="og:title" content="Paul Sentongo - Research Portfolio">
+    <meta property="og:description" content="Research in clinical AI, fairness, and MLOps. Focus on Sub-Saharan healthcare systems.">
+    <title>Paul Sentongo | Research Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0e27;
+            --dark-bg-secondary: #141829;
+            --dark-border: rgba(255, 255, 255, 0.08);
+            --dark-text: #e5e7eb;
+            --dark-text-secondary: #9ca3af;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            
+            --light-bg: #ffffff;
+            --light-bg-secondary: #f9fafb;
+            --light-border: rgba(0, 0, 0, 0.08);
+            --light-text: #111827;
+            --light-text-secondary: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        body.light-mode {
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--dark-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--dark-text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: var(--dark-bg-secondary);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        body.light-mode .theme-toggle {
+            background: var(--light-bg-secondary);
+            border: 1px solid var(--light-border);
+            color: var(--light-text);
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem 3rem;
+            background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg));
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        body.light-mode .hero {
+            background: linear-gradient(135deg, var(--light-bg-secondary), var(--light-bg));
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--dark-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        body.light-mode .hero-text p {
+            color: var(--light-text-secondary);
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--dark-bg);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        body.light-mode .badge {
+            background: var(--light-bg-secondary);
+            border: 1px solid var(--light-border);
+            color: var(--light-text);
+        }
+
+        .research-areas {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .research-area {
+            padding: 1.5rem;
+            background: var(--dark-bg);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+        }
+
+        body.light-mode .research-area {
+            background: var(--light-bg-secondary);
+        }
+
+        .research-area h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-area p {
+            color: var(--dark-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        body.light-mode .research-area p {
+            color: var(--light-text-secondary);
+        }
+
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        body.light-mode .cta-section {
+            border: 1px solid var(--light-border);
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--dark-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        body.light-mode .cta-section p {
+            color: var(--light-text-secondary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--dark-border);
+            text-align: center;
+        }
+
+        body.light-mode footer {
+            border-top: 1px solid var(--light-border);
+        }
+
+        footer p {
+            color: var(--dark-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        body.light-mode footer p {
+            color: var(--light-text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--dark-text-secondary);
+        }
+
+        body.light-mode .footer-text {
+            color: var(--light-text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 1.75rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Paul Sentongo</div>
+            <nav>
+                <a href="research-portfolio.html">Research</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Clinical AI Research</h1>
+                    <p>Developing trustworthy, fair, and interpretable machine learning systems for healthcare in resource-constrained settings. Focus on Sub-Saharan Africa.</p>
+                    <div class="hero-badges">
+                        <span class="badge">Clinical AI</span>
+                        <span class="badge">Algorithmic Fairness</span>
+                        <span class="badge">MLOps</span>
+                        <span class="badge">Medical Imaging</span>
+                    </div>
+                </div>
+                <div class="research-areas">
+                    <div class="research-area">
+                        <h3>🔍 Primary Focus</h3>
+                        <p>Addressing bias and fairness in machine learning models for clinical decision support, particularly in settings with incomplete data and underrepresented populations.</p>
+                    </div>
+                    <div class="research-area">
+                        <h3>📊 Data Science</h3>
+                        <p>Advanced statistical methods, missing data imputation, SHAP-based interpretability, and rigorous validation frameworks.</p>
+                    </div>
+                    <div class="research-area">
+                        <h3>🏥 Application</h3>
+                        <p>Working with real-world clinical cohorts from Sub-Saharan healthcare systems to translate research into deployable solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="projects">
+            <h2>Featured Research & Projects</h2>
+            <p>Explore detailed research on hypertension screening, medical imaging, fairness auditing, and more clinical AI applications.</p>
+            <a href="research-portfolio.html" class="cta-button">View Full Research Portfolio →</a>
+        </section>
+
+        <!-- Contact Section -->
+        <section style="padding: 4rem 2rem; text-align: center; border-bottom: 1px solid var(--dark-border);" id="contact">
+            <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Get in Touch</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--dark-text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Interested in research collaboration, clinical AI projects, or discussing algorithmic fairness in healthcare?
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/sentongo-web" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/paulsentongo/" target="_blank">LinkedIn</a>
+                <a href="mailto:sentongo.paul@outlook.com">Email</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Research-driven machine learning for healthcare impact</p>
+        <div class="footer-text">
+            © 2026 Paul Sentongo. All research projects are open source under MIT License.
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Check saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeToggle.textContent = isLight ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>
