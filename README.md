@@ -151,7 +151,7 @@ Then visit `http://localhost:8000`.
 
 ## Contact
 
-- Email: [sentongo.paul@outlook.com](mailto:sentongo.paul@outlook.com)
+- Email: [sentongopol@gmail.com](mailto:sentongopol@gmail.com)
 - LinkedIn: [linkedin.com/in/paul-sentongo-885041284](https://www.linkedin.com/in/paul-sentongo-885041284/)
 - GitHub: [github.com/sentongo-web](https://github.com/sentongo-web)
 

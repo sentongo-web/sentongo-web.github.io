@@ -64,6 +64,6 @@ No build step required. Open `index.html` directly in a browser.
 
 ## Contact
 
-Email: paul.sentongo@eclipso.de
+Email: sentongopol@gmail.com
 LinkedIn: https://www.linkedin.com/in/paul-sentongo-885041284/
 WhatsApp: https://wa.me/4917635130941
