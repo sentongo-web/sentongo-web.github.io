@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Paul Sentongo's selected research portfolio: trustworthy clinical AI, medical imaging, MLOps, and data engineering.">
-    <meta name="keywords" content="Paul Sentongo, Clinical AI, Data Science, MLOps, SQL Data Warehouse, Medical Imaging, Uganda">
+    <meta name="description" content="Paul Sentongo's selected research portfolio: MONAI open-source contributor, trustworthy clinical AI, medical imaging, MLOps, and data engineering.">
+    <meta name="keywords" content="Paul Sentongo, MONAI, Open Source, Clinical AI, Data Science, MLOps, SQL Data Warehouse, Medical Imaging, Uganda">
     <meta property="og:title" content="Paul Sentongo | Selected Research Projects">
-    <meta property="og:description" content="Four carefully explained projects in clinical AI, medical imaging, MLOps, and data engineering.">
+    <meta property="og:description" content="MONAI open-source contributor. Four carefully explained projects in clinical AI, medical imaging, MLOps, and data engineering.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sentongo-web.github.io/">
     <meta name="theme-color" content="#07111f">
@@ -544,6 +544,42 @@
             text-underline-offset: 4px;
         }
 
+        .case-study.monai {
+            --project-color: var(--accent);
+        }
+
+        .contributor-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 1.4rem;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--accent) 10%, transparent);
+            color: var(--text);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .contributor-badge::before {
+            content: "";
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .contributor-badge:hover {
+            border-color: var(--accent);
+        }
+
+        .open-source .section-intro {
+            padding-top: 5rem;
+        }
+
         .research-approach {
             padding: 7rem 0;
             border-top: 1px solid var(--line);
@@ -751,6 +787,7 @@
         <div class="nav-shell">
             <a class="brand" href="#top" aria-label="Paul Sentongo, home">Paul Sentongo<span>.</span></a>
             <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#open-source">Open source</a>
                 <a href="#projects">Projects</a>
                 <a href="#approach">Research approach</a>
                 <a href="#contact">Contact</a>
@@ -762,12 +799,15 @@
     <main id="main-content">
         <section class="shell hero" id="top">
             <div>
+                <a class="contributor-badge" href="#open-source">MONAI contributor · Multimodal fusion tutorial merged</a>
                 <p class="eyebrow">Selected work · Clinical AI + Data Systems</p>
                 <h1>Four projects. <span>Real questions.</span> Honest results.</h1>
                 <p class="hero-copy">
                     I am Paul Sentongo, a data scientist and applied AI researcher. I build systems,
                     test what they can actually do, and explain where the evidence is still weak.
-                    This portfolio focuses on the four projects that best show how I think.
+                    I am also a contributor to MONAI, the open-source framework for deep
+                    learning in medical imaging. This portfolio focuses on that contribution and
+                    the four projects that best show how I think.
                 </p>
                 <div class="hero-actions">
                     <a class="button primary" href="#projects">Read the project stories</a>
@@ -785,6 +825,79 @@
                     <li>What research should come next?</li>
                 </ol>
             </aside>
+        </section>
+
+        <section class="shell open-source" id="open-source">
+            <div class="section-intro">
+                <p class="eyebrow">Open-source contribution</p>
+                <h2>Contributing to MONAI.</h2>
+                <p>
+                    MONAI is the PyTorch-based, open-source framework for deep learning in medical
+                    imaging. My tutorial was reviewed by the MONAI maintainers and merged into the
+                    official Project-MONAI tutorials repository.
+                </p>
+            </div>
+
+            <article class="case-study monai">
+                <header class="project-header">
+                    <p class="project-kicker"><span class="number">★</span> MONAI · Multimodal AI · Merged PR #2070</p>
+                    <h2>Multimodal early fusion: radiographs + clinical tabular data</h2>
+                    <p class="project-deck">
+                        A new official MONAI tutorial showing how to combine a 2D medical image with
+                        structured clinical context (age, BMI, salivary pH, and systolic blood pressure)
+                        in one dictionary-based MONAI pipeline.
+                    </p>
+                </header>
+
+                <div class="metrics" aria-label="MONAI contribution facts">
+                    <div class="metric"><strong>#2070</strong><span>pull request merged into Project-MONAI/tutorials</span></div>
+                    <div class="metric"><strong>528-d</strong><span>fused representation (512 image + 16 tabular)</span></div>
+                    <div class="metric"><strong>~0.91</strong><span>validation ROC-AUC on the synthetic cohort</span></div>
+                    <div class="metric"><strong>CPU</strong><span>runs end-to-end in under a minute, no GPU or download</span></div>
+                </div>
+
+                <div class="project-body">
+                    <section class="story-block">
+                        <h3>The gap it fills</h3>
+                        <p>
+                            Most MONAI tutorials focus on a single imaging modality. In real clinics,
+                            a clinician usually has vitals, labs, and a short history alongside the
+                            image. The tutorial shows the minimal end-to-end pattern for fusing both
+                            streams without writing a custom <code>Dataset</code>.
+                        </p>
+                    </section>
+
+                    <section class="story-block">
+                        <h3>What I built</h3>
+                        <ul>
+                            <li>A synthetic data generator that creates one 2D radiograph (saved as NIfTI), a 4-feature clinical vector, and a label per patient, all linked to a shared hidden risk factor so neither modality is fully predictive alone.</li>
+                            <li><code>ResilientMultimodalClassifier</code>: a MONAI DenseNet121 image embedding joined with a small tabular projection and a dropout-regularised classification head.</li>
+                            <li>A notebook, README, and training loop that pass MONAI's automated runner checks.</li>
+                        </ul>
+                    </section>
+
+                    <section class="plain-result">
+                        <h3>Why it matters, in everyday language</h3>
+                        <p>
+                            The feature schema is modelled on the hypertension-screening work at
+                            Nakaseke Hospital, Uganda, so research from a low-resource setting now
+                            informs a teaching resource for the medical-imaging community.
+                            No real patient data is included: the dataset is fully synthetic, and
+                            the ROC-AUC shows the pipeline works, not that it is clinically accurate.
+                        </p>
+                    </section>
+                </div>
+
+                <footer class="project-footer">
+                    <div class="tech-list" aria-label="MONAI contribution tools">
+                        <span>MONAI</span><span>PyTorch</span><span>DenseNet121</span><span>NIfTI / nibabel</span><span>Multimodal fusion</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Project-MONAI/tutorials/pull/2070" target="_blank" rel="noopener noreferrer">View the merged PR ↗</a>
+                        <a href="https://github.com/Project-MONAI/tutorials/tree/main/multimodal/nakaseke_multimodal_early_fusion" target="_blank" rel="noopener noreferrer">Open the tutorial ↗</a>
+                    </div>
+                </footer>
+            </article>
         </section>
 
         <section class="shell" id="projects">
@@ -1158,8 +1271,8 @@
             <p class="eyebrow">Research and collaboration</p>
             <h2>Let’s work on a question that matters.</h2>
             <p>
-                I am interested in clinical AI, medical imaging, responsible machine learning,
-                MLOps, and data systems for settings where resources and high-quality data are limited.
+                I am interested in clinical AI, medical imaging, open-source tools such as MONAI,
+                responsible machine learning, MLOps, and data systems for settings where resources and high-quality data are limited.
             </p>
             <div class="contact-links">
                 <a class="button primary" href="mailto:sentongopol@gmail.com">Email me</a>

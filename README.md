@@ -10,6 +10,29 @@ I am a data scientist and applied AI researcher focused on building systems that
 
 **Selected project stories:** [sentongo-web.github.io/#projects](https://sentongo-web.github.io/#projects)
 
+## Open-Source Contribution: MONAI
+
+I am a contributor to [MONAI](https://monai.io/), the open-source PyTorch framework for deep learning in medical imaging.
+
+### Multimodal Early-Fusion Network: Radiographs + Clinical Tabular Data
+
+**Merged:** [Project-MONAI/tutorials#2070](https://github.com/Project-MONAI/tutorials/pull/2070) · [Tutorial folder](https://github.com/Project-MONAI/tutorials/tree/main/multimodal/nakaseke_multimodal_early_fusion)
+
+**Problem:** Most MONAI tutorials cover a single imaging modality, but clinicians usually have structured context (vitals, labs, history) alongside the image.
+
+**What I built:**
+
+- A tutorial showing the minimal end-to-end MONAI/PyTorch pattern for fusing a 2D image stream with a low-dimensional tabular stream in one dictionary-based pipeline, without a custom `Dataset`.
+- `simulate_nakaseke_multimodal_dataset()`, which generates a synthetic radiograph (NIfTI), a 4-feature clinical vector (age, BMI, salivary pH, systolic blood pressure), and a binary label per patient from a shared hidden risk factor. No real patient data is included.
+- `ResilientMultimodalClassifier`: a MONAI `DenseNet121` 512-d image embedding concatenated with a 16-d tabular projection into a 528-d representation, followed by a dropout-regularised head.
+- A CPU-only notebook that trains on 200 synthetic patients in under a minute, passes `./runner.sh -t`, and reaches a validation ROC-AUC of ~0.91.
+
+The clinical schema is modelled on the Nakaseke Hospital hypertension-screening workflow described below.
+
+**Stack:** MONAI, PyTorch, DenseNet121, nibabel, Jupyter.
+
+---
+
 ## Featured Projects
 
 ### 1. SQL Server Data Warehouse
